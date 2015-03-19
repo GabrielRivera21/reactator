@@ -1,2 +1,2 @@
 # reactator
-React Project Template
+React & Flux based project template
