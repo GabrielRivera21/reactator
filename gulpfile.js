@@ -31,9 +31,15 @@ gulp.task('bower', function() {
 /**
  * Clean
  */
+gulp.task('clean-coverage', function() {
+    return gulp
+            .src(['coverage/**/*.*'], {read:false})
+            .pipe(clean({force:true}));
+});
+
 gulp.task('clean', function() {
     return gulp
-            .src(['dist/**/*.*', 'doc/**/*.*'], {read:false})
+            .src(['dist/**/*.*', 'doc/**/*.*', 'coverage/**/*.*'], {read:false})
             .pipe(clean({force:true}));
 });
 
@@ -114,7 +120,8 @@ gulp.task('jest', function () {
             "js",
             "json",
             "react"
-        ]
+        ],
+        collectCoverage: true
     }));
 });
 
@@ -178,7 +185,9 @@ gulp.task('build', function() {
 /**
  * Test
  */
-gulp.task('test', ['jshint', 'jest']);
+gulp.task('test', function(){
+    runSequence('jshint', 'clean-coverage', 'jest', function(){});
+});
 
 /**
  * Default

@@ -1,4 +1,4 @@
-/* global require, module, console */
+/* global require, module */
 
 var _ = require('underscore');
 var Store = require('./Store.js');
@@ -11,6 +11,8 @@ var AppDispatcher = require('../dispatcher/AppDispatcher.js');
  */
 var AppStore = Store.extend({});
 _.extend(AppStore.prototype, {
+    /*jshint unused:false*/
+
     /**
      * @method initialize
      */
