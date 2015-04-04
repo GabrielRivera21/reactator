@@ -19,3 +19,5 @@ window.Class = require('./lib/Class.js');
 window.Client = require('./client/Client.js');
 window.ClientWrapper = require('./client/ClientWrapper.js');
 window.AjaxClient = require('./client/AjaxClient.js');
+
+window.AppStore = require('./stores/AppStore.js');

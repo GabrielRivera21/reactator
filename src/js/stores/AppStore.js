@@ -2,7 +2,19 @@
 
 var _ = require('underscore');
 var Store = require('./Store.js');
+var AppConstants = require('../constants/AppConstants.js');
 var AppDispatcher = require('../dispatcher/AppDispatcher.js');
+var Immutable = require('immutable');
+
+var state = Immutable.Map({
+    route : {
+        action: null,
+        params: null,
+        path: null,
+        pathname: null,
+        query: null
+    }
+});
 
 /**
  * Store for the app values.
@@ -25,7 +37,26 @@ _.extend(AppStore.prototype, {
      * @method appDispatcherListener
      */
     appDispatcherListener : function(event) {
+        switch (event.source) {
+            case AppConstants.ROUTE_ACTION:
+                state = state.merge({route: {
+                    action: event.action.action,
+                    params: event.action.params,
+                    path: event.action.path,
+                    pathname: event.action.pathname,
+                    query: event.action.query
+                }});
+            break;
+        }
+
         this.emitChange();
+    },
+
+    /**
+     * @method getState
+     */
+    getState : function() {
+        return state;
     }
 });
 

@@ -39,9 +39,11 @@ gulp.task('clean-coverage', function() {
 
 gulp.task('clean', function() {
     return gulp
-            .src(['dist/**/*.*', 'doc/**/*.*', 'coverage/**/*.*'], {read:false})
+            .src(['dist/**/*.*', 'doc/**/*.*'], {read:false})
             .pipe(clean({force:true}));
 });
+
+gulp.task('clean-all', ['clean', 'clean-coverage']);
 
 /**
  * Copy
@@ -200,15 +202,25 @@ gulp.task('default', function() {
  * Watch
  */
 gulp.task('watch', function() {
-    return gulp.watch('src/**/*.*', [
+    return gulp.watch(['src/**/*.*', '!src/**/*-test.js'], [
         'default'
+    ]);
+});
+
+/**
+ * Watch tests
+ */
+gulp.task('watch-test', function() {
+    return gulp.watch('src/**/*-test.js', [
+        'clean-coverage',
+        'test'
     ]);
 });
 
 /**
  * Dev
  */
-gulp.task('dev', ['connect', 'watch']);
+gulp.task('dev', ['connect', 'watch', 'watch-test']);
 
 /**
  * Install
