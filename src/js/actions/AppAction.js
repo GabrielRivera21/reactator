@@ -15,7 +15,10 @@ var AppAction = {
      * @method noop
      */
     noop : function() {
-        AppDispatcher.handleRouteAction(undefined);
+        AppDispatcher.dispatch({
+            source : 'noop',
+            action : undefined
+        });
     }
 };
 
