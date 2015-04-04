@@ -8,5 +8,6 @@
 var keyMirror = require('keymirror');
 
 module.exports = keyMirror({
-  ROUTE_ACTION : null
+  ROUTE_ACTION : null,
+  WINDOW_RESIZE_ACTION : null
 });

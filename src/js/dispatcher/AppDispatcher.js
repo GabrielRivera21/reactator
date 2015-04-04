@@ -10,14 +10,27 @@ var DispatcherFactory = require('../lib/DispatcherFactory.js');
 var AppDispatcher = DispatcherFactory.create('AppDispatcher');
 
 /**
- * Dispatches a route action of ROUTE_ACTION and ROUTE_CHANGE
+ * Dispatches a route action of ROUTE_ACTION
  *
  * @method handleRouteAction
- * @param {Object} route route to be dispatched
+ * @param {Object} state route state to be dispatched
  */
 AppDispatcher.handleRouteAction = function(state) {
     this.dispatch({
         source : AppConstants.ROUTE_ACTION,
+        action : state
+    });
+};
+
+/**
+ * Dispatches a window resize action of WINDOW_RESIZE_ACTION
+ *
+ * @method handleWindowResize
+ * @param {Object} state window state to be dispatched
+ */
+AppDispatcher.handleWindowResize = function(state) {
+    this.dispatch({
+        source : AppConstants.WINDOW_RESIZE_ACTION,
         action : state
     });
 };

@@ -13,7 +13,8 @@ var state = Immutable.Map({
         path: null,
         pathname: null,
         query: null
-    }
+    },
+    size : {}
 });
 
 /**
@@ -46,6 +47,11 @@ _.extend(AppStore.prototype, {
                     pathname: event.action.pathname,
                     query: event.action.query
                 }});
+            break;
+            case AppConstants.WINDOW_RESIZE_ACTION:
+                state = state.merge({
+                    size: event.action
+                });
             break;
         }
 
