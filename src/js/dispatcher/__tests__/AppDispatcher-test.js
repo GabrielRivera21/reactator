@@ -86,4 +86,15 @@ describe('AppDispatcher', function() {
         expect(listener.mock.calls[0][0].source).toBe(AppConstants.ROUTE_ACTION);
         expect(listener.mock.calls[0][0].action).toBe('test');
     });
+
+    it('propogates window resize action with correct source', function() {
+        var listener = jest.genMockFunction();
+        AppDispatcher.register(listener);
+
+        AppDispatcher.handleWindowResize('test');
+
+        expect(listener.mock.calls.length).toBe(1);
+        expect(listener.mock.calls[0][0].source).toBe(AppConstants.WINDOW_RESIZE_ACTION);
+        expect(listener.mock.calls[0][0].action).toBe('test');
+    })
 });
