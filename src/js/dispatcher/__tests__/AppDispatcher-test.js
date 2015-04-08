@@ -96,5 +96,5 @@ describe('AppDispatcher', function() {
         expect(listener.mock.calls.length).toBe(1);
         expect(listener.mock.calls[0][0].source).toBe(AppConstants.WINDOW_RESIZE_ACTION);
         expect(listener.mock.calls[0][0].action).toBe('test');
-    })
+    });
 });
