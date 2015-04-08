@@ -19,7 +19,7 @@ _.extend(ClientWrapper.prototype, {
      */
     initialize : function(client) {
         if (!(client instanceof Client)) {
-            throw "ClientWrapper can only wrap instance of the Client.";
+            throw new Error("ClientWrapper can only wrap instance of the Client.");
         }
 
         this.client = client;
