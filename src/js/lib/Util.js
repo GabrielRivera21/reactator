@@ -15,16 +15,22 @@ var U = {
      * @param {String} type type requiring and running the verification
      * @param {Object} object object to analyze
      * @param {Array} names names of the functions
+     * @return {Array} names of functions not implemented
      * @method verifyRequiredFunctions
      */
     verifyRequiredFunctions : function(type, object, names) {
+        var missing = [];
+
         _.each(
             names,
             function (name) {
                 if(!_.isFunction(object[name])) {
                     console.warn(type + ' requires function ' + name + '!');
+                    missing.push(name);
                 }
             });
+
+        return missing;
     },
 
     /**
