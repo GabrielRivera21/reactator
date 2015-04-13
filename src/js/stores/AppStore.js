@@ -6,7 +6,7 @@ var AppConstants = require('../constants/AppConstants.js');
 var AppDispatcher = require('../dispatcher/AppDispatcher.js');
 var Immutable = require('immutable');
 
-var state = Immutable.Map({
+var state = Immutable.fromJS({
     route : {
         action: null,
         params: null,
@@ -14,7 +14,11 @@ var state = Immutable.Map({
         pathname: null,
         query: null
     },
-    size : {}
+    size : {
+      width : null,
+      height : null,
+      visibility : null
+    }
 });
 
 /**
@@ -40,7 +44,7 @@ _.extend(AppStore.prototype, {
     appDispatcherListener : function(event) {
         switch (event.source) {
             case AppConstants.ROUTE_ACTION:
-                state = state.merge({route: {
+                state = state.mergeDeep({route: {
                     action: event.action.action,
                     params: event.action.params,
                     path: event.action.path,
@@ -49,8 +53,12 @@ _.extend(AppStore.prototype, {
                 }});
             break;
             case AppConstants.WINDOW_RESIZE_ACTION:
-                state = state.merge({
-                    size: event.action
+                state = state.mergeDeep({
+                    size: {
+                        width : event.action.width,
+                        height : event.action.height,
+                        visibility : event.action.visibility
+                    }
                 });
             break;
         }

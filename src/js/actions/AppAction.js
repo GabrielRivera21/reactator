@@ -19,6 +19,20 @@ var AppAction = {
             source : 'noop',
             action : undefined
         });
+    },
+
+    /**
+     * @param {Number} width width of the app
+     * @param {Number} height height of the app
+     * @param {String} visibility visibliity of the app: XS, SM, MD, LG
+     * @method resize
+     */
+    resize : function(width, height, visibility) {
+        AppDispatcher.handleWindowResize({
+            width : width,
+            height : height,
+            visibility : visibility
+        });
     }
 };
 

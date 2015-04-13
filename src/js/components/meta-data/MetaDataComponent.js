@@ -1,7 +1,8 @@
 /* global require, module, window */
 
 var React = require('react');
-var AppDispatcher = require('../../dispatcher/AppDispatcher.js');
+var AppConstants = require('../../constants/AppConstants.js');
+var AppAction = require('../../actions/AppAction.js');
 var $ = require('../../lib/jquery.js');
 var _ = require('underscore');
 
@@ -19,18 +20,16 @@ var MetaDataComponent = React.createClass({
             return $responsive.find(className).is(':visible');
         };
 
-        AppDispatcher.handleWindowResize({
-            width: window.innerWidth,
-            height: window.innerHeight,
-            isVisibleXS: isVisible('.visible-xs-block'),
-            isVisibleSM: isVisible('.visible-sm-block'),
-            isVisibleMD: isVisible('.visible-md-block'),
-            isVisibleLG: isVisible('.visible-lg-block'),
-            isHiddenXS: !isVisible('.hidden-xs'),
-            isHiddenSM: !isVisible('.hidden-sm'),
-            isHiddenMD: !isVisible('.hidden-md'),
-            isHiddenLG: !isVisible('.hidden-lg')
-        });
+        var visibility = AppConstants.XS;
+        if (isVisible('.visible-lg-block')) {
+            visibility = AppConstants.LG;
+        } else if (isVisible('.visible-md-block')) {
+            visibility = AppConstants.MD;
+        } else if (isVisible('.visible-sm-block')) {
+            visibility = AppConstants.SM;
+        }
+
+        AppAction.resize(window.innerWidth, window.innerHeight, visibility);
     },
 
     componentDidMount: function() {
@@ -42,14 +41,9 @@ var MetaDataComponent = React.createClass({
         return (
             <div>
                 <div className='responsive'>
-                    <div className='visible-xs-block' />
-                    <div className='visible-sm-block' />
-                    <div className='visible-md-block' />
                     <div className='visible-lg-block' />
-                    <div className='hidden-xs' />
-                    <div className='hidden-sm' />
-                    <div className='hidden-md' />
-                    <div className='hidden-lg' />
+                    <div className='visible-md-block' />
+                    <div className='visible-sm-block' />
                 </div>
             </div>
         );

@@ -21,6 +21,10 @@ var MainComponent = React.createClass({
         AppStore.addChangeListener(this.onAppStoreChange);
     },
 
+    componentWillUnmount : function() {
+        AppStore.removeChangeListener(this.onAppStoreChange);
+    },
+
     onAppStoreChange : function() {
         this.setState({count: this.state.count + 1});
     },
