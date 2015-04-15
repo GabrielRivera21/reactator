@@ -6,6 +6,10 @@ var EventEmitter = require('events').EventEmitter;
 
 var CHANGE_EVENT = "change";
 
+function changeEvent(id) {
+    return CHANGE_EVENT + "-" + id;
+}
+
 /**
  * Store base providing common funcitonality to all stores.
  *
@@ -48,26 +52,46 @@ _.extend(Store.prototype, {
      * Emits the change event on the store
      * @method emitChange
      */
-    emitChange : function() {
-        this._emitter.emit(CHANGE_EVENT);
+    emitChange : function(id) {
+        if (_.isUndefined(id)) {
+            _.each(
+                Object.keys(this._emitter._events),
+                function(event) {
+                    this._emitter.emit(event);
+                },
+                this);
+        } else {
+            this._emitter.emit(changeEvent(id));
+            this._emitter.emit(CHANGE_EVENT);
+        }
     },
 
     /**
      * Registers the callback for the change event on the store
      * @param {Function} callback callback function to register
+     * @param {String} id id of the change event
      * @method addChangeListener
      */
-    addChangeListener : function(callback) {
-        this._emitter.on(CHANGE_EVENT, callback);
+    addChangeListener : function(callback, id) {
+        if (!_.isUndefined(id)) {
+            this._emitter.on(changeEvent(id), callback);
+        } else {
+            this._emitter.on(CHANGE_EVENT, callback);
+        }
     },
 
     /**
      * Removes the registered callback for the change event on the store
      * @param  {Function} callback callback funciton to unregister
+     * @param {String} id id of the change event
      * @method removeChangeListener
      */
-    removeChangeListener : function(callback) {
-        this._emitter.removeListener(CHANGE_EVENT, callback);
+    removeChangeListener : function(callback, id) {
+        if (!_.isUndefined(id)) {
+            this._emitter.removeListener(changeEvent(id), callback);
+        } else {
+            this._emitter.removeListener(CHANGE_EVENT, callback);
+        }
     }
 });
 
