@@ -51,6 +51,8 @@ _.extend(AppStore.prototype, {
                     pathname: event.action.pathname,
                     query: event.action.query
                 }});
+
+                this.emitChange('route');
             break;
             case AppConstants.WINDOW_RESIZE_ACTION:
                 state = state.mergeDeep({
@@ -60,10 +62,10 @@ _.extend(AppStore.prototype, {
                         visibility : event.action.visibility
                     }
                 });
+
+                this.emitChange('size');
             break;
         }
-
-        this.emitChange();
     },
 
     /**

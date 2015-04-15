@@ -35,11 +35,11 @@ var ResponsiveComponent = React.createClass({
     },
 
     componentWillMount : function() {
-        AppStore.addChangeListener(this.onAppStoreChange);
+        AppStore.addChangeListener(this.onAppStoreChange, 'size');
     },
 
     componentWillUnmount : function() {
-        AppStore.removeChangeListener(this.onAppStoreChange);
+        AppStore.removeChangeListener(this.onAppStoreChange, 'size');
     },
 
     onAppStoreChange : function() {

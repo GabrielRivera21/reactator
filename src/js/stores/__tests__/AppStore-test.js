@@ -20,7 +20,7 @@ describe('AppStore', function() {
         expect(AppStore.getState()).not.toBeNull();
     });
 
-    it ('should emit change on any AppDispatcher event', function() {
+    it ('should emit change on Route or Size AppDispatcher events', function() {
         var listener = jest.genMockFunction();
         AppStore.addChangeListener(listener);
 
@@ -28,7 +28,7 @@ describe('AppStore', function() {
 
         AppStore.removeChangeListener(listener);
 
-        expect(listener.mock.calls.length).toBe(1);
+        expect(listener.mock.calls.length).toBe(0);
     });
 
     it ('should update state according to the route action', function() {
