@@ -23,7 +23,7 @@ React.render(
  *
  * @class App
  */
-Router.run(routes, function(Handler, state) {
+Router.run(routes, Router.HistoryLocation, function(Handler, state) {
     AppDispatcher.handleRouteAction(state);
 
     React.render(

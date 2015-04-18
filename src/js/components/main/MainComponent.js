@@ -11,6 +11,10 @@ var AppAction = require('../../actions/AppAction.js');
  */
 var MainComponent = React.createClass({
 
+    contextTypes: {
+        router: React.PropTypes.func
+    },
+
     getInitialState : function() {
         return {
             count : 0
@@ -29,9 +33,23 @@ var MainComponent = React.createClass({
         this.setState({count: this.state.count + 1});
     },
 
+    samePage : function() {
+        this.context.router.transitionTo('/', {}, {r:Math.random()});
+    },
+
+    profilePage : function() {
+        this.context.router.transitionTo('profile', {}, {});
+    },
+
     render: function() {
         return (
-            <h2>Main to be implemented: {this.state.count}. <a className='btn btn-primary' onClick={AppAction.noop}>No-Op</a></h2>
+            <div>
+                <h2>Main to be implemented: {this.state.count}.</h2>
+                <div>
+                    <a className='btn btn-primary' onClick={this.samePage}>Same Page</a>
+                    <a className='btn btn-primary' onClick={this.profilePage}>Profile Page</a>
+                </div>
+            </div>
         );
     }
 });
