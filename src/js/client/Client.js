@@ -1,6 +1,7 @@
 /* global require, module */
 
-var _ = require('underscore'),
+const
+    _ = require('underscore'),
     Q = require('../lib/q.js'),
     ClientError = require('./ClientError.js'),
     ClientResponse = require('./ClientResponse.js');
@@ -8,9 +9,9 @@ var _ = require('underscore'),
 //
 // Simple Q.Promise to throw method not implemented error.
 //
-var methodNotImplementedPromise = Q.Promise(
+const methodNotImplementedPromise = Q.Promise(
     /*jshint unused:false*/
-    function(resolve, reject, notify) {
+    (resolve, reject, notify) => {
         reject(new ClientError(400, "Method not implemented!"));
     }
 );

@@ -5,7 +5,7 @@
  *
  * @class Backbone
  */
-var Backbone = require('backbone');
+const Backbone = require('backbone');
 Backbone.$ = require('./jquery.js');
 
 module.exports = Backbone;

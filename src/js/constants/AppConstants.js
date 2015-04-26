@@ -5,9 +5,9 @@
  *
  * @class AppConstants
  */
-var keyMirror = require('keymirror');
+const keyMirror = require('keymirror');
 
-var AppConstants = keyMirror({
+const AppConstants = keyMirror({
   ROUTE_ACTION : null,
   WINDOW_RESIZE_ACTION : null,
 

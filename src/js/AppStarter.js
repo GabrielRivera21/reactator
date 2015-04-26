@@ -1,7 +1,8 @@
 /* global require, document */
 require('./globals.js');
 
-var React = require('react'),
+const
+    React = require('react'),
     Router = require('react-router'),
     AppDispatcher = require('./dispatcher/AppDispatcher.js'),
     MetaDataComponent = require('./components/meta-data/MetaDataComponent.js');

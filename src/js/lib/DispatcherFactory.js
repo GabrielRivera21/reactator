@@ -1,6 +1,7 @@
 /* global require, module */
 
-var Dispatcher = require('flux').Dispatcher,
+const
+    Dispatcher = require('flux').Dispatcher,
     dispatchers = {};
 
 /**
@@ -8,7 +9,7 @@ var Dispatcher = require('flux').Dispatcher,
  *
  * @class DispatcherFactory
  */
-var DispatcherFactory = {
+const DispatcherFactory = {
 
     /**
      * Creates a new Dispatcher and sets the name of the dispatcher.
@@ -22,7 +23,7 @@ var DispatcherFactory = {
             return dispatchers[name];
         }
 
-        var dispatcher = new Dispatcher();
+        let dispatcher = new Dispatcher();
         dispatcher.name = name;
 
         dispatchers[name] = dispatcher;

@@ -5,7 +5,8 @@
  *
  * @class AppDispatcher
  */
-var AppConstants = require('../constants/AppConstants.js'),
+const
+    AppConstants = require('../constants/AppConstants.js'),
     DispatcherFactory = require('../lib/DispatcherFactory.js'),
     AppDispatcher = DispatcherFactory.create('AppDispatcher');
 

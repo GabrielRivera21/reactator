@@ -1,13 +1,13 @@
 /* global require, module */
 
-var React = require('react');
+const React = require('react');
 
 /**
  * React component ProfileComponent
  *
  * @class ProfileComponent
  */
-var ProfileComponent = React.createClass({
+const ProfileComponent = React.createClass({
 
     contextTypes: {
         router: React.PropTypes.func

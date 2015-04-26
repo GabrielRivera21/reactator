@@ -1,13 +1,14 @@
 /* global require, module */
 
-var _ = require('underscore'),
+const
+    _ = require('underscore'),
     EventEmitter = require('events').EventEmitter;
 
 const CHANGE_EVENT = "change";
 
-function changeEvent(id) {
+const changeEvent = (id) => {
     return CHANGE_EVENT + "-" + id;
-}
+};
 
 /**
  * Store base providing common funcitonality to all stores.

@@ -5,7 +5,7 @@
  *
  * @class Q
  */
-var Q = require('q');
+const Q = require('q');
 Q.longStackSupport = true;
 
 module.exports = Q;

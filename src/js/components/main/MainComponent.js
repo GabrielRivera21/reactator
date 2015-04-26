@@ -1,6 +1,7 @@
 /* global require, module */
 
-var React = require('react'),
+const
+    React = require('react'),
     AppStore = require('../../stores/AppStore.js'),
     AppAction = require('../../actions/AppAction.js');
 
@@ -9,7 +10,7 @@ var React = require('react'),
  *
  * @class MainComponent
  */
-var MainComponent = React.createClass({
+const MainComponent = React.createClass({
 
     contextTypes: {
         router: React.PropTypes.func

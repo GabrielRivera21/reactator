@@ -1,6 +1,7 @@
 /* global require, module */
 
-var _ = require('underscore'),
+const
+    _ = require('underscore'),
     Store = require('./Store.js'),
     AppConstants = require('../constants/AppConstants.js'),
     AppDispatcher = require('../dispatcher/AppDispatcher.js'),

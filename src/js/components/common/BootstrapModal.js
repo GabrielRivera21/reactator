@@ -1,13 +1,13 @@
 /* global require, module */
 
-var React = require('react/addons');
+const React = require('react/addons');
 
 /**
  * React component BootstrapModal
  *
  * @class BootstrapModal
  */
-var BootstrapModal = React.createClass({
+const BootstrapModal = React.createClass({
     propTypes: {
         classes : React.PropTypes.arrayOf(React.PropTypes.string)
     },
@@ -19,7 +19,7 @@ var BootstrapModal = React.createClass({
     },
 
     render: function() {
-        var classes = "modal fade";
+        let classes = "modal fade";
         this.props.classes.forEach(function(className) {
             classes += " " + className;
         });

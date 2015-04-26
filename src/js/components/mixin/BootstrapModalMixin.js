@@ -5,17 +5,18 @@
  *
  * @class BootstrapModalMixin
  */
-var React = require('react'),
+const
+    React = require('react'),
     $ = require('../../lib/jquery.js');
 
-var bootstrapModalEvents = {
+const bootstrapModalEvents = {
     handleShow: 'show.bs.modal',
     handleShown: 'shown.bs.modal',
     handleHide: 'hide.bs.modal',
     handleHidden: 'hidden.bs.modal'
 };
 
-var handlerProps = [
+const handlerProps = [
 
     /**
      * Optional callback for modal event 'handleShow'
@@ -103,14 +104,14 @@ var BootstrapModalMixin = {
      * @method componentDidMount
      */
     componentDidMount: function() {
-        var $modal = $(this.getDOMNode()).modal({
+        const $modal = $(this.getDOMNode()).modal({
             backdrop: this.props.backdrop,
             keyboard: this.props.keyboard,
             show: this.props.show,
             remote: this.props.remote
         });
 
-        handlerProps.forEach(function(prop) {
+        handlerProps.forEach((prop) =>{
             if (this[prop]) {
                 $modal.on(bootstrapModalEvents[prop], this[prop]);
             }
@@ -118,7 +119,7 @@ var BootstrapModalMixin = {
             if (this.props[prop]) {
                 $modal.on(bootstrapModalEvents[prop], this.props[prop]);
             }
-        }.bind(this));
+        });
     },
 
     /**
@@ -127,9 +128,9 @@ var BootstrapModalMixin = {
      * @method componentWillUnmount
      */
     componentWillUnmount: function() {
-        var $modal = $(this.getDOMNode());
+        const $modal = $(this.getDOMNode());
 
-        handlerProps.forEach(function(prop) {
+        handlerProps.forEach((prop) => {
             if (this[prop]) {
                 $modal.off(bootstrapModalEvents[prop], this[prop]);
             }
@@ -137,7 +138,7 @@ var BootstrapModalMixin = {
             if (this.props[prop]) {
                 $modal.off(bootstrapModalEvents[prop], this.props[prop]);
             }
-        }.bind(this));
+        });
     },
 
     /**

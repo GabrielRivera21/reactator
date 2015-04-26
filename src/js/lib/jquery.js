@@ -5,7 +5,7 @@
  *
  * @class jQuery
  */
-var jQuery = require('jquery');
+const jQuery = require('jquery');
 window.$ = global.jQuery = jQuery;
 
 require('bootstrap');

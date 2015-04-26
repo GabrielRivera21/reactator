@@ -1,6 +1,7 @@
 /* global require, module, window */
 
-var React = require('react'),
+const
+    React = require('react'),
     AppConstants = require('../../constants/AppConstants.js'),
     AppAction = require('../../actions/AppAction.js'),
     $ = require('../../lib/jquery.js'),
@@ -12,13 +13,13 @@ var React = require('react'),
  *
  * @class MetaDataComponent
  */
-var MetaDataComponent = React.createClass({
+const MetaDataComponent = React.createClass({
 
     handleWindowResize : function() {
-        var $responsive = $(this.getDOMNode()).find('.responsive');
-        var isVisible = className => $responsive.find(className).is(':visible');
+        let $responsive = $(this.getDOMNode()).find('.responsive');
+        let isVisible = className => $responsive.find(className).is(':visible');
 
-        var visibility = AppConstants.XS;
+        let visibility = AppConstants.XS;
         if (isVisible('.visible-lg-block')) {
             visibility = AppConstants.LG;
         } else if (isVisible('.visible-md-block')) {

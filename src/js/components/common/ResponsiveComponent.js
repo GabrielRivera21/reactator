@@ -1,19 +1,23 @@
 /* global require, module */
 
-var _ = require('underscore'),
+const
+    _ = require('underscore'),
     React = require('react'),
     AppStore = require('../../stores/AppStore.js'),
     AppConstants = require('../../constants/AppConstants.js');
 
-function getPropVisibility(props, visibility) {
-    var isVisible = false;
+/**
+ * @method getPropVisibility
+ */
+const getPropVisibility = (props, visibility) => {
+    let isVisible = false;
     return _.find(
         AppConstants.VISIBILITY_ORDER,
-        function(level) {
+        (level) => {
             isVisible = isVisible || level === visibility;
             return isVisible && props[level] !== undefined;
         });
-}
+};
 
 /**
  * React component for adapting to the window size and visibility according
@@ -26,7 +30,7 @@ function getPropVisibility(props, visibility) {
  *
  * @class ResponsiveComponent
  */
-var ResponsiveComponent = React.createClass({
+const ResponsiveComponent = React.createClass({
 
     getInitialState : function() {
         return {

@@ -1,6 +1,7 @@
 /* global require, module */
 
-var React = require('react'),
+const
+    React = require('react'),
     Router = require('react-router'),
     RouteHandler = Router.RouteHandler,
     AppHeader = require('./AppHeader.js');
@@ -10,7 +11,7 @@ var React = require('react'),
  *
  * @class AppLayout
  */
-var AppLayout = React.createClass({
+const AppLayout = React.createClass({
     render: function() {
         return (
             <div className='app'>

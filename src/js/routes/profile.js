@@ -1,6 +1,7 @@
 /* global require, module */
 
-var React = require('react'),
+const
+    React = require('react'),
     Router = require('react-router'),
     Route = Router.Route,
     DefaultRoute = Router.DefaultRoute,
@@ -12,7 +13,7 @@ var React = require('react'),
  *
  * @class RoutesProfile
  */
-var routes = (
+const routes = (
     <Route name="profile" handler={ProfileLayout}>
         <DefaultRoute handler={ProfileComponent} />
     </Route>

@@ -1,13 +1,27 @@
 /* global require, console, module */
 
-var _ = require('underscore');
+const _ = require('underscore');
+
+
+const _p8 = (s, v) => {
+    let p = (v.toString(16)+"000000000").substr(2,8);
+    return s ? "-" + p.substr(0,4) + "-" + p.substr(4,4) : p ;
+};
+
+const _d8 = (s) => {
+    return _p8(s, Date.now());
+};
+
+const _m8 = (s) => {
+    return _p8(s, Math.random());
+};
 
 /**
  * All sort of common helper functionality.
  *
  * @class  U
  */
-var U = {
+const U = {
 
     /**
      * Verifies if the object has the specified functions.
@@ -19,11 +33,11 @@ var U = {
      * @method verifyRequiredFunctions
      */
     verifyRequiredFunctions : function(type, object, names) {
-        var missing = [];
+        let missing = [];
 
         _.each(
             names,
-            function (name) {
+            (name) => {
                 if(!_.isFunction(object[name])) {
                     console.warn(type + ' requires function ' + name + '!');
                     missing.push(name);
@@ -39,19 +53,6 @@ var U = {
      * @method guid
      */
     guid : function() {
-        function _p8(s, v) {
-            var p = (v.toString(16)+"000000000").substr(2,8);
-            return s ? "-" + p.substr(0,4) + "-" + p.substr(4,4) : p ;
-        }
-
-        function _d8(s) {
-            return _p8(s, Date.now());
-        }
-
-        function _m8(s) {
-            return _p8(s, Math.random());
-        }
-
         return _m8() + _m8(true) + _m8(true) + _d8();
     },
 
@@ -66,11 +67,11 @@ var U = {
      * @method addListeners
      */
     addListeners : function(emitter, events, func, obj) {
-        var listeners = {};
+        const listeners = {};
         _.each(
             events,
-            function (event) {
-                var listener = listeners[event] = func.bind(obj, event);
+            (event) => {
+                const listener = listeners[event] = func.bind(obj, event);
                 emitter.on(event, listener);
             });
 
@@ -86,7 +87,7 @@ var U = {
     removeListeners : function(emitter, listeners) {
         _.each(
             listeners,
-            function (listener, event) {
+            (listener, event) => {
                 emitter.removeListener(event, listener);
             });
     }

@@ -1,6 +1,6 @@
 /* global require, module */
 
-var _ = require('underscore');
+const _ = require('underscore');
 
 /**
  * Error thrown by {{#crossLink "Client"}}{{/crossLink}} on failed operations.

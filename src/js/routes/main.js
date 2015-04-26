@@ -1,6 +1,7 @@
 /* global require, module */
 
-var React = require('react'),
+const
+    React = require('react'),
     Router = require('react-router'),
     Route = Router.Route,
     DefaultRoute = Router.DefaultRoute,
@@ -12,7 +13,7 @@ var React = require('react'),
  *
  * @class RoutesMain
  */
-var routes = (
+const routes = (
     <Route name="main" path="/" handler={MainLayout}>
         <DefaultRoute handler={MainComponent} />
     </Route>

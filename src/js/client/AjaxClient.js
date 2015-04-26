@@ -1,6 +1,7 @@
 /* global require, module */
 
-var _ = require('underscore'),
+const
+    _ = require('underscore'),
     Q = require('../lib/q.js'),
     $ = require('../lib/jquery.js'),
     Client = require('./Client.js'),
@@ -11,37 +12,34 @@ var _ = require('underscore'),
 // Helper to return a Q.Promise that returns ClientResponse or ClientError for an
 // ajax request.
 //
-function promise($ajax) {
-    function getHeaders() {
-        var headers = {};
+const promise = ($ajax) => {
+    const getHeaders = () => {
+        let headers = {};
         _.map(
             $ajax.getAllResponseHeaders().trim().split('\n'),
-            function(header) {
+            (header) => {
                 var index = header.indexOf(':');
                 headers[header.substr(0, index).trim()] = header.substr(index + 1).trim();
             }
         );
 
         return headers;
-    }
+    };
 
     return Q.Promise(function(resolve, reject) {
-        /*jshint -W024 */
         Q($ajax)
-        .then(function(response) {
-            resolve(new ClientResponse(response, $ajax.status, getHeaders()));
-        }).catch(function(error) {
-            reject(new ClientError(error.status, error.responseText, $ajax));
-        });
+        .then((response) => resolve(new ClientResponse(response, $ajax.status, getHeaders())))
+        .catch((error) => reject(new ClientError(error.status, error.responseText, $ajax)))
+        .done();
     });
-}
+};
 
 //
 // Helper for requesting the ajax and returning the promise
 //
-function ajax(settings, request) {
+const ajax = (settings, request) => {
     return promise($.ajax(_.extend({}, settings, request)));
-}
+};
 
 /**
  * Class representing the implementation of the Client interface utilizing the jQuery's ajax.
@@ -82,7 +80,7 @@ class AjaxClient extends Client {
     read(id, settings) {
         return ajax(settings, {
                 method : 'GET',
-                url: this.uri + '/' + id,
+                url: `${this.uri}/${id}`,
                 dataType : 'json'
             });
     }
@@ -94,7 +92,7 @@ class AjaxClient extends Client {
     update(id, item, settings) {
         return ajax(settings, {
                 method : 'PUT',
-                url: this.uri + '/' + id,
+                url: `${this.uri}/${id}`,
                 contentType: 'application/json',
                 data: JSON.stringify(item),
                 dataType : 'json'
@@ -109,7 +107,7 @@ class AjaxClient extends Client {
     delete(id, settings) {
         return ajax(settings, {
                 method : 'DELETE',
-                url: this.uri + '/' + id,
+                url: `${this.uri}/${id}`,
                 dataType : 'text'
             });
     }

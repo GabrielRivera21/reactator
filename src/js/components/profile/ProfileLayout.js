@@ -1,6 +1,7 @@
 /* global require, module */
 
-var React = require('react'),
+const
+    React = require('react'),
     Router = require('react-router'),
     RouteHandler = Router.RouteHandler;
 
@@ -9,7 +10,7 @@ var React = require('react'),
  *
  * @class ProfileLayout
  */
-var ProfileLayout = React.createClass({
+const ProfileLayout = React.createClass({
     render: function() {
         return (
             <div>

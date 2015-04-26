@@ -172,7 +172,8 @@ gulp.task('less', function() {
                 optimization: 10
             }
         }))
-        .pipe(gulp.dest('dist/css/'));
+        .pipe(gulp.dest('dist/css/'))
+        .pipe(connect.reload());;
 });
 
 gulp.task('default'     , []         , startTasks(['jshint', 'build']));

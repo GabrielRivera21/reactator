@@ -1,8 +1,8 @@
 /* global require, document */
 require('./globals.js');
 
-
-var AppStarter = require('./AppStarter.js'),
+const
+    AppStarter = require('./AppStarter.js'),
     routes = require('./routes/routes.js');
 
 /**
