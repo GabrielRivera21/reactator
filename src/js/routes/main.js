@@ -1,12 +1,11 @@
 /* global require, module */
 
-var React = require('react');
-var Router = require('react-router');
-var Route = Router.Route;
-var DefaultRoute = Router.DefaultRoute;
-
-var MainLayout = require("../components/main/MainLayout.js");
-var MainComponent = require("../components/main/MainComponent.js");
+var React = require('react'),
+    Router = require('react-router'),
+    Route = Router.Route,
+    DefaultRoute = Router.DefaultRoute,
+    MainLayout = require("../components/main/MainLayout.js"),
+    MainComponent = require("../components/main/MainComponent.js");
 
 /**
  * React Router definition for main app

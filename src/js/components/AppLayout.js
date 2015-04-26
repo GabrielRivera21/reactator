@@ -1,9 +1,9 @@
 /* global require, module */
 
-var React = require('react');
-var Router = require('react-router');
-var RouteHandler = Router.RouteHandler;
-var AppHeader = require('./AppHeader.js');
+var React = require('react'),
+    Router = require('react-router'),
+    RouteHandler = Router.RouteHandler,
+    AppHeader = require('./AppHeader.js');
 
 /**
  * React component AppLayout

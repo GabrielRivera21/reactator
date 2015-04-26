@@ -1,9 +1,9 @@
 /* global require, module */
 
-var _ = require('underscore');
-var React = require('react');
-var AppStore = require('../../stores/AppStore.js');
-var AppConstants = require('../../constants/AppConstants.js');
+var _ = require('underscore'),
+    React = require('react'),
+    AppStore = require('../../stores/AppStore.js'),
+    AppConstants = require('../../constants/AppConstants.js');
 
 function getPropVisibility(props, visibility) {
     var isVisible = false;

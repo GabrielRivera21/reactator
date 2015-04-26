@@ -1,8 +1,8 @@
 /* global require, module */
 
-var React = require('react');
-var AppStore = require('../../stores/AppStore.js');
-var AppAction = require('../../actions/AppAction.js');
+var React = require('react'),
+    AppStore = require('../../stores/AppStore.js'),
+    AppAction = require('../../actions/AppAction.js');
 
 /**
  * React component MainComponent

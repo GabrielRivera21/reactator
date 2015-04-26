@@ -1,12 +1,11 @@
 /* global require, module */
 
-var React = require('react');
-var Router = require('react-router');
-var Route = Router.Route;
-var DefaultRoute = Router.DefaultRoute;
-
-var ProfileLayout = require("../components/profile/ProfileLayout.js");
-var ProfileComponent = require("../components/profile/ProfileComponent.js");
+var React = require('react'),
+    Router = require('react-router'),
+    Route = Router.Route,
+    DefaultRoute = Router.DefaultRoute,
+    ProfileLayout = require("../components/profile/ProfileLayout.js"),
+    ProfileComponent = require("../components/profile/ProfileComponent.js");
 
 /**
  * React Router definition for profile app

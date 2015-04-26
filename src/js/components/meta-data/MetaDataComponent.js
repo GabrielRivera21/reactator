@@ -1,10 +1,10 @@
 /* global require, module, window */
 
-var React = require('react');
-var AppConstants = require('../../constants/AppConstants.js');
-var AppAction = require('../../actions/AppAction.js');
-var $ = require('../../lib/jquery.js');
-var _ = require('underscore');
+var React = require('react'),
+    AppConstants = require('../../constants/AppConstants.js'),
+    AppAction = require('../../actions/AppAction.js'),
+    $ = require('../../lib/jquery.js'),
+    _ = require('underscore');
 
 /**
  * React component MetaDataComponent that handles window resize and provides information on the
@@ -16,9 +16,7 @@ var MetaDataComponent = React.createClass({
 
     handleWindowResize : function() {
         var $responsive = $(this.getDOMNode()).find('.responsive');
-        var isVisible = function(className) {
-            return $responsive.find(className).is(':visible');
-        };
+        var isVisible = className => $responsive.find(className).is(':visible');
 
         var visibility = AppConstants.XS;
         if (isVisible('.visible-lg-block')) {

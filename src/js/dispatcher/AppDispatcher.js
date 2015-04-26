@@ -5,9 +5,9 @@
  *
  * @class AppDispatcher
  */
-var AppConstants = require('../constants/AppConstants.js');
-var DispatcherFactory = require('../lib/DispatcherFactory.js');
-var AppDispatcher = DispatcherFactory.create('AppDispatcher');
+var AppConstants = require('../constants/AppConstants.js'),
+    DispatcherFactory = require('../lib/DispatcherFactory.js'),
+    AppDispatcher = DispatcherFactory.create('AppDispatcher');
 
 /**
  * Dispatches a route action of ROUTE_ACTION

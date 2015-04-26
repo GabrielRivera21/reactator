@@ -1,25 +1,28 @@
 /* global require, console */
 
+require('harmonize')();
+
 /**
  * Tasks for building the React/Flux based App
  */
-var gulp = require('gulp');
-
-require('harmonize')();
-
-var _ = require('underscore');
-var bower = require('gulp-bower');
-var browserify = require('gulp-browserify');
-var clean = require('gulp-clean');
-var concat = require('gulp-concat');
-var connect = require('gulp-connect');
-var jest = require('gulp-jest');
-var jshint = require('gulp-jshint');
-var less = require('gulp-less');
-var react = require('gulp-react');
-var runSequence = require('run-sequence');
-var stylish = require('jshint-stylish');
-var yuidoc = require('gulp-yuidoc');
+var gulp = require('gulp'),
+    _ = require('underscore'),
+    bower = require('gulp-bower'),
+    browserify = require('browserify'),
+    babelify = require('babelify'),
+    clean = require('gulp-clean'),
+    concat = require('gulp-concat'),
+    connect = require('gulp-connect'),
+    jest = require('gulp-jest'),
+    jshint = require('gulp-jshint'),
+    less = require('gulp-less'),
+    react = require('gulp-react'),
+    stylish = require('jshint-stylish'),
+    yuidoc = require('gulp-yuidoc'),
+    source = require('vinyl-source-stream'),
+    buffer = require('vinyl-buffer'),
+    sourcemaps = require('gulp-sourcemaps'),
+    uglify = require('gulp-uglify');
 
 /**
  * Bower
@@ -57,8 +60,7 @@ gulp.task('copy', function() {
     ];
 
     _.each(mappings, function(mapping){
-        gulp
-            .src(mapping[0])
+        gulp.src(mapping[0])
             .pipe(gulp.dest(mapping[1]));
     });
 });
@@ -75,40 +77,39 @@ gulp.task('connect', function() {
     });
 });
 
+var browserify_options = {
+    debug: true,
+    shim : {
+        bootstrap: {
+            path : "node_modules/bootstrap/dist/js/bootstrap.js",
+            exports : "bootstrap",
+            depends: {
+                jquery : 'jQuery'
+            }
+        }
+    }
+};
 
 /**
  * Browserify
  */
 gulp.task('browserify', function() {
-    return gulp
-        .src('src/js/app.js')
-        .pipe(browserify({
-            debug: true, // Sourcemapping
-            transform: 'reactify',
-            shim : {
-                bootstrap: {
-                    path : "node_modules/bootstrap/dist/js/bootstrap.js",
-                    exports : "bootstrap",
-                    depends: {
-                        jquery : 'jQuery'
-                    }
-                }
-            }
-        }))
-        .on('error', function(err) {
-            console.error(err.message);
-            console.error(err.stack);
-            this.end();
-        })
-        .pipe(concat('app.js'))
-        .pipe(gulp.dest('dist/js'))
-        .pipe(connect.reload());
+  return browserify('./src/js/app.js', browserify_options)
+    .transform(babelify)
+    .bundle()
+    .pipe(source('app.js'))
+    .pipe(buffer())
+    .pipe(sourcemaps.init({loadMaps: true}))
+    .pipe(uglify())
+    .pipe(sourcemaps.write('./'))
+    .pipe(gulp.dest('dist/js'))
+    .pipe(connect.reload());
 });
 
 /**
  * Jest
  */
-gulp.task('jest', function () {
+gulp.task('jest', ['clean-coverage'], function () {
     return gulp.src('src').pipe(jest({
         rootDir : "src/js/",
         scriptPreprocessor: "../../spec/support/jest-preprocessor.js",
@@ -176,27 +177,29 @@ gulp.task('doc', function() {
 /**
  * Build
  */
-gulp.task('build', function() {
-    runSequence(
-            'clean',
+gulp.task('build', ['clean'], function() {
+    gulp.start([
             'copy',
             'less',
             'browserify',
-            function() {});
+            'doc'
+        ]);
 });
 
 /**
  * Test
  */
-gulp.task('test', function(){
-    runSequence('jshint', 'clean-coverage', 'jest', function(){});
+gulp.task('test', ['jshint'], function(){
+    gulp.start([
+            'jest'
+        ]);
 });
 
 /**
  * Default
  */
 gulp.task('default', function() {
-    runSequence('jshint', 'build', 'doc', function(){});
+    gulp.start(['jshint', 'build']);
 });
 
 /**
@@ -226,6 +229,6 @@ gulp.task('dev', ['connect', 'watch', 'watch-test']);
 /**
  * Install
  */
-gulp.task('install', function() {
-    runSequence('bower', 'default', function(){});
+gulp.task('install', ['bower'], function() {
+    gulp.start(['default']);
 });

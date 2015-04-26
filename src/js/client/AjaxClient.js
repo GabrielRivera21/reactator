@@ -1,11 +1,11 @@
 /* global require, module */
 
-var _ = require('underscore');
-var Q = require('../lib/q.js');
-var $ = require('../lib/jquery.js');
-var Client = require('./Client.js');
-var ClientError = require('./ClientError.js');
-var ClientResponse = require('./ClientResponse.js');
+var _ = require('underscore'),
+    Q = require('../lib/q.js'),
+    $ = require('../lib/jquery.js'),
+    Client = require('./Client.js'),
+    ClientError = require('./ClientError.js'),
+    ClientResponse = require('./ClientResponse.js');
 
 //
 // Helper to return a Q.Promise that returns ClientResponse or ClientError for an
@@ -49,22 +49,23 @@ function ajax(settings, request) {
  * @class AjaxClient
  * @constructor
  */
-var AjaxClient = Client.extend({});
-_.extend(AjaxClient.prototype, {
+class AjaxClient extends Client {
 
     /**
      * @param {String} uri uri to the resource
      * @method initialize
      */
-    initialize : function(uri) {
+    constructor(uri) {
+        super();
+
         this.uri = uri;
-    },
+    }
 
     /**
      * {{#crossLink "Client/create:method"}}{{/crossLink}}
      * @method create
      */
-    create : function(item, settings) {
+    create(item, settings) {
         return ajax(settings, {
                 method : 'POST',
                 url: this.uri,
@@ -72,25 +73,25 @@ _.extend(AjaxClient.prototype, {
                 data: JSON.stringify(item),
                 dataType : 'json'
             });
-    },
+    }
 
     /**
      * {{#crossLink "Client/read:method"}}{{/crossLink}}
      * @method read
      */
-    read : function(id, settings) {
+    read(id, settings) {
         return ajax(settings, {
                 method : 'GET',
                 url: this.uri + '/' + id,
                 dataType : 'json'
             });
-    },
+    }
 
     /**
      * {{#crossLink "Client/update:method"}}{{/crossLink}}
      * @method update
      */
-    update : function(id, item, settings) {
+    update(id, item, settings) {
         return ajax(settings, {
                 method : 'PUT',
                 url: this.uri + '/' + id,
@@ -98,20 +99,20 @@ _.extend(AjaxClient.prototype, {
                 data: JSON.stringify(item),
                 dataType : 'json'
             });
-    },
+    }
 
     /*jshint -W024 */
     /**
      * {{#crossLink "Client/delete:method"}}{{/crossLink}}
      * @method delete
      */
-    delete : function(id, settings) {
+    delete(id, settings) {
         return ajax(settings, {
                 method : 'DELETE',
                 url: this.uri + '/' + id,
                 dataType : 'text'
             });
     }
-});
+}
 
 module.exports = AjaxClient;

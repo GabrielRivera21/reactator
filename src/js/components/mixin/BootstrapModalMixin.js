@@ -5,8 +5,8 @@
  *
  * @class BootstrapModalMixin
  */
-var React = require('react');
-var $ = require('../../lib/jquery.js');
+var React = require('react'),
+    $ = require('../../lib/jquery.js');
 
 var bootstrapModalEvents = {
     handleShow: 'show.bs.modal',

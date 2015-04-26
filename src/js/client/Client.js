@@ -1,10 +1,9 @@
 /* global require, module */
 
-var _ = require('underscore');
-var Q = require('../lib/q.js');
-var Class = require('../lib/Class.js');
-var ClientError = require('./ClientError.js');
-var ClientResponse = require('./ClientResponse.js');
+var _ = require('underscore'),
+    Q = require('../lib/q.js'),
+    ClientError = require('./ClientError.js'),
+    ClientResponse = require('./ClientResponse.js');
 
 //
 // Simple Q.Promise to throw method not implemented error.
@@ -22,8 +21,7 @@ var methodNotImplementedPromise = Q.Promise(
  * @class Client
  * @constructor
  */
-var Client = Class.extend({});
-_.extend(Client.prototype, {
+class Client {
     /*jshint unused:false*/
 
     /**
@@ -35,9 +33,9 @@ _.extend(Client.prototype, {
      * @throws {ClientError} on failure to perform the create
      * @method create
      */
-    create : function(item, settings) {
+    create(item, settings) {
         return methodNotImplementedPromise;
-    },
+    }
 
     /**
      * Reads an item represented by the id.
@@ -48,9 +46,9 @@ _.extend(Client.prototype, {
      * @throws {ClientError} on failure to perform the read
      * @method read
      */
-    read : function(id, settings) {
+    read(id, settings) {
         return methodNotImplementedPromise;
-    },
+    }
 
     /**
      * Updates an existing item in the resource container.
@@ -62,9 +60,9 @@ _.extend(Client.prototype, {
      * @throws {ClientError} on failure to perform the update
      * @method update
      */
-    update : function(id, item, settings) {
+    update(id, item, settings) {
         return methodNotImplementedPromise;
-    },
+    }
 
     /*jshint -W024 */
     /**
@@ -76,9 +74,9 @@ _.extend(Client.prototype, {
      * @throws {ClientError} on failure to perform the delete operation
      * @method delete
      */
-    delete : function(id, settings) {
+    delete(id, settings) {
         return methodNotImplementedPromise;
     }
-});
+}
 
 module.exports = Client;

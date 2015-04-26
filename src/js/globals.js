@@ -14,7 +14,6 @@ window.Backbone = require('./lib/backbone.js');
 window.Q = require('./lib/q.js');
 
 window.U = require('./lib/Util.js');
-window.Class = require('./lib/Class.js');
 
 window.Client = require('./client/Client.js');
 window.ClientWrapper = require('./client/ClientWrapper.js');

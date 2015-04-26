@@ -1,12 +1,11 @@
 /* global require, document */
-
 require('./globals.js');
 
-var React = require('react');
-var Router = require('react-router');
-var routes = require('./routes/routes.js');
-var AppDispatcher = require('./dispatcher/AppDispatcher.js');
-var MetaDataComponent = require('./components/meta-data/MetaDataComponent.js');
+var React = require('react'),
+    Router = require('react-router'),
+    routes = require('./routes/routes.js'),
+    AppDispatcher = require('./dispatcher/AppDispatcher.js'),
+    MetaDataComponent = require('./components/meta-data/MetaDataComponent.js');
 
 // Just to ensure that AppStore is initialized and listening to
 // AppDispatcher prior to having router initialized.

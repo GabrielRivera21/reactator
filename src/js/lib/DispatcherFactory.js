@@ -1,8 +1,7 @@
 /* global require, module */
 
-var Dispatcher = require('flux').Dispatcher;
-
-var dispatchers = {};
+var Dispatcher = require('flux').Dispatcher,
+    dispatchers = {};
 
 /**
  * Dispatcher factory, ensures creation of single dispatcher for a given name

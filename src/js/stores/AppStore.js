@@ -1,10 +1,10 @@
 /* global require, module */
 
-var _ = require('underscore');
-var Store = require('./Store.js');
-var AppConstants = require('../constants/AppConstants.js');
-var AppDispatcher = require('../dispatcher/AppDispatcher.js');
-var Immutable = require('immutable');
+var _ = require('underscore'),
+    Store = require('./Store.js'),
+    AppConstants = require('../constants/AppConstants.js'),
+    AppDispatcher = require('../dispatcher/AppDispatcher.js'),
+    Immutable = require('immutable');
 
 var state = Immutable.fromJS({
     route : {
@@ -26,22 +26,22 @@ var state = Immutable.fromJS({
  *
  * @class AppStore
  */
-var AppStore = Store.extend({});
-_.extend(AppStore.prototype, {
+class AppStore extends Store {
     /*jshint unused:false*/
 
     /**
      * @method initialize
      */
-    initialize : function() {
-        AppStore.__super__.initialize.call(this);
+    constructor() {
+        super();
+
         this.bindDispatcher(AppDispatcher, this.appDispatcherListener);
-    },
+    }
 
     /**
      * @method appDispatcherListener
      */
-    appDispatcherListener : function(event) {
+    appDispatcherListener(event) {
         switch (event.source) {
             case AppConstants.ROUTE_ACTION:
                 state = state.mergeDeep({route: {
@@ -66,14 +66,14 @@ _.extend(AppStore.prototype, {
                 this.emitChange('size');
             break;
         }
-    },
+    }
 
     /**
      * @method getState
      */
-    getState : function() {
+    getState() {
         return state;
     }
-});
+}
 
 module.exports = new AppStore();
