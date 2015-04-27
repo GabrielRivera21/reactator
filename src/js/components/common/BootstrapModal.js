@@ -19,7 +19,7 @@ const BootstrapModal = React.createClass({
     },
 
     render: function() {
-        let classes = "modal fade";
+        var classes = "modal fade";
         this.props.classes.forEach(function(className) {
             classes += " " + className;
         });

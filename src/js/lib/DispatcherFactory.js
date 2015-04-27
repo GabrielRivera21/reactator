@@ -23,7 +23,7 @@ const DispatcherFactory = {
             return dispatchers[name];
         }
 
-        let dispatcher = new Dispatcher();
+        const dispatcher = new Dispatcher();
         dispatcher.name = name;
 
         dispatchers[name] = dispatcher;

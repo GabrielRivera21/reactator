@@ -14,7 +14,7 @@ const
 //
 const promise = ($ajax) => {
     const getHeaders = () => {
-        let headers = {};
+        const headers = {};
         _.map(
             $ajax.getAllResponseHeaders().trim().split('\n'),
             (header) => {

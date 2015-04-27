@@ -16,10 +16,10 @@ const
 const MetaDataComponent = React.createClass({
 
     handleWindowResize : function() {
-        let $responsive = $(this.getDOMNode()).find('.responsive');
-        let isVisible = className => $responsive.find(className).is(':visible');
+        const $responsive = $(this.getDOMNode()).find('.responsive');
+        var isVisible = className => $responsive.find(className).is(':visible');
 
-        let visibility = AppConstants.XS;
+        var visibility = AppConstants.XS;
         if (isVisible('.visible-lg-block')) {
             visibility = AppConstants.LG;
         } else if (isVisible('.visible-md-block')) {

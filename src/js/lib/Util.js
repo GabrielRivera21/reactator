@@ -2,9 +2,8 @@
 
 const _ = require('underscore');
 
-
 const _p8 = (s, v) => {
-    let p = (v.toString(16)+"000000000").substr(2,8);
+    var p = (v.toString(16)+"000000000").substr(2,8);
     return s ? "-" + p.substr(0,4) + "-" + p.substr(4,4) : p ;
 };
 
@@ -33,7 +32,7 @@ const U = {
      * @method verifyRequiredFunctions
      */
     verifyRequiredFunctions : function(type, object, names) {
-        let missing = [];
+        const missing = [];
 
         _.each(
             names,

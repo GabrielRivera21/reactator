@@ -10,7 +10,7 @@ const
  * @method getPropVisibility
  */
 const getPropVisibility = (props, visibility) => {
-    let isVisible = false;
+    var isVisible = false;
     return _.find(
         AppConstants.VISIBILITY_ORDER,
         (level) => {
