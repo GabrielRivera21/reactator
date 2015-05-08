@@ -5,7 +5,7 @@ const
     Router = require('react-router'),
     Route = Router.Route,
     DefaultRoute = Router.DefaultRoute,
-    ProfileLayout = require("../components/profile/ProfileLayout.js"),
+    BasicLayout = require("../../../components/common/BasicLayout.js"),
     ProfileComponent = require("../components/profile/ProfileComponent.js");
 
 /**
@@ -14,7 +14,7 @@ const
  * @class RoutesProfile
  */
 const routes = (
-    <Route name="profile" handler={ProfileLayout}>
+    <Route name="profile" handler={BasicLayout}>
         <DefaultRoute handler={ProfileComponent} />
     </Route>
 );

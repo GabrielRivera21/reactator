@@ -1,187 +1,88 @@
 /* global require, console */
 
-/**
- * Tasks for building the React/Flux based App
- */
-
 require('harmonize')();
-
 var gulp = require('gulp'),
     _ = require('underscore'),
-    babelify = require('babelify'),
-    bower = require('gulp-bower'),
-    browserify = require('browserify'),
-    buffer = require('vinyl-buffer'),
-    clean = require('gulp-clean'),
-    concat = require('gulp-concat'),
-    connect = require('gulp-connect'),
-    jest = require('gulp-jest'),
-    jshint = require('gulp-jshint'),
-    less = require('gulp-less'),
-    notify = require('gulp-notify'),
-    Q = require('q'),
-    react = require('gulp-react'),
-    source = require('vinyl-source-stream'),
-    sourcemaps = require('gulp-sourcemaps'),
-    stylish = require('jshint-stylish'),
-    uglify = require('gulp-uglify'),
-    watchify = require('watchify'),
-    yuidoc = require('gulp-yuidoc');
+    GulpTasks = require('./build/GulpTasks.js'),
+    config = require('./build/config.json');
+
+gulp.task('bower', GulpTasks.bower());
+
+gulp.task('clean-coverage', GulpTasks.clean(['coverage/*']));
+gulp.task('clean-doc', GulpTasks.clean(['doc/*']));
+
+gulp.task('connect', GulpTasks.connect(config.connect));
+
+gulp.task('doc', ['clean-doc'], GulpTasks.doc('src/**/*.js', './doc'));
+
+gulp.task('jshint', GulpTasks.jshint(['src/**/*.js']));
+
+gulp.task('jest', ['clean-coverage'], GulpTasks.jest('src', config.jest));
+gulp.task('test', ['jshint'], GulpTasks.start(['jest']));
+
+gulp.task('watch-js',  GulpTasks.watch(['src/**/*.*', '!src/**/*-test.js'], ['jshint']));
+gulp.task('watch-tests',  GulpTasks.watch('src/**/*-test.js', ['test']));
+
+var projects = [];
+var cleanAllTasks = ['clean-coverage', 'clean-doc'];
+var buildAllTasks = [];
+var devAllTasks = ['connect', 'watch-js', 'watch-tests'];
+
+_.each(
+    config.apps,
+    function(project, name) {
+        projects.push(name);
+        cleanAllTasks.push(name+'-clean');
+        buildAllTasks.push(name+'-build');
+
+        devAllTasks.push(name+'-watch-less');
+        devAllTasks.push(name+'-watchify');
+        devAllTasks.push(name+'-watch-config');
+
+        if (project.clean !== undefined) {
+            gulp.task(name+'-clean', GulpTasks.clean([].concat([project.root+'/*'], project.clean)));
+        } else {
+            gulp.task(name+'-clean', GulpTasks.clean([project.root+'/*']));
+        }
+
+        gulp.task(name+'-copy', GulpTasks.copy(project.root, [].concat(config.common.copy, project.copy)));
+        gulp.task(name+'-less', GulpTasks.less(project.root, project.less, config.less));
+
+        gulp.task(name+'-browserify-common', GulpTasks.browserify(project.root, [{ "src": [], "name": "common.js", "dest": "/js" }], [], config.common.js, config.browserify));
+        gulp.task(name+'-browserify', GulpTasks.browserify(project.root, project.js, config.common.js, [], config.browserify));
+
+        gulp.task(name+'-watchify', GulpTasks.watchify(project.root, project.js, config.common.js, [], config.browserify));
+
+        gulp.task(name+'-watch-less',  GulpTasks.watch('src/**/*.less', [name+'-less']));
+        gulp.task(name+'-watch-config',  GulpTasks.watch('src/config/**/*.*', [name+'-copy']));
 
 
-function cleanTask(paths) {
-    return function() {
-            return gulp.src(paths, {read:false})
-                   .pipe(clean({force:true}));
-        };
-}
+        gulp.task(name+'-build', [name+'-clean'], GulpTasks.start([name+'-copy', name+'-browserify-common', name+'-browserify', name+'-less']));
 
-function copyTask(paths) {
-    return gulp.src(paths[0])
-            .pipe(gulp.dest(paths[1]));
-}
+        gulp.task(name+'-dev', [name+'-build'], GulpTasks.start([name+'-watchify', name+'-watch-less', name+'-watch-config', 'watch-js', 'watch-tests']));
+    }
+);
 
-function startTasks(tasks) {
-    return function() {
-        return gulp.start(tasks);
-    };
-}
+gulp.task('clean-all', GulpTasks.start(cleanAllTasks));
+gulp.task('build-all', GulpTasks.start(buildAllTasks));
+gulp.task('dev-all', ['build-all'], GulpTasks.start(devAllTasks));
 
-function watchTasks(files, tasks) {
-    return function() {
-        return gulp.watch(files, tasks);
-    };
-}
+gulp.task('dev', GulpTasks.start(['connect', 'web-dev']));
 
-/* Bower */
-gulp.task('bower', function() {return bower();});
+gulp.task('install', ['bower'], GulpTasks.start(['jshint', 'jest', 'build-all']));
 
-/* Clean */
-gulp.task('clean-coverage', cleanTask(['coverage/**/*.*']));
-gulp.task('clean', cleanTask(['dist/**/*.*', 'doc/**/*.*']));
-gulp.task('clean-all', startTasks(['clean', 'clean-coverage']));
+gulp.task('default',  function() {
+    console.log('\nPossible targets are:');
+    _.each(['install', 'test', 'jshint', 'doc', 'build-all', 'clean-all'], function(name) {
+        console.log('\t'+name);
+    });
 
-/* Copy */
-gulp.task('copy', function() {
-    return Q.allSettled(
-        copyTask(['src/imgs/**/*', 'dist/imgs']),
-        copyTask(['src/index.html', 'dist']),
-        copyTask(['node_modules/bootstrap/dist/fonts/*', 'dist/fonts']),
-        copyTask(['node_modules/font-awesome/fonts/*', 'dist/fonts']));
-});
-
-/* Connect */
-gulp.task('connect', function() {
-    return connect.server({
-        port: 8080,
-        root: 'dist',
-        livereload: true,
-        fallback: 'dist/index.html'
+    console.log("\nProjects:");
+    _.each(projects, function(name) {
+        console.log(name);
+        console.log('\t'+name+'-clean');
+        console.log('\t'+name+'-build');
+        console.log('\t'+name+'-dev');
     });
 });
 
-var browserify_options = {
-    debug: true,
-    shim : {
-        bootstrap: {
-            path : "node_modules/bootstrap/dist/js/bootstrap.js",
-            exports : "bootstrap",
-            depends: {jquery : 'jQuery'}
-        }
-    }
-};
-
-/* watchify */
-gulp.task('watchify', function() {
-    var bundler = watchify(browserify('./src/js/app.js', browserify_options));
-
-    function rebundle() {
-        return bundler
-            .bundle()
-            .on('error', notify.onError())
-            .pipe(source('app.js'))
-            .pipe(buffer())
-            .pipe(sourcemaps.init({loadMaps: true}))
-            .pipe(sourcemaps.write('./'))
-            .pipe(gulp.dest('dist/js'))
-            .pipe(connect.reload());
-    }
-
-    bundler.transform(babelify)
-        .on('update', rebundle);
-
-    return rebundle();
-});
-
-/* Browserify */
-gulp.task('browserify', function() {
-  return browserify('./src/js/app.js', browserify_options)
-        .transform(babelify)
-        .bundle()
-        .pipe(source('app.js'))
-        .pipe(buffer())
-        .pipe(sourcemaps.init({loadMaps: true}))
-        .pipe(uglify())
-        .pipe(sourcemaps.write('./'))
-        .pipe(gulp.dest('dist/js'));
-});
-
-/* YUIDoc */
-gulp.task('doc', function() {
-    return gulp.src('src/**/*.js')
-        .pipe(yuidoc())
-        .pipe(gulp.dest('./doc'));
-});
-
-/* Jest */
-gulp.task('jest', ['clean-coverage'], function () {
-    return gulp.src('src')
-        .pipe(jest({
-            rootDir : "src/js/",
-            scriptPreprocessor: "../../spec/support/jest-preprocessor.js",
-            unmockedModulePathPatterns: ["node_modules/react"],
-            testPathIgnorePatterns: ["node_modules", "spec/support"],
-            moduleFileExtensions: ["js", "json", "react"],
-            collectCoverage: true
-        }));
-});
-
-/* JSHint */
-gulp.task('jshint', function() {
-    return gulp
-        .src(['src/**/*.js'])
-        .pipe(react())
-        .on('error', function(err) {
-            console.error('JSX ERROR in ' + err.fileName + "\n" + err.message);
-            this.end();
-        })
-        .pipe(jshint({"esnext" : true}))
-        .pipe(jshint.reporter(stylish));
-});
-
-/* Less */
-gulp.task('less', function() {
-    return gulp
-        .src([
-            'src/css/style.less'
-        ])
-        .pipe(less({
-            options: {
-                compress: false,
-                yuicompress: false,
-                optimization: 10
-            }
-        }))
-        .pipe(gulp.dest('dist/css/'))
-        .pipe(connect.reload());;
-});
-
-gulp.task('default'     , []         , startTasks(['jshint', 'build']));
-
-gulp.task('build'       , ['clean']  , startTasks(['copy', 'less', 'browserify', 'doc']));
-gulp.task('dev'         , []         , startTasks(['connect', 'watchify', 'watch-js', 'watch-tests', 'watch-less']));
-gulp.task('install'     , ['bower']  , startTasks(['jshint', 'build', 'jest']));
-gulp.task('test'        , ['jshint'] , startTasks(['jest']));
-gulp.task('watch-js'    , []         , watchTasks(['src/**/*.*', '!src/**/*-test.js'], ['jshint']));
-gulp.task('watch-less'  , []         , watchTasks('src/**/*.less', ['less']));
-gulp.task('watch-tests' , []         , watchTasks('src/**/*-test.js', ['test']));

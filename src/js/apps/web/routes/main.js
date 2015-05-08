@@ -5,7 +5,7 @@ const
     Router = require('react-router'),
     Route = Router.Route,
     DefaultRoute = Router.DefaultRoute,
-    MainLayout = require("../components/main/MainLayout.js"),
+    BasicLayout = require("../../../components/common/BasicLayout.js"),
     MainComponent = require("../components/main/MainComponent.js");
 
 /**
@@ -14,7 +14,7 @@ const
  * @class RoutesMain
  */
 const routes = (
-    <Route name="main" path="/" handler={MainLayout}>
+    <Route name="main" path="/" handler={BasicLayout}>
         <DefaultRoute handler={MainComponent} />
     </Route>
 );

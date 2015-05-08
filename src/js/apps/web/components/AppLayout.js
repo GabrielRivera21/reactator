@@ -6,18 +6,18 @@ const
     RouteHandler = Router.RouteHandler;
 
 /**
- * React component MainLayout
+ * React component AppLayout
  *
- * @class MainLayout
+ * @class AppLayout
  */
-const MainLayout = React.createClass({
+const AppLayout = React.createClass({
     render: function() {
         return (
-            <div>
+            <div className='app'>
                 <RouteHandler />
             </div>
         );
     }
 });
 
-module.exports = MainLayout;
+module.exports = AppLayout;

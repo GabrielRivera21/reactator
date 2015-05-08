@@ -24,7 +24,6 @@ const ProfileComponent = React.createClass({
     render: function() {
         return (
             <div>
-                <h2>Profile to be implemented.</h2>
                 <div>
                     <a className='btn btn-primary' onClick={this.mainPage}>Main Page</a>
                     <a className='btn btn-primary' onClick={this.backPage}>Back</a>

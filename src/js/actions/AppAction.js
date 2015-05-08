@@ -10,18 +10,6 @@ const AppDispatcher = require('../dispatcher/AppDispatcher.js');
 const AppAction = {
 
     /**
-     * Example of an action triggering the dispatcher.
-     *
-     * @method noop
-     */
-    noop : function() {
-        AppDispatcher.dispatch({
-            source : 'noop',
-            action : undefined
-        });
-    },
-
-    /**
      * @param {Number} width width of the app
      * @param {Number} height height of the app
      * @param {String} visibility visibliity of the app: XS, SM, MD, LG

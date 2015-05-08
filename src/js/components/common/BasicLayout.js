@@ -6,18 +6,16 @@ const
     RouteHandler = Router.RouteHandler;
 
 /**
- * React component ProfileLayout
+ * React component BasicLayout
  *
- * @class ProfileLayout
+ * @class BasicLayout
  */
-const ProfileLayout = React.createClass({
+const BasicLayout = React.createClass({
     render: function() {
         return (
-            <div>
-                <RouteHandler />
-            </div>
+            <RouteHandler />
         );
     }
 });
 
-module.exports = ProfileLayout;
+module.exports = BasicLayout;

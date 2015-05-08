@@ -23,6 +23,19 @@ class AppStarter {
      */
     constructor() {
         this.routes = undefined;
+        this.hash = false;
+    }
+
+    /**
+     * Sets the hash setting, true to use hash, false to use html5 history
+     *
+     * @param {Boolean} useHash to use or not to use
+     * @return {AppStarter} the app starter
+     * @method withHash
+     */
+    withHash(useHash) {
+        this.hash = useHash;
+        return this;
     }
 
     /**
@@ -49,19 +62,20 @@ class AppStarter {
             document.getElementById('_md')
         );
 
-        /**
-         * App the begining of it all.
-         *
-         * @class App
-         */
-        Router.run(this.routes, Router.HistoryLocation, function(Handler, state) {
+        const handler = function(Handler, state) {
             AppDispatcher.handleRouteAction(state);
 
             React.render(
                     <Handler />,
                     document.getElementById('main')
                 );
-        });
+        };
+
+        if (this.hash === true) {
+            Router.run(this.routes, handler);
+        } else {
+            Router.run(this.routes, Router.HistoryLocation, handler);
+        }
     }
 }
 
