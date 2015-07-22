@@ -1,11 +1,9 @@
 {
-    "name": "React & Flux based SPA.",
-    "private": true,
+    "name": "reactator",
     "ignore": [
         "node_modules",
         "bower_components"
     ],
     "dependencies": {
-        "bootstrap-datepicker": "~>1.3"
     }
 }
