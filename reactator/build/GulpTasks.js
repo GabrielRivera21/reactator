@@ -3,7 +3,7 @@
 require('harmonize')();
 
 var gulp = require('gulp'),
-    _ = require('underscore'),
+    _ = require('lodash'),
     babelify = require('babelify'),
     bower = require('gulp-bower'),
     browserify = require('browserify'),

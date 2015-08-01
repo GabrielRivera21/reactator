@@ -1,6 +1,7 @@
 /* global require, module */
 
-const AppDispatcher = require('../dispatcher/AppDispatcher.js');
+const
+    AppDispatcher = require('../dispatcher/AppDispatcher.js');
 
 /**
  * Class for performing app actions. Triggers on AppDispatcher.

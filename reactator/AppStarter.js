@@ -1,5 +1,4 @@
 /* global require, document */
-require('./globals.js');
 
 const
     React = require('react'),
@@ -71,10 +70,11 @@ class AppStarter {
                 );
         };
 
+        this.routes.initialize();
         if (this.hash === true) {
-            Router.run(this.routes, handler);
+            Router.run(this.routes.getRoutes(), handler);
         } else {
-            Router.run(this.routes, Router.HistoryLocation, handler);
+            Router.run(this.routes.getRoutes(), Router.HistoryLocation, handler);
         }
     }
 }

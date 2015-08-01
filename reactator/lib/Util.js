@@ -1,6 +1,7 @@
 /* global require, console, module */
 
-const _ = require('underscore');
+const
+    _ = require('lodash');
 
 const _p8 = (s, v) => {
     var p = (v.toString(16)+"000000000").substr(2,8);
@@ -21,6 +22,29 @@ const _m8 = (s) => {
  * @class  U
  */
 const U = {
+
+    /**
+     * @method out
+     */
+    out : function() {
+        console.log(arguments);
+    },
+
+    /**
+     * @method err
+     */
+    err: function() {
+        console.error(arguments);
+    },
+
+    /**
+     * @method outq
+     */
+    outq: function(q) {
+        q.then((r) => console.log(r))
+         .catch((e) => console.error(e))
+         .done();
+    },
 
     /**
      * Verifies if the object has the specified functions.

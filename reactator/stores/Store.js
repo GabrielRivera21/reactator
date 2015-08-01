@@ -1,7 +1,7 @@
 /* global require, module */
 
 const
-    _ = require('underscore'),
+    _ = require('lodash'),
     EventEmitter = require('events').EventEmitter;
 
 const CHANGE_EVENT = "change";

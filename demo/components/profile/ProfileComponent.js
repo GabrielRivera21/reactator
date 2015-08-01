@@ -1,6 +1,7 @@
 /* global require, module */
 
-const React = require('react');
+const
+    React = require('react');
 
 /**
  * React component ProfileComponent

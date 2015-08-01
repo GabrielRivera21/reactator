@@ -38,12 +38,10 @@
             "react",
             "react/addons",
             "react-router",
-            "underscore",
             "keymirror",
             "flux",
             "events",
             "jquery",
-            "backbone",
             "q"
         ],
 

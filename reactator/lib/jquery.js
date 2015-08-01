@@ -5,7 +5,8 @@
  *
  * @class jQuery
  */
-const jQuery = require('jquery');
+const
+    jQuery = require('jquery');
 
 if(typeof window !== 'undefined')  {
     window.$ = global.$ = global.jQuery = jQuery;

@@ -2,10 +2,10 @@
 
 const
     React = require('react'),
-    AppConstants = require('../constants/AppConstants.js'),
-    AppAction = require('../actions/AppAction.js'),
     $ = require('../lib/jquery.js'),
-    _ = require('underscore');
+    _ = require('lodash'),
+    AppConstants = require('../constants/AppConstants.js'),
+    AppAction = require('../actions/AppAction.js');
 
 /**
  * React component MetaDataComponent that handles window resize and provides information on the

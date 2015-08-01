@@ -1,7 +1,7 @@
 /* global require, module */
 
 const
-    _ = require('underscore'),
+    _ = require('lodash'),
     Q = require('../lib/q'),
     ClientError = require('./ClientError.js'),
     ClientResponse = require('./ClientResponse.js');

@@ -1,11 +1,11 @@
 /* global require, module */
 
 const
-    _ = require('underscore'),
+    _ = require('lodash'),
+    Immutable = require('immutable'),
     Store = require('./Store.js'),
     AppConstants = require('../constants/AppConstants.js'),
-    AppDispatcher = require('../dispatcher/AppDispatcher.js'),
-    Immutable = require('immutable');
+    AppDispatcher = require('../dispatcher/AppDispatcher.js');
 
 var state = Immutable.fromJS({
     route : {

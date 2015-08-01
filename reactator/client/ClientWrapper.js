@@ -1,6 +1,7 @@
 /* global require, module */
 
-const Client = require('./Client.js');
+const
+    Client = require('./Client.js');
 
 /**
  * Class wrapping the {{#crossLink "Client"}}{{/crossLink}}.

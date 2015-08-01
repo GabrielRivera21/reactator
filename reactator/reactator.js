@@ -1,3 +1,5 @@
+/* global module, require */
+
 module.exports = {
     AppStarter : require('./AppStarter.js'),
     actions: {
@@ -23,11 +25,13 @@ module.exports = {
         AppDispatcher: require('./dispatcher/AppDispatcher.js')
     },
     lib: {
-        backbone: require('./lib/backbone.js'),
         DispatcherFactory: require('./lib/DispatcherFactory.js'),
         jquery: require('./lib/jquery.js'),
         q: require('./lib/q.js'),
         Util: require('./lib/Util.js')
+    },
+    routes: {
+        Routes: require('./routes/Routes.js')
     },
     stores: {
         Store: require('./stores/Store.js'),

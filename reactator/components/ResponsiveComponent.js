@@ -1,7 +1,7 @@
 /* global require, module */
 
 const
-    _ = require('underscore'),
+    _ = require('lodash'),
     React = require('react'),
     AppStore = require('../stores/AppStore.js'),
     AppConstants = require('../constants/AppConstants.js');

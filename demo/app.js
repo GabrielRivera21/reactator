@@ -1,8 +1,18 @@
 /* global require, document */
 
 const
+    reactator = require('reactator/reactator'),
+    demo = require('./demo.js'),
     AppStarter = require('reactator/AppStarter'),
-    routes = require('./routes/routes');
+    DemoRoutes = require('./routes/DemoRoutes.js');
+
+//
+// Make the packages available
+//
+if (typeof window !== 'undefined') {
+    window.reactator = reactator;
+    window.demo = demo;
+}
 
 /**
  * App the begining of it all.
@@ -10,5 +20,5 @@ const
  * @class App
  */
 AppStarter
-    .withRoutes(routes)
+    .withRoutes(new DemoRoutes())
     .start();
