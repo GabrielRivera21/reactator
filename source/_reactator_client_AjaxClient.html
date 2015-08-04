@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>/Users/arminbhy/reactator/reactator/client/ClientError.js</title>
+    <title>reactator/client/AjaxClient.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -14,9 +14,9 @@
 <div id="doc">
     <div id="hd" class="yui3-g header">
         <div class="yui3-u-3-4">
-            
+
                 <h1><img src="../assets/css/logo.png" title=""></h1>
-            
+
         </div>
         <div class="yui3-u-1-4 version">
             <em>API Docs for: </em>
@@ -40,57 +40,57 @@
 
         <div id="api-tabview-panel">
             <ul id="api-classes" class="apis classes">
-            
+
                 <li><a href="../classes/AjaxClient.html">AjaxClient</a></li>
-            
+
                 <li><a href="../classes/AppAction.html">AppAction</a></li>
-            
+
                 <li><a href="../classes/AppConstants.html">AppConstants</a></li>
-            
+
                 <li><a href="../classes/AppDispatcher.html">AppDispatcher</a></li>
-            
+
                 <li><a href="../classes/AppStarter.html">AppStarter</a></li>
-            
+
                 <li><a href="../classes/AppStore.html">AppStore</a></li>
-            
+
                 <li><a href="../classes/BasicLayout.html">BasicLayout</a></li>
-            
+
                 <li><a href="../classes/BootstrapModal.html">BootstrapModal</a></li>
-            
+
                 <li><a href="../classes/BootstrapModalMixin.html">BootstrapModalMixin</a></li>
-            
+
                 <li><a href="../classes/Client.html">Client</a></li>
-            
+
                 <li><a href="../classes/ClientError.html">ClientError</a></li>
-            
+
                 <li><a href="../classes/ClientResponse.html">ClientResponse</a></li>
-            
+
                 <li><a href="../classes/ClientWrapper.html">ClientWrapper</a></li>
-            
+
                 <li><a href="../classes/CompositeRoutes.html">CompositeRoutes</a></li>
-            
+
                 <li><a href="../classes/DispatcherFactory.html">DispatcherFactory</a></li>
-            
+
                 <li><a href="../classes/JestPreprocessor.html">JestPreprocessor</a></li>
-            
+
                 <li><a href="../classes/jQuery.html">jQuery</a></li>
-            
+
                 <li><a href="../classes/MetaDataComponent.html">MetaDataComponent</a></li>
-            
+
                 <li><a href="../classes/Q.html">Q</a></li>
-            
+
                 <li><a href="../classes/ResponsiveComponent.html">ResponsiveComponent</a></li>
-            
+
                 <li><a href="../classes/Routes.html">Routes</a></li>
-            
+
                 <li><a href="../classes/Store.html">Store</a></li>
-            
+
                 <li><a href="../classes/U.html">U</a></li>
-            
+
             </ul>
 
             <ul id="api-modules" class="apis modules">
-            
+
             </ul>
         </div>
     </div>
@@ -126,69 +126,126 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: /Users/arminbhy/reactator/reactator/client/ClientError.js</h1>
+                        <h1 class="file-heading">File: reactator/client/AjaxClient.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /* global require, module */
 
 const
-    _ = require(&#x27;lodash&#x27;);
+    _ = require(&#x27;lodash&#x27;),
+    Q = require(&#x27;../lib/q.js&#x27;),
+    $ = require(&#x27;../lib/jquery.js&#x27;),
+    Client = require(&#x27;./Client.js&#x27;),
+    ClientError = require(&#x27;./ClientError.js&#x27;),
+    ClientResponse = require(&#x27;./ClientResponse.js&#x27;);
+
+//
+// Helper to return a Q.Promise that returns ClientResponse or ClientError for an
+// ajax request.
+//
+const promise = ($ajax) =&gt; {
+    const getHeaders = () =&gt; {
+        const headers = {};
+        _.map(
+            $ajax.getAllResponseHeaders().trim().split(&#x27;\n&#x27;),
+            (header) =&gt; {
+                var index = header.indexOf(&#x27;:&#x27;);
+                headers[header.substr(0, index).trim()] = header.substr(index + 1).trim();
+            }
+        );
+
+        return headers;
+    };
+
+    return Q.Promise(function(resolve, reject) {
+        Q($ajax)
+        .then((response) =&gt; resolve(new ClientResponse(response, $ajax.status, getHeaders())))
+        .catch((error) =&gt; reject(new ClientError(error.status, error.responseText, $ajax)))
+        .done();
+    });
+};
+
+//
+// Helper for requesting the ajax and returning the promise
+//
+const ajax = (settings, request) =&gt; {
+    return promise($.ajax(_.extend({}, settings, request)));
+};
 
 /**
- * Error thrown by {{#crossLink &quot;Client&quot;}}{{/crossLink}} on failed operations.
+ * Class representing the implementation of the Client interface utilizing the jQuery&#x27;s ajax.
  *
- * @param {Number} status http status code of the error
- * @param {String} message message of the error
- * @param {String} request request that failed
- * @class ClientError
+ * @class AjaxClient
  * @constructor
  */
-function ClientError(status, message, request) {
-    this.name = &#x27;ClientError&#x27;;
-    this.status = status || 400;
-    this.message = message || &#x27;No message.&#x27;;
-    this.request = request || &#x27;Request not specified.&#x27;;
+class AjaxClient extends Client {
+
+    /**
+     * @param {String} uri uri to the resource
+     * @method initialize
+     */
+    constructor(uri) {
+        super();
+
+        this.uri = uri;
+    }
+
+    /**
+     * {{#crossLink &quot;Client/create:method&quot;}}{{/crossLink}}
+     * @method create
+     */
+    create(item, settings) {
+        return ajax(settings, {
+                method : &#x27;POST&#x27;,
+                url: this.uri,
+                contentType: &#x27;application/json&#x27;,
+                data: JSON.stringify(item),
+                dataType : &#x27;json&#x27;
+            });
+    }
+
+    /**
+     * {{#crossLink &quot;Client/read:method&quot;}}{{/crossLink}}
+     * @method read
+     */
+    read(id, settings) {
+        return ajax(settings, {
+                method : &#x27;GET&#x27;,
+                url: &#x60;${this.uri}/${id}&#x60;,
+                dataType : &#x27;json&#x27;
+            });
+    }
+
+    /**
+     * {{#crossLink &quot;Client/update:method&quot;}}{{/crossLink}}
+     * @method update
+     */
+    update(id, item, settings) {
+        return ajax(settings, {
+                method : &#x27;PUT&#x27;,
+                url: &#x60;${this.uri}/${id}&#x60;,
+                contentType: &#x27;application/json&#x27;,
+                data: JSON.stringify(item),
+                dataType : &#x27;json&#x27;
+            });
+    }
+
+    /*jshint -W024 */
+    /**
+     * {{#crossLink &quot;Client/delete:method&quot;}}{{/crossLink}}
+     * @method delete
+     */
+    delete(id, settings) {
+        return ajax(settings, {
+                method : &#x27;DELETE&#x27;,
+                url: &#x60;${this.uri}/${id}&#x60;,
+                dataType : &#x27;text&#x27;
+            });
+    }
 }
 
-ClientError.prototype = Object.create(Error.prototype);
-_.extend(ClientError.prototype, {
-    constructor : ClientError,
-
-    /**
-     * @return {Boolean} is unauthorized error
-     * @method isUnauthorized
-     */
-    isUnauthorized : function() {
-        return this.status === 401;
-    },
-
-    /**
-     * @return {Boolean} is forbidden error
-     * @method isForbidden
-     */
-    isForbidden : function() {
-        return this.status === 403;
-    },
-
-    /**
-     * @return {Boolean} is not found
-     * @method isNotFound
-     */
-    isNotFound : function() {
-        return this.status === 404;
-    },
-
-    /**
-     * @return {Boolean} is service not available
-     * @method isServiceUnavailable
-     */
-    isServiceUnavailable : function() {
-        return this.status === 503;
-    }
-});
-
-module.exports = ClientError;
+module.exports = AjaxClient;
 
     </pre>
 </div>
