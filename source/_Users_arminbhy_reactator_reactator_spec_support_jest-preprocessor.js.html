@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>/Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/components/ResponsiveComponent.js</title>
+    <title>/Users/arminbhy/reactator/reactator/spec/support/jest-preprocessor.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -126,78 +126,25 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: /Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/components/ResponsiveComponent.js</h1>
+                        <h1 class="file-heading">File: /Users/arminbhy/reactator/reactator/spec/support/jest-preprocessor.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /* global require, module */
 
-const
-    _ = require(&#x27;lodash&#x27;),
-    React = require(&#x27;react&#x27;),
-    AppStore = require(&#x27;../stores/AppStore.js&#x27;),
-    AppConstants = require(&#x27;../constants/AppConstants.js&#x27;);
+var ReactTools = require(&#x27;react-tools&#x27;);
 
 /**
- * @method getPropVisibility
+ * Preprocessor for running jest unit tests
+ *
+ * @class JestPreprocessor
  */
-const getPropVisibility = (props, visibility) =&gt; {
-    var isVisible = false;
-    return _.find(
-        AppConstants.VISIBILITY_ORDER,
-        (level) =&gt; {
-            isVisible = isVisible || level === visibility;
-            return isVisible &amp;&amp; props[level] !== undefined;
-        });
+module.exports = {
+    process: function(src) {
+        return ReactTools.transform(src, { harmony: true });
+    }
 };
 
-/**
- * React component for adapting to the window size and visibility according
- * to {{#crossLink &quot;AppStore&quot;}}{{/crossLink}}. The ResponsiveComponent will render
- * the largest child that would be visible or empty div is non is applicable, e.g.:
- *
- *     &lt;ResponsiveComponent
- *             MD={&lt;div&gt;You shall render LG or MD!&lt;/div&gt;}
- *             XS={&lt;div&gt;You shall render SM or XS!&lt;/div&gt;} /&gt;
- *
- * @class ResponsiveComponent
- */
-const ResponsiveComponent = React.createClass({
-
-    getInitialState : function() {
-        return {
-            visibility : AppStore.getState().get(&#x27;size&#x27;).get(&#x27;visibility&#x27;)
-        };
-    },
-
-    componentWillMount : function() {
-        AppStore.addChangeListener(this.onAppStoreChange, &#x27;size&#x27;);
-    },
-
-    componentWillUnmount : function() {
-        AppStore.removeChangeListener(this.onAppStoreChange, &#x27;size&#x27;);
-    },
-
-    onAppStoreChange : function() {
-        this.setState(this.getInitialState());
-    },
-
-    shouldComponentUpdate : function(nextProps, nextState) {
-        return getPropVisibility(this.props, this.state.visibility) !==
-                getPropVisibility(nextProps, nextState.visibility);
-    },
-
-    render: function() {
-        var propVisibility = getPropVisibility(this.props, this.state.visibility);
-
-        return (
-            propVisibility ? this.props[propVisibility] : &lt;div /&gt;
-        );
-    }
-
-});
-
-module.exports = ResponsiveComponent;
     </pre>
 </div>
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>/Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/AppStarter.js</title>
+    <title>/Users/arminbhy/reactator/reactator/components/ResponsiveComponent.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -126,93 +126,78 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: /Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/AppStarter.js</h1>
+                        <h1 class="file-heading">File: /Users/arminbhy/reactator/reactator/components/ResponsiveComponent.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-/* global require, document */
+/* global require, module */
 
 const
+    _ = require(&#x27;lodash&#x27;),
     React = require(&#x27;react&#x27;),
-    Router = require(&#x27;react-router&#x27;),
-    AppDispatcher = require(&#x27;./dispatcher/AppDispatcher.js&#x27;),
-    MetaDataComponent = require(&#x27;./components/MetaDataComponent.js&#x27;);
-
-// Just to ensure that AppStore is initialized and listening to
-// AppDispatcher prior to having router initialized.
-require(&#x27;./stores/AppStore.js&#x27;);
+    AppStore = require(&#x27;../stores/AppStore.js&#x27;),
+    AppConstants = require(&#x27;../constants/AppConstants.js&#x27;);
 
 /**
- * AppStarter helping to configure and start the app
- *
- * @class  AppStarter
+ * @method getPropVisibility
  */
-class AppStarter {
+const getPropVisibility = (props, visibility) =&gt; {
+    var isVisible = false;
+    return _.find(
+        AppConstants.VISIBILITY_ORDER,
+        (level) =&gt; {
+            isVisible = isVisible || level === visibility;
+            return isVisible &amp;&amp; props[level] !== undefined;
+        });
+};
 
-    /**
-     * @method constructor
-     */
-    constructor() {
-        this.routes = undefined;
-        this.hash = false;
-    }
+/**
+ * React component for adapting to the window size and visibility according
+ * to {{#crossLink &quot;AppStore&quot;}}{{/crossLink}}. The ResponsiveComponent will render
+ * the largest child that would be visible or empty div is non is applicable, e.g.:
+ *
+ *     &lt;ResponsiveComponent
+ *             MD={&lt;div&gt;You shall render LG or MD!&lt;/div&gt;}
+ *             XS={&lt;div&gt;You shall render SM or XS!&lt;/div&gt;} /&gt;
+ *
+ * @class ResponsiveComponent
+ */
+const ResponsiveComponent = React.createClass({
 
-    /**
-     * Sets the hash setting, true to use hash, false to use html5 history
-     *
-     * @param {Boolean} useHash to use or not to use
-     * @return {AppStarter} the app starter
-     * @method withHash
-     */
-    withHash(useHash) {
-        this.hash = useHash;
-        return this;
-    }
-
-    /**
-     * Sets the routes to start the app with
-     *
-     * @param {Router} routes routes to start the app with
-     * @return {AppStarter} the app starter
-     * @method withRoutes
-     */
-    withRoutes(routes) {
-        this.routes = routes;
-        return this;
-    }
-
-    /**
-     * Starts the app
-     *
-     * @method start
-     */
-    start() {
-        // The MetaData Component providing common functionality / support.
-        React.render(
-            &lt;MetaDataComponent /&gt;,
-            document.getElementById(&#x27;_md&#x27;)
-        );
-
-        const handler = function(Handler, state) {
-            AppDispatcher.handleRouteAction(state);
-
-            React.render(
-                    &lt;Handler /&gt;,
-                    document.getElementById(&#x27;main&#x27;)
-                );
+    getInitialState : function() {
+        return {
+            visibility : AppStore.getState().get(&#x27;size&#x27;).get(&#x27;visibility&#x27;)
         };
+    },
 
-        this.routes.initialize();
-        if (this.hash === true) {
-            Router.run(this.routes.getRoutes(), handler);
-        } else {
-            Router.run(this.routes.getRoutes(), Router.HistoryLocation, handler);
-        }
+    componentWillMount : function() {
+        AppStore.addChangeListener(this.onAppStoreChange, &#x27;size&#x27;);
+    },
+
+    componentWillUnmount : function() {
+        AppStore.removeChangeListener(this.onAppStoreChange, &#x27;size&#x27;);
+    },
+
+    onAppStoreChange : function() {
+        this.setState(this.getInitialState());
+    },
+
+    shouldComponentUpdate : function(nextProps, nextState) {
+        return getPropVisibility(this.props, this.state.visibility) !==
+                getPropVisibility(nextProps, nextState.visibility);
+    },
+
+    render: function() {
+        var propVisibility = getPropVisibility(this.props, this.state.visibility);
+
+        return (
+            propVisibility ? this.props[propVisibility] : &lt;div /&gt;
+        );
     }
-}
 
-module.exports = new AppStarter();
+});
 
+module.exports = ResponsiveComponent;
     </pre>
 </div>
 

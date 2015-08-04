@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>/Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/components/mixin/BootstrapModalMixin.js</title>
+    <title>/Users/arminbhy/reactator/reactator/client/ClientResponse.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -126,194 +126,33 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: /Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/components/mixin/BootstrapModalMixin.js</h1>
+                        <h1 class="file-heading">File: /Users/arminbhy/reactator/reactator/client/ClientResponse.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /* global require, module */
 
 /**
- * Mixin for react components to have a modal object.
+ * Class representing the ClientResponse returned by the {{#crossLink &quot;Client&quot;}}{{/crossLink}}
  *
- * @class BootstrapModalMixin
+ * @class ClientResponse
+ * @constructor
  */
-const
-    React = require(&#x27;react&#x27;),
-    $ = require(&#x27;../../lib/jquery.js&#x27;);
-
-const bootstrapModalEvents = {
-    handleShow: &#x27;show.bs.modal&#x27;,
-    handleShown: &#x27;shown.bs.modal&#x27;,
-    handleHide: &#x27;hide.bs.modal&#x27;,
-    handleHidden: &#x27;hidden.bs.modal&#x27;
-};
-
-const handlerProps = [
-
+class ClientResponse {
     /**
-     * Optional callback for modal event &#x27;handleShow&#x27;
-     * @event handleShow
+     * @param {Object} value value of the response
+     * @param {Number} status status of the response
+     * @param {Object} metaData any meta data associated with the response
+     * @method initialize
      */
-    &#x27;handleShow&#x27;,
-
-    /**
-     * Optional callback for modal event &#x27;handleShown&#x27;
-     * @event handleShown
-     */
-    &#x27;handleShown&#x27;,
-
-    /**
-     * Optional callback for modal event &#x27;handleHide&#x27;
-     * @event handleHide
-     */
-    &#x27;handleHide&#x27;,
-
-    /**
-     * Optional callback for modal event &#x27;handleHidden&#x27;
-     * @event handleHidden
-     */
-    &#x27;handleHidden&#x27;
-];
-
-var BootstrapModalMixin = {
-    propTypes: {
-        handleShow: React.PropTypes.func,
-        handleShown: React.PropTypes.func,
-        handleHide: React.PropTypes.func,
-        handleHidden: React.PropTypes.func,
-
-        /**
-         * Bootstrap modal property &#x27;backdrop&#x27;
-         *
-         * @property backdrop
-         * @type {Boolean}
-         */
-        backdrop: React.PropTypes.bool,
-
-        /**
-         * Bootstrap modal property &#x27;keyboard&#x27;
-         *
-         * @property keyboard
-         * @type {Boolean}
-         */
-        keyboard: React.PropTypes.bool,
-
-        /**
-         * Bootstrap modal property &#x27;show&#x27;
-         *
-         * @property show
-         * @type {Boolean}
-         */
-        show: React.PropTypes.bool,
-
-        /**
-         * Bootstrap modal property &#x27;remote&#x27;
-         *
-         * @property remote
-         * @type {String}
-         */
-        remote: React.PropTypes.string
-    },
-
-    /**
-     * Returns the default props for the mixin
-     *
-     * @method getDefaultProps
-     * @return {Dictionary} { backdrop: true, keyboard: true, show: true, remote: &#x27;&#x27; }
-     */
-    getDefaultProps: function() {
-        return {
-            backdrop: true,
-            keyboard: false,
-            show: false,
-            remote: &#x27;&#x27;
-        };
-    },
-
-    /**
-     * Configures the modal.
-     *
-     * @method componentDidMount
-     */
-    componentDidMount: function() {
-        const $modal = $(this.getDOMNode()).modal({
-            backdrop: this.props.backdrop,
-            keyboard: this.props.keyboard,
-            show: this.props.show,
-            remote: this.props.remote
-        });
-
-        handlerProps.forEach((prop) =&gt;{
-            if (this[prop]) {
-                $modal.on(bootstrapModalEvents[prop], this[prop]);
-            }
-
-            if (this.props[prop]) {
-                $modal.on(bootstrapModalEvents[prop], this.props[prop]);
-            }
-        });
-    },
-
-    /**
-     * Clears modal configurations.
-     *
-     * @method componentWillUnmount
-     */
-    componentWillUnmount: function() {
-        const $modal = $(this.getDOMNode());
-
-        handlerProps.forEach((prop) =&gt; {
-            if (this[prop]) {
-                $modal.off(bootstrapModalEvents[prop], this[prop]);
-            }
-
-            if (this.props[prop]) {
-                $modal.off(bootstrapModalEvents[prop], this.props[prop]);
-            }
-        });
-    },
-
-    /**
-     * Hides the modal.
-     *
-     * @method hide
-     */
-    hide: function() {
-        $(this.getDOMNode()).modal(&#x27;hide&#x27;);
-    },
-
-    /**
-     * Shows the modal.
-     *
-     * @method show
-     */
-    show: function() {
-        $(this.getDOMNode()).modal(&#x27;show&#x27;);
-    },
-
-    /**
-     * Toggles the modal.
-     *
-     * @method toggle
-     */
-    toggle: function() {
-        $(this.getDOMNode()).modal(&#x27;toggle&#x27;);
-    },
-
-    /**
-     * Renders the close button
-     *
-     * @method renderCloseButton
-     */
-    renderCloseButton: function() {
-        return (
-            &lt;button type=&quot;button&quot; className=&quot;close&quot; onClick={this.hide} dangerouslySetInnerHTML={{__html:&#x27;&amp;times&#x27;}} /&gt;
-        );
+    constructor(value, status, metaData) {
+        this.value = value;
+        this.status = status;
+        this.metaData = metaData || {};
     }
-};
+}
 
-module.exports = BootstrapModalMixin;
-
+module.exports = ClientResponse;
 
     </pre>
 </div>

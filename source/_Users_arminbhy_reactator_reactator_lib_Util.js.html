@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>/Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/client/ClientWrapper.js</title>
+    <title>/Users/arminbhy/reactator/reactator/lib/Util.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -126,73 +126,129 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: /Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/client/ClientWrapper.js</h1>
+                        <h1 class="file-heading">File: /Users/arminbhy/reactator/reactator/lib/Util.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-/* global require, module */
+/* global require, console, module */
 
 const
-    Client = require(&#x27;./Client.js&#x27;);
+    _ = require(&#x27;lodash&#x27;);
+
+const _p8 = (s, v) =&gt; {
+    var p = (v.toString(16)+&quot;000000000&quot;).substr(2,8);
+    return s ? &quot;-&quot; + p.substr(0,4) + &quot;-&quot; + p.substr(4,4) : p ;
+};
+
+const _d8 = (s) =&gt; {
+    return _p8(s, Date.now());
+};
+
+const _m8 = (s) =&gt; {
+    return _p8(s, Math.random());
+};
 
 /**
- * Class wrapping the {{#crossLink &quot;Client&quot;}}{{/crossLink}}.
+ * All sort of common helper functionality.
  *
- * @class ClientWrapper
- * @constructor
+ * @class  U
  */
-class ClientWrapper extends Client {
-    /*jshint unused:false*/
+const U = {
 
     /**
-     * @param {Client} client client to decorate
-     * @method initialize
+     * @method out
      */
-    constructor(client) {
-        super();
-
-        if (!(client instanceof Client)) {
-            throw new Error(&quot;ClientWrapper can only wrap instance of the Client.&quot;);
-        }
-
-        this.client = client;
-    }
+    out : function() {
+        console.log(arguments);
+    },
 
     /**
-     * {{#crossLink &quot;Client/create:method&quot;}}{{/crossLink}}
-     * @method create
+     * @method err
      */
-    create(item, settings) {
-        return this.client.create(item, settings);
-    }
+    err: function() {
+        console.error(arguments);
+    },
 
     /**
-     * {{#crossLink &quot;Client/read:method&quot;}}{{/crossLink}}
-     * @method read
+     * @method outq
      */
-    read(id, settings) {
-        return this.client.read(id, settings);
-    }
+    outq: function(q) {
+        q.then((r) =&gt; console.log(r))
+         .catch((e) =&gt; console.error(e))
+         .done();
+    },
 
     /**
-     * {{#crossLink &quot;Client/update:method&quot;}}{{/crossLink}}
-     * @method update
+     * Verifies if the object has the specified functions.
+     *
+     * @param {String} type type requiring and running the verification
+     * @param {Object} object object to analyze
+     * @param {Array} names names of the functions
+     * @return {Array} names of functions not implemented
+     * @method verifyRequiredFunctions
      */
-    update(id, item, settings) {
-        return this.client.update(id, item, settings);
-    }
+    verifyRequiredFunctions : function(type, object, names) {
+        const missing = [];
 
-    /*jshint -W024 */
+        _.each(
+            names,
+            (name) =&gt; {
+                if(!_.isFunction(object[name])) {
+                    console.warn(type + &#x27; requires function &#x27; + name + &#x27;!&#x27;);
+                    missing.push(name);
+                }
+            });
+
+        return missing;
+    },
+
     /**
-     * {{#crossLink &quot;Client/delete:method&quot;}}{{/crossLink}}
-     * @method delete
+     * A helper for generating GUIDs
+     * @return {String} next guid
+     * @method guid
      */
-    delete(id, settings) {
-        return this.client.delete(id, settings);
-    }
-}
+    guid : function() {
+        return _m8() + _m8(true) + _m8(true) + _d8();
+    },
 
-module.exports = ClientWrapper;
+    /**
+     * A helper for binding a function to an object, and registring for listener on events on an emitter.
+     *
+     * @param {EventEmitter} emitter emitter to listen to
+     * @param {Array} events events to listen to
+     * @param {Function} func function to call on events
+     * @param {Object} obj object to bind to
+     * @return {Object} map of events to registered bound functions
+     * @method addListeners
+     */
+    addListeners : function(emitter, events, func, obj) {
+        const listeners = {};
+        _.each(
+            events,
+            (event) =&gt; {
+                const listener = listeners[event] = func.bind(obj, event);
+                emitter.on(event, listener);
+            });
+
+        return listeners;
+    },
+
+    /**
+     * Removes listeners from an EventEmitter
+     * @param {EventEmitter} emitter emitter to remove listeners from
+     * @param {Object} listeners listeners map to remove
+     * @method removeListeners
+     */
+    removeListeners : function(emitter, listeners) {
+        _.each(
+            listeners,
+            (listener, event) =&gt; {
+                emitter.removeListener(event, listener);
+            });
+    }
+};
+
+module.exports = U;
 
     </pre>
 </div>

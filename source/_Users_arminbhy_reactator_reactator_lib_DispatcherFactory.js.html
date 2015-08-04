@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>/Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/dispatcher/AppDispatcher.js</title>
+    <title>/Users/arminbhy/reactator/reactator/lib/DispatcherFactory.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -126,50 +126,44 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: /Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/dispatcher/AppDispatcher.js</h1>
+                        <h1 class="file-heading">File: /Users/arminbhy/reactator/reactator/lib/DispatcherFactory.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /* global require, module */
 
-/**
- * Main dispatcher for the App
- *
- * @class AppDispatcher
- */
 const
-    AppConstants = require(&#x27;../constants/AppConstants.js&#x27;),
-    DispatcherFactory = require(&#x27;../lib/DispatcherFactory.js&#x27;),
-    AppDispatcher = DispatcherFactory.create(&#x27;AppDispatcher&#x27;);
+    Dispatcher = require(&#x27;flux&#x27;).Dispatcher,
+    dispatchers = {};
 
 /**
- * Dispatches a route action of ROUTE_ACTION
+ * Dispatcher factory, ensures creation of single dispatcher for a given name
  *
- * @method handleRouteAction
- * @param {Object} state route state to be dispatched
+ * @class DispatcherFactory
  */
-AppDispatcher.handleRouteAction = function(state) {
-    this.dispatch({
-        source : AppConstants.ROUTE_ACTION,
-        action : state
-    });
+const DispatcherFactory = {
+
+    /**
+     * Creates a new Dispatcher and sets the name of the dispatcher.
+     *
+     * @param  {String} name name of the dispatcher (unique)
+     * @return {Dispatcher} the newly created dispatcher, or the existing one.
+     * @method create
+     */
+    create : function(name) {
+        if (dispatchers[name]) {
+            return dispatchers[name];
+        }
+
+        const dispatcher = new Dispatcher();
+        dispatcher.name = name;
+
+        dispatchers[name] = dispatcher;
+        return dispatcher;
+    }
 };
 
-/**
- * Dispatches a window resize action of WINDOW_RESIZE_ACTION
- *
- * @method handleWindowResize
- * @param {Object} state window state to be dispatched
- */
-AppDispatcher.handleWindowResize = function(state) {
-    this.dispatch({
-        source : AppConstants.WINDOW_RESIZE_ACTION,
-        action : state
-    });
-};
-
-module.exports = AppDispatcher;
-
+module.exports = DispatcherFactory;
     </pre>
 </div>
 

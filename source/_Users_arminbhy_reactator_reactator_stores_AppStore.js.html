@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>/Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/constants/AppConstants.js</title>
+    <title>/Users/arminbhy/reactator/reactator/stores/AppStore.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -126,37 +126,90 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: /Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/constants/AppConstants.js</h1>
+                        <h1 class="file-heading">File: /Users/arminbhy/reactator/reactator/stores/AppStore.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /* global require, module */
 
-/**
- * All the main App constants that the AppDispatcher or others may use.
- *
- * @class AppConstants
- */
-const keyMirror = require(&#x27;keymirror&#x27;);
+const
+    _ = require(&#x27;lodash&#x27;),
+    Immutable = require(&#x27;immutable&#x27;),
+    Store = require(&#x27;./Store.js&#x27;),
+    AppConstants = require(&#x27;../constants/AppConstants.js&#x27;),
+    AppDispatcher = require(&#x27;../dispatcher/AppDispatcher.js&#x27;);
 
-const AppConstants = keyMirror({
-  ROUTE_ACTION : null,
-  WINDOW_RESIZE_ACTION : null,
-
-  XS : null,
-  SM : null,
-  MD : null,
-  LG : null
+var state = Immutable.fromJS({
+    route : {
+        action: null,
+        params: null,
+        path: null,
+        pathname: null,
+        query: null
+    },
+    size : {
+      width : null,
+      height : null,
+      visibility : null
+    }
 });
 
-AppConstants.VISIBILITY_ORDER = [
-    AppConstants.LG,
-    AppConstants.MD,
-    AppConstants.SM,
-    AppConstants.XS
-];
+/**
+ * Store for the app values.
+ *
+ * @class AppStore
+ */
+class AppStore extends Store {
+    /*jshint unused:false*/
 
-module.exports = AppConstants;
+    /**
+     * @method initialize
+     */
+    constructor() {
+        super();
+
+        this.bindDispatcher(AppDispatcher, this.appDispatcherListener);
+    }
+
+    /**
+     * @method appDispatcherListener
+     */
+    appDispatcherListener(event) {
+        switch (event.source) {
+            case AppConstants.ROUTE_ACTION:
+                state = state.mergeDeep({route: {
+                    action: event.action.action,
+                    params: event.action.params,
+                    path: event.action.path,
+                    pathname: event.action.pathname,
+                    query: event.action.query
+                }});
+
+                this.emitChange(&#x27;route&#x27;);
+            break;
+            case AppConstants.WINDOW_RESIZE_ACTION:
+                state = state.mergeDeep({
+                    size: {
+                        width : event.action.width,
+                        height : event.action.height,
+                        visibility : event.action.visibility
+                    }
+                });
+
+                this.emitChange(&#x27;size&#x27;);
+            break;
+        }
+    }
+
+    /**
+     * @method getState
+     */
+    getState() {
+        return state;
+    }
+}
+
+module.exports = new AppStore();
 
     </pre>
 </div>

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>/Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/client/AjaxClient.js</title>
+    <title>/Users/arminbhy/reactator/reactator/dispatcher/AppDispatcher.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -126,126 +126,49 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: /Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/client/AjaxClient.js</h1>
+                        <h1 class="file-heading">File: /Users/arminbhy/reactator/reactator/dispatcher/AppDispatcher.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /* global require, module */
 
+/**
+ * Main dispatcher for the App
+ *
+ * @class AppDispatcher
+ */
 const
-    _ = require(&#x27;lodash&#x27;),
-    Q = require(&#x27;../lib/q.js&#x27;),
-    $ = require(&#x27;../lib/jquery.js&#x27;),
-    Client = require(&#x27;./Client.js&#x27;),
-    ClientError = require(&#x27;./ClientError.js&#x27;),
-    ClientResponse = require(&#x27;./ClientResponse.js&#x27;);
+    AppConstants = require(&#x27;../constants/AppConstants.js&#x27;),
+    DispatcherFactory = require(&#x27;../lib/DispatcherFactory.js&#x27;),
+    AppDispatcher = DispatcherFactory.create(&#x27;AppDispatcher&#x27;);
 
-//
-// Helper to return a Q.Promise that returns ClientResponse or ClientError for an
-// ajax request.
-//
-const promise = ($ajax) =&gt; {
-    const getHeaders = () =&gt; {
-        const headers = {};
-        _.map(
-            $ajax.getAllResponseHeaders().trim().split(&#x27;\n&#x27;),
-            (header) =&gt; {
-                var index = header.indexOf(&#x27;:&#x27;);
-                headers[header.substr(0, index).trim()] = header.substr(index + 1).trim();
-            }
-        );
-
-        return headers;
-    };
-
-    return Q.Promise(function(resolve, reject) {
-        Q($ajax)
-        .then((response) =&gt; resolve(new ClientResponse(response, $ajax.status, getHeaders())))
-        .catch((error) =&gt; reject(new ClientError(error.status, error.responseText, $ajax)))
-        .done();
+/**
+ * Dispatches a route action of ROUTE_ACTION
+ *
+ * @method handleRouteAction
+ * @param {Object} state route state to be dispatched
+ */
+AppDispatcher.handleRouteAction = function(state) {
+    this.dispatch({
+        source : AppConstants.ROUTE_ACTION,
+        action : state
     });
 };
 
-//
-// Helper for requesting the ajax and returning the promise
-//
-const ajax = (settings, request) =&gt; {
-    return promise($.ajax(_.extend({}, settings, request)));
+/**
+ * Dispatches a window resize action of WINDOW_RESIZE_ACTION
+ *
+ * @method handleWindowResize
+ * @param {Object} state window state to be dispatched
+ */
+AppDispatcher.handleWindowResize = function(state) {
+    this.dispatch({
+        source : AppConstants.WINDOW_RESIZE_ACTION,
+        action : state
+    });
 };
 
-/**
- * Class representing the implementation of the Client interface utilizing the jQuery&#x27;s ajax.
- *
- * @class AjaxClient
- * @constructor
- */
-class AjaxClient extends Client {
-
-    /**
-     * @param {String} uri uri to the resource
-     * @method initialize
-     */
-    constructor(uri) {
-        super();
-
-        this.uri = uri;
-    }
-
-    /**
-     * {{#crossLink &quot;Client/create:method&quot;}}{{/crossLink}}
-     * @method create
-     */
-    create(item, settings) {
-        return ajax(settings, {
-                method : &#x27;POST&#x27;,
-                url: this.uri,
-                contentType: &#x27;application/json&#x27;,
-                data: JSON.stringify(item),
-                dataType : &#x27;json&#x27;
-            });
-    }
-
-    /**
-     * {{#crossLink &quot;Client/read:method&quot;}}{{/crossLink}}
-     * @method read
-     */
-    read(id, settings) {
-        return ajax(settings, {
-                method : &#x27;GET&#x27;,
-                url: &#x60;${this.uri}/${id}&#x60;,
-                dataType : &#x27;json&#x27;
-            });
-    }
-
-    /**
-     * {{#crossLink &quot;Client/update:method&quot;}}{{/crossLink}}
-     * @method update
-     */
-    update(id, item, settings) {
-        return ajax(settings, {
-                method : &#x27;PUT&#x27;,
-                url: &#x60;${this.uri}/${id}&#x60;,
-                contentType: &#x27;application/json&#x27;,
-                data: JSON.stringify(item),
-                dataType : &#x27;json&#x27;
-            });
-    }
-
-    /*jshint -W024 */
-    /**
-     * {{#crossLink &quot;Client/delete:method&quot;}}{{/crossLink}}
-     * @method delete
-     */
-    delete(id, settings) {
-        return ajax(settings, {
-                method : &#x27;DELETE&#x27;,
-                url: &#x60;${this.uri}/${id}&#x60;,
-                dataType : &#x27;text&#x27;
-            });
-    }
-}
-
-module.exports = AjaxClient;
+module.exports = AppDispatcher;
 
     </pre>
 </div>

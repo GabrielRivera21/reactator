@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>/Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/lib/Util.js</title>
+    <title>/Users/arminbhy/reactator/reactator/client/Client.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -126,129 +126,93 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: /Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/lib/Util.js</h1>
+                        <h1 class="file-heading">File: /Users/arminbhy/reactator/reactator/client/Client.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-/* global require, console, module */
+/* global require, module */
 
 const
-    _ = require(&#x27;lodash&#x27;);
+    _ = require(&#x27;lodash&#x27;),
+    Q = require(&#x27;../lib/q&#x27;),
+    ClientError = require(&#x27;./ClientError.js&#x27;),
+    ClientResponse = require(&#x27;./ClientResponse.js&#x27;);
 
-const _p8 = (s, v) =&gt; {
-    var p = (v.toString(16)+&quot;000000000&quot;).substr(2,8);
-    return s ? &quot;-&quot; + p.substr(0,4) + &quot;-&quot; + p.substr(4,4) : p ;
-};
-
-const _d8 = (s) =&gt; {
-    return _p8(s, Date.now());
-};
-
-const _m8 = (s) =&gt; {
-    return _p8(s, Math.random());
-};
+//
+// Simple Q.Promise to throw method not implemented error.
+//
+const methodNotImplementedPromise = Q.Promise(
+    /*jshint unused:false*/
+    (resolve, reject, notify) =&gt; {
+        reject(new ClientError(400, &quot;Method not implemented!&quot;));
+    }
+);
 
 /**
- * All sort of common helper functionality.
+ * Class representing the common interface for the client.
  *
- * @class  U
+ * @class Client
+ * @constructor
  */
-const U = {
+class Client {
+    /*jshint unused:false*/
 
     /**
-     * @method out
-     */
-    out : function() {
-        console.log(arguments);
-    },
-
-    /**
-     * @method err
-     */
-    err: function() {
-        console.error(arguments);
-    },
-
-    /**
-     * @method outq
-     */
-    outq: function(q) {
-        q.then((r) =&gt; console.log(r))
-         .catch((e) =&gt; console.error(e))
-         .done();
-    },
-
-    /**
-     * Verifies if the object has the specified functions.
+     * Creates a new item in the resource container.
      *
-     * @param {String} type type requiring and running the verification
-     * @param {Object} object object to analyze
-     * @param {Array} names names of the functions
-     * @return {Array} names of functions not implemented
-     * @method verifyRequiredFunctions
+     * @param {Object} item item to create
+     * @param {Object} settings settings for performing the create
+     * @return {ClientResponse} id of the newly created item (Q.Promise)
+     * @throws {ClientError} on failure to perform the create
+     * @method create
      */
-    verifyRequiredFunctions : function(type, object, names) {
-        const missing = [];
-
-        _.each(
-            names,
-            (name) =&gt; {
-                if(!_.isFunction(object[name])) {
-                    console.warn(type + &#x27; requires function &#x27; + name + &#x27;!&#x27;);
-                    missing.push(name);
-                }
-            });
-
-        return missing;
-    },
-
-    /**
-     * A helper for generating GUIDs
-     * @return {String} next guid
-     * @method guid
-     */
-    guid : function() {
-        return _m8() + _m8(true) + _m8(true) + _d8();
-    },
-
-    /**
-     * A helper for binding a function to an object, and registring for listener on events on an emitter.
-     *
-     * @param {EventEmitter} emitter emitter to listen to
-     * @param {Array} events events to listen to
-     * @param {Function} func function to call on events
-     * @param {Object} obj object to bind to
-     * @return {Object} map of events to registered bound functions
-     * @method addListeners
-     */
-    addListeners : function(emitter, events, func, obj) {
-        const listeners = {};
-        _.each(
-            events,
-            (event) =&gt; {
-                const listener = listeners[event] = func.bind(obj, event);
-                emitter.on(event, listener);
-            });
-
-        return listeners;
-    },
-
-    /**
-     * Removes listeners from an EventEmitter
-     * @param {EventEmitter} emitter emitter to remove listeners from
-     * @param {Object} listeners listeners map to remove
-     * @method removeListeners
-     */
-    removeListeners : function(emitter, listeners) {
-        _.each(
-            listeners,
-            (listener, event) =&gt; {
-                emitter.removeListener(event, listener);
-            });
+    create(item, settings) {
+        return methodNotImplementedPromise;
     }
-};
 
-module.exports = U;
+    /**
+     * Reads an item represented by the id.
+     *
+     * @param {String} id id of the item to read
+     * @param {Object} settings settings for performing the read
+     * @return {ClientResponse} item item represented by the id (Q.Promise)
+     * @throws {ClientError} on failure to perform the read
+     * @method read
+     */
+    read(id, settings) {
+        return methodNotImplementedPromise;
+    }
+
+    /**
+     * Updates an existing item in the resource container.
+     *
+     * @param {String} id id of the item
+     * @param {Object} item item to update to
+     * @param {Object} settings settings for performing the update
+     * @return {ClientResponse} update response (Q.Promise)
+     * @throws {ClientError} on failure to perform the update
+     * @method update
+     */
+    update(id, item, settings) {
+        return methodNotImplementedPromise;
+    }
+
+    /*jshint -W024 */
+    /**
+     * Deletes an new item in the resource container.
+     *
+     * @param {String} id id of the item
+     * @param {Object} settings settings for performing the create
+     * @return {ClientResponse} delete response (Q.Promise)
+     * @throws {ClientError} on failure to perform the delete operation
+     * @method delete
+     */
+    delete(id, settings) {
+        return methodNotImplementedPromise;
+    }
+}
+
+module.exports = Client;
 
     </pre>
 </div>

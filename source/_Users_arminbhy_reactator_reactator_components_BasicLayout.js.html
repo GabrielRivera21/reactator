@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>/Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/components/BootstrapModal.js</title>
+    <title>/Users/arminbhy/reactator/reactator/components/BasicLayout.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -126,51 +126,31 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: /Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/components/BootstrapModal.js</h1>
+                        <h1 class="file-heading">File: /Users/arminbhy/reactator/reactator/components/BasicLayout.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
 /* global require, module */
 
 const
-    React = require(&#x27;react/addons&#x27;);
+    React = require(&#x27;react&#x27;),
+    Router = require(&#x27;react-router&#x27;),
+    RouteHandler = Router.RouteHandler;
 
 /**
- * React component BootstrapModal
+ * React component BasicLayout
  *
- * @class BootstrapModal
+ * @class BasicLayout
  */
-const BootstrapModal = React.createClass({
-    propTypes: {
-        classes : React.PropTypes.arrayOf(React.PropTypes.string)
-    },
-
-    getDefaultProps : function() {
-        return {
-            classes : []
-        };
-    },
-
+const BasicLayout = React.createClass({
     render: function() {
-        var classes = &quot;modal fade&quot;;
-        this.props.classes.forEach(function(className) {
-            classes += &quot; &quot; + className;
-        });
-
         return (
-            &lt;div className={classes}&gt;
-                &lt;div className=&quot;modal-dialog&quot;&gt;
-                    &lt;div className=&quot;modal-content&quot;&gt;
-                        {this.props.children}
-                    &lt;/div&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
+            &lt;RouteHandler /&gt;
         );
     }
-
 });
 
-module.exports = BootstrapModal;
+module.exports = BasicLayout;
 
     </pre>
 </div>

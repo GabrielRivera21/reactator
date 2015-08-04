@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>/Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/lib/DispatcherFactory.js</title>
+    <title>/Users/arminbhy/reactator/reactator/AppStarter.js</title>
     <link rel="stylesheet" href="http://yui.yahooapis.com/3.9.1/build/cssgrids/cssgrids-min.css">
     <link rel="stylesheet" href="../assets/vendor/prettify/prettify-min.css">
     <link rel="stylesheet" href="../assets/css/main.css" id="site_styles">
@@ -126,44 +126,93 @@
             <div class="apidocs">
                 <div id="docs-main">
                     <div class="content">
-                        <h1 class="file-heading">File: /Users/arminbhy/Documents/Workspace/git/diff/t/reactator/reactator/lib/DispatcherFactory.js</h1>
+                        <h1 class="file-heading">File: /Users/arminbhy/reactator/reactator/AppStarter.js</h1>
 
 <div class="file">
     <pre class="code prettyprint linenums">
-/* global require, module */
+/* global require, document */
 
 const
-    Dispatcher = require(&#x27;flux&#x27;).Dispatcher,
-    dispatchers = {};
+    React = require(&#x27;react&#x27;),
+    Router = require(&#x27;react-router&#x27;),
+    AppDispatcher = require(&#x27;./dispatcher/AppDispatcher.js&#x27;),
+    MetaDataComponent = require(&#x27;./components/MetaDataComponent.js&#x27;);
+
+// Just to ensure that AppStore is initialized and listening to
+// AppDispatcher prior to having router initialized.
+require(&#x27;./stores/AppStore.js&#x27;);
 
 /**
- * Dispatcher factory, ensures creation of single dispatcher for a given name
+ * AppStarter helping to configure and start the app
  *
- * @class DispatcherFactory
+ * @class  AppStarter
  */
-const DispatcherFactory = {
+class AppStarter {
 
     /**
-     * Creates a new Dispatcher and sets the name of the dispatcher.
-     *
-     * @param  {String} name name of the dispatcher (unique)
-     * @return {Dispatcher} the newly created dispatcher, or the existing one.
-     * @method create
+     * @method constructor
      */
-    create : function(name) {
-        if (dispatchers[name]) {
-            return dispatchers[name];
-        }
-
-        const dispatcher = new Dispatcher();
-        dispatcher.name = name;
-
-        dispatchers[name] = dispatcher;
-        return dispatcher;
+    constructor() {
+        this.routes = undefined;
+        this.hash = false;
     }
-};
 
-module.exports = DispatcherFactory;
+    /**
+     * Sets the hash setting, true to use hash, false to use html5 history
+     *
+     * @param {Boolean} useHash to use or not to use
+     * @return {AppStarter} the app starter
+     * @method withHash
+     */
+    withHash(useHash) {
+        this.hash = useHash;
+        return this;
+    }
+
+    /**
+     * Sets the routes to start the app with
+     *
+     * @param {Router} routes routes to start the app with
+     * @return {AppStarter} the app starter
+     * @method withRoutes
+     */
+    withRoutes(routes) {
+        this.routes = routes;
+        return this;
+    }
+
+    /**
+     * Starts the app
+     *
+     * @method start
+     */
+    start() {
+        // The MetaData Component providing common functionality / support.
+        React.render(
+            &lt;MetaDataComponent /&gt;,
+            document.getElementById(&#x27;_md&#x27;)
+        );
+
+        const handler = function(Handler, state) {
+            AppDispatcher.handleRouteAction(state);
+
+            React.render(
+                    &lt;Handler /&gt;,
+                    document.getElementById(&#x27;main&#x27;)
+                );
+        };
+
+        this.routes.initialize();
+        if (this.hash === true) {
+            Router.run(this.routes.getRoutes(), handler);
+        } else {
+            Router.run(this.routes.getRoutes(), Router.HistoryLocation, handler);
+        }
+    }
+}
+
+module.exports = new AppStarter();
+
     </pre>
 </div>
 
