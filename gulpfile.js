@@ -1,12 +1,12 @@
 /* global require */
 
-require('reactator/build/GulpTasks')
+require('./reactator/build/GulpTasks.js')
     .initialize(
         [
             'reactator/',
             'demo/',
         ],
-        require('./gulp-build-config.json'),
+        require('./reactator.json'),
         [
             './node_modules',
             '.'
