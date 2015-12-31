@@ -1,6 +1,6 @@
 {
     "name": "reactator",
-    "version": "0.0.4",
+    "version": "0.1.0",
     "description": "Single Page Application based on Flux & React.",
     "author": "Armin Bahramshahry",
     "repository": {
@@ -24,47 +24,48 @@
     ],
     "license": "MPL-2.0",
     "dependencies": {
-        "bootstrap": "^3.3.4",
-        "classnames": "^1.2.2",
-        "flux": "^2.0.3",
-        "font-awesome": "^4.3.0",
-        "immutable": "^3.7.2",
+        "bootstrap": "^3.3.6",
+        "classnames": "^2.2.1",
+        "flux": "^2.1.1",
+        "font-awesome": "^4.5.0",
+        "immutable": "^3.7.6",
         "jquery": "^2.1.4",
         "keymirror": "~0.1.1",
-        "l20n": "^1.0.2",
-        "lodash": "^3.10.0",
-        "moment": "^2.10.2",
-        "q": "^1.3.0",
-        "react": "^0.13.2",
-        "react-router": "^0.13.3",
-        "typeahead.js": "^0.11.1"
+        "l20n": "^3.5.0",
+        "lodash": "^3.10.1",
+        "moment": "^2.10.6",
+        "q": "^1.4.1",
+        "react": "^0.14.5",
+        "react-router": "^2.0.0-rc4"
     },
     "devDependencies": {
-        "babelify": "^6.0.2",
-        "browserify": "^10.0.0",
+        "babel-preset-es2015": "^6.3.13",
+        "babel-preset-react": "^6.3.13",
+        "babelify": "^7.2.0",
+        "browserify": "^12.0.1",
         "envify": "^3.4.0",
-        "event-stream": "^3.3.0",
-        "harmonize": "^1.4.1",
-        "jshint-stylish": "^1.0.1",
-        "react-tools": "^0.13.2",
+        "event-stream": "^3.3.2",
+        "harmonize": "^1.4.4",
+        "jshint-stylish": "^2.1.0",
+        "react-tools": "^0.13.3",
         "react-render-visualizer": "^0.2.2",
-        "uglify-js": "~2.4.20",
+        "uglify-js": "~2.6.1",
         "vinyl-buffer": "^1.0",
         "vinyl-source-stream": "^1.1.0",
-        "watchify": "^3.2.1",
+        "watchify": "^3.6.1",
 
-        "gulp": "^3.8",
-        "gulp-bower": "^0.0.10",
+        "gulp": "^3.9",
+        "gulp-bower": "^0.0.11",
         "gulp-clean" : "^0.3.1",
-        "gulp-concat": "^2.5.2",
-        "gulp-connect": "2.2.0",
+        "gulp-concat": "^2.6.0",
+        "gulp-connect": "2.3.1",
         "gulp-jest": "^0.4.0",
-        "gulp-jshint": "^1.10.0",
-        "gulp-less": "^3.0.3",
+        "gulp-jshint": "^2.0.0",
+        "gulp-less": "^3.0.5",
         "gulp-notify": "^2.2.0",
-        "gulp-react": "^3.0.1",
-        "gulp-sourcemaps": "^1.5.2",
-        "gulp-uglify": "^1.2.0",
+        "gulp-react": "^3.1.0",
+        "gulp-sourcemaps": "^1.6.0",
+        "gulp-uglify": "^1.5.1",
         "gulp-yuidoc": "^0.1.2"
     },
     "jshintConfig": {
@@ -75,6 +76,6 @@
         "predef": []
     },
     "engines" : {
-        "node" : "~0.10.25"
+        "node" : "~4.2.4"
     }
 }
