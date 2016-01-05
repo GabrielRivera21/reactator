@@ -10,19 +10,18 @@ var gulp = require('gulp'),
     buffer = require('vinyl-buffer'),
     concat = require('gulp-concat'),
     connect = require('gulp-connect'),
-    clean = require('gulp-clean'),
     eventStream = require('event-stream'),
     jest = require('gulp-jest'),
     jshint = require('gulp-jshint'),
     less = require('gulp-less'),
     notify = require('gulp-notify'),
-    react = require('gulp-react'),
     source = require('vinyl-source-stream'),
     sourcemaps = require('gulp-sourcemaps'),
     stylish = require('jshint-stylish'),
     uglify = require('gulp-uglify'),
     watchify = require('watchify'),
-    yuidoc = require('gulp-yuidoc');
+    del = require('del'),
+    vinylPaths = require('vinyl-paths');
 
 var GulpTasks = {
     bower : function() {
@@ -101,7 +100,7 @@ var GulpTasks = {
         return function() {
             return gulp
                     .src(paths, {read:false})
-                    .pipe(clean({force:true}));
+                    .pipe(vinylPaths(del));
         };
     },
 
@@ -120,15 +119,6 @@ var GulpTasks = {
                         .pipe(gulp.dest(root + '/' + entry.dest));
                 })
             );
-        };
-    },
-
-    doc : function(paths, dest) {
-        return function() {
-            return gulp
-                .src(paths)
-                .pipe(yuidoc())
-                .pipe(gulp.dest(dest));
         };
     },
 
