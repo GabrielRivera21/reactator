@@ -5,6 +5,7 @@ require('harmonize')();
 var gulp = require('gulp'),
     _ = require('lodash'),
     babelify = require('babelify'),
+    babel = require('gulp-babel'),
     bower = require('gulp-bower'),
     browserify = require('browserify'),
     buffer = require('vinyl-buffer'),
@@ -12,12 +13,10 @@ var gulp = require('gulp'),
     connect = require('gulp-connect'),
     eventStream = require('event-stream'),
     jest = require('gulp-jest'),
-    jshint = require('gulp-jshint'),
     less = require('gulp-less'),
     notify = require('gulp-notify'),
     source = require('vinyl-source-stream'),
     sourcemaps = require('gulp-sourcemaps'),
-    stylish = require('jshint-stylish'),
     uglify = require('gulp-uglify'),
     watchify = require('watchify'),
     del = require('del'),
@@ -130,15 +129,8 @@ var GulpTasks = {
         };
     },
 
-    jshint : function(paths) {
-        return function() {
-            return gulp
-                .src(paths)
-                .pipe(react())
-                .on('error', notify.onError())
-                .pipe(jshint({"esnext" : true}))
-                .pipe(jshint.reporter(stylish));
-        };
+    eslint : function(paths) {
+        // TODO: https://medium.com/@dan_abramov/lint-like-it-s-2015-6987d44c5b48#.w3d8e3xef
     },
 
     less : function(root, entries, options) {
@@ -208,23 +200,11 @@ var GulpTasks = {
                     ));
 
                 //
-                // doc
+                // eslint
                 //
                 gulp.task(
-                    n('clean-doc'),
-                    GulpTasks.clean([_root + '/doc/*']));
-
-                gulp.task(
-                    n('doc'),
-                    [n('clean-doc')],
-                    GulpTasks.doc(_src + '/**/*.js', _root + '/doc'));
-
-                //
-                // jshint
-                //
-                gulp.task(
-                    n('jshint'),
-                    GulpTasks.jshint(_src + '/**/*.js'));
+                    n('eslint'),
+                    GulpTasks.eslint(_src + '/**/*.js'));
 
                 gulp.task(
                     n('jest'),
@@ -239,7 +219,7 @@ var GulpTasks = {
 
                 gulp.task(
                     n('test'),
-                    [n('jshint')],
+                    [n('eslint')],
                     GulpTasks.start(n('jest')));
 
                 gulp.task(
@@ -248,7 +228,7 @@ var GulpTasks = {
                         _src + '/**/*.*',
                         '!' + _src + '/**/*-test.js'
                     ],
-                    [n('jshint')]));
+                    [n('eslint')]));
 
                 gulp.task(
                     n('watch-test'),
@@ -348,16 +328,15 @@ var GulpTasks = {
         gulp.task('build', GulpTasks.start(all('build')));
         gulp.task('dev', ['build'], GulpTasks.start(all('dev')));
 
-        gulp.task('jshint', GulpTasks.start(all('jshint')));
+        gulp.task('eslint', GulpTasks.start(all('eslint')));
         gulp.task('jest', GulpTasks.start(all('jest')));
         gulp.task('test', GulpTasks.start(all('test')));
-        gulp.task('doc', GulpTasks.start(all('doc')));
 
-        gulp.task('install', ['bower', 'jshint'], GulpTasks.start(['build']));
+        gulp.task('install', ['bower', 'eslint'], GulpTasks.start(['build']));
 
         gulp.task('default',  function() {
             console.log('\nPossible targets are:');
-            _.each(['install', 'test', 'jshint', 'doc', 'build', 'clean'], function(name) {
+            _.each(['install', 'test', 'eslint', 'build', 'clean'], function(name) {
                 console.log('\t'+name);
             });
 
