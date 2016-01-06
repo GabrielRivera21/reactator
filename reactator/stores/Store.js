@@ -18,8 +18,8 @@ const changeEvent = (id) => {
 class Store {
 
     /**
-     * initialize method, creates the emitter and dispatcher mapping.
-     * @method constructor
+     * Creates the emitter and dispatcher mapping.
+     * @constructor
      */
     constructor() {
         this._dispatchers = {};
