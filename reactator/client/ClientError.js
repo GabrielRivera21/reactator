@@ -21,13 +21,13 @@ function ClientError(status, message, request) {
 
 ClientError.prototype = Object.create(Error.prototype);
 _.extend(ClientError.prototype, {
-    constructor : ClientError,
+    constructor: ClientError,
 
     /**
      * @return {Boolean} is unauthorized error
      * @method isUnauthorized
      */
-    isUnauthorized : function() {
+    isUnauthorized: function() {
         return this.status === 401;
     },
 
@@ -35,7 +35,7 @@ _.extend(ClientError.prototype, {
      * @return {Boolean} is forbidden error
      * @method isForbidden
      */
-    isForbidden : function() {
+    isForbidden: function() {
         return this.status === 403;
     },
 
@@ -43,7 +43,7 @@ _.extend(ClientError.prototype, {
      * @return {Boolean} is not found
      * @method isNotFound
      */
-    isNotFound : function() {
+    isNotFound: function() {
         return this.status === 404;
     },
 
@@ -51,7 +51,7 @@ _.extend(ClientError.prototype, {
      * @return {Boolean} is service not available
      * @method isServiceUnavailable
      */
-    isServiceUnavailable : function() {
+    isServiceUnavailable: function() {
         return this.status === 503;
     }
 });

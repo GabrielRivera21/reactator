@@ -13,7 +13,7 @@ class CompositeRoutes extends Routes {
 
     /**
      * @param {Array} routes array of routes
-     * @method constructor
+     * @constructor
      */
     constructor(routes) {
         super();
@@ -25,6 +25,7 @@ class CompositeRoutes extends Routes {
      * Initializes all routes
      *
      * @method initialize
+     * @returns {undefined}
      */
     initialize() {
         _.map(this.routes, (r) => r.initialize());
@@ -34,6 +35,7 @@ class CompositeRoutes extends Routes {
      * Returns array of routes
      *
      * @method getRoutes
+     * @returns {Array} array of the routes
      */
     getRoutes() {
         return _.map(this.routes, (r) => r.getRoutes());

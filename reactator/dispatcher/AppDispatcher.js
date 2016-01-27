@@ -15,11 +15,12 @@ const
  *
  * @method handleRouteAction
  * @param {Object} state route state to be dispatched
+ * @returns {undefined}
  */
 AppDispatcher.handleRouteAction = function(state) {
     this.dispatch({
-        source : AppConstants.ROUTE_ACTION,
-        action : state
+        source: AppConstants.ROUTE_ACTION,
+        action: state
     });
 };
 
@@ -28,11 +29,12 @@ AppDispatcher.handleRouteAction = function(state) {
  *
  * @method handleWindowResize
  * @param {Object} state window state to be dispatched
+ * @returns {undefined}
  */
 AppDispatcher.handleWindowResize = function(state) {
     this.dispatch({
-        source : AppConstants.WINDOW_RESIZE_ACTION,
-        action : state
+        source: AppConstants.WINDOW_RESIZE_ACTION,
+        action: state
     });
 };
 

@@ -1,4 +1,4 @@
-/* global jest, describe, afterEach, beforeEach, require, it, expect, runs, waitsFor, runs */
+/* global jest, describe, afterEach, beforeEach, require, it, expect */
 
 /* jshint newcap:false, unused:false, -W024, -W097 */
 "use strict";
@@ -8,8 +8,8 @@ jest.mock('../../lib/jquery.js');
 
 var Q = require('../../lib/q.js');
 
-function successfulAjaxResponse(options) {
-    var p = Q.Promise(function(resolve, reject) {
+function successfulAjaxResponse() {
+    var p = Q.Promise(function(resolve) {
         resolve({foo: 'bar'});
     });
 
@@ -25,7 +25,6 @@ function successfulAjaxResponse(options) {
 describe('AjaxClient', function() {
     var $;
     var AjaxClient;
-    var ClientError;
     var ClientResponse;
     var ac;
 
@@ -33,7 +32,6 @@ describe('AjaxClient', function() {
         $ = require('../../lib/jquery.js');
 
         AjaxClient = require('../AjaxClient.js');
-        ClientError = require('../ClientError.js');
         ClientResponse = require('../ClientResponse.js');
         ac = new AjaxClient('uri');
     });
@@ -46,21 +44,21 @@ describe('AjaxClient', function() {
         $.ajax.mockImplementation(successfulAjaxResponse);
 
         Q(ac.read('foo'))
-            .then(function(response){
+            .then(function(response) {
                 expect(response instanceof ClientResponse).toBeTruthy();
                 expect(response.status).toBe(200);
                 expect(response.value.foo).toBe('bar');
                 expect(response.metaData.foo).toBe('bar');
                 expect(response.metaData.hello).toBe('world');
             })
-            .catch(function(){
+            .catch(function() {
                 expect(true).toBeFalsy();
             })
             .done();
     });
 
     it('should reject with ClientError on failure', function() {
-        $.ajax.mockImplementation(function(options) {
+        $.ajax.mockImplementation(function() {
             return Q.Promise(function(resolve, reject) {
                 reject({
                     status: 400,
@@ -70,10 +68,10 @@ describe('AjaxClient', function() {
         });
 
         Q(ac.read('foo'))
-            .then(function(){
+            .then(function() {
                 expect(true).toBeFalsy();
             })
-            .catch(function(error){
+            .catch(function(error) {
                 expect(error.name).toBe('ClientError');
                 expect(error.status).toBe(400);
                 expect(error.message).toBe('Bad Request');
@@ -85,8 +83,8 @@ describe('AjaxClient', function() {
         $.ajax.mockImplementation(successfulAjaxResponse);
 
         Q(ac.read('foo'))
-            .then(function(){})
-            .catch(function(){})
+            .then(function() {})
+            .catch(function() {})
             .done(function() {
                 expect($.ajax.mock.calls.length).toBe(1);
                 expect($.ajax.mock.calls[0][0].method).toBe('GET');
@@ -98,9 +96,9 @@ describe('AjaxClient', function() {
     it('should create with POST request with uri/ and json body', function() {
         $.ajax.mockImplementation(successfulAjaxResponse);
 
-        Q(ac.create({foo:'bar'}, {headers: {token: 1234}}))
-            .then(function(){})
-            .catch(function(){})
+        Q(ac.create({foo: 'bar'}, {headers: {token: 1234}}))
+            .then(function() {})
+            .catch(function() {})
             .done(function() {
                 expect($.ajax.mock.calls.length).toBe(1);
                 expect($.ajax.mock.calls[0][0].method).toBe('POST');
@@ -114,9 +112,9 @@ describe('AjaxClient', function() {
     it('should update with PUT request with uri/id and json body', function() {
         $.ajax.mockImplementation(successfulAjaxResponse);
 
-        Q(ac.update('foo', {foo:'bar'}))
-            .then(function(){})
-            .catch(function(){})
+        Q(ac.update('foo', {foo: 'bar'}))
+            .then(function() {})
+            .catch(function() {})
             .done(function() {
                 expect($.ajax.mock.calls.length).toBe(1);
                 expect($.ajax.mock.calls[0][0].method).toBe('PUT');
@@ -130,8 +128,8 @@ describe('AjaxClient', function() {
         $.ajax.mockImplementation(successfulAjaxResponse);
 
         Q(ac.delete('foo'))
-            .then(function(){})
-            .catch(function(){})
+            .then(function() {})
+            .catch(function() {})
             .done(function() {
                 expect($.ajax.mock.calls.length).toBe(1);
                 expect($.ajax.mock.calls[0][0].method).toBe('DELETE');

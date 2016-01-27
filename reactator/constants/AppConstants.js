@@ -8,13 +8,13 @@
 const keyMirror = require('keymirror');
 
 const AppConstants = keyMirror({
-  ROUTE_ACTION : null,
-  WINDOW_RESIZE_ACTION : null,
+    ROUTE_ACTION: null,
+    WINDOW_RESIZE_ACTION: null,
 
-  XS : null,
-  SM : null,
-  MD : null,
-  LG : null
+    XS: null,
+    SM: null,
+    MD: null,
+    LG: null
 });
 
 AppConstants.VISIBILITY_ORDER = [

@@ -1,4 +1,4 @@
-/* global jest, describe, afterEach, beforeEach, require, it, expect, runs, waitsFor, runs */
+/* global jest, describe, afterEach, beforeEach, require, it, expect */
 
 /* jshint newcap:false, unused:false, -W024, -W097 */
 "use strict";
@@ -6,6 +6,7 @@
 jest.autoMockOff();
 
 var Q = require('../../lib/q.js');
+
 function verify(promise) {
     Q(promise)
         .then(function() {
@@ -13,7 +14,7 @@ function verify(promise) {
         })
         .catch(function(error) {
             expect(error.status).toBe(400);
-            expect(error.message).toBe("Method not implemented!");
+            expect(error.message).toBe('Method not implemented!');
         })
         .done();
 }

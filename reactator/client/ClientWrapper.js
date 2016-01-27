@@ -10,17 +10,17 @@ const
  * @constructor
  */
 class ClientWrapper extends Client {
-    /*jshint unused:false*/
+    /* eslint no-unused-vars: 0 */
 
     /**
      * @param {Client} client client to decorate
-     * @method initialize
+     * @constructor
      */
     constructor(client) {
         super();
 
         if (!(client instanceof Client)) {
-            throw new Error("ClientWrapper can only wrap instance of the Client.");
+            throw new Error('ClientWrapper can only wrap instance of the Client.');
         }
 
         this.client = client;
@@ -28,7 +28,10 @@ class ClientWrapper extends Client {
 
     /**
      * {{#crossLink "Client/create:method"}}{{/crossLink}}
+     * @param {Object} item item to create
+     * @param {Object} settings settings for the ajax request
      * @method create
+     * @returns {Q.Promise} deferred result of the request
      */
     create(item, settings) {
         return this.client.create(item, settings);
@@ -36,7 +39,10 @@ class ClientWrapper extends Client {
 
     /**
      * {{#crossLink "Client/read:method"}}{{/crossLink}}
+     * @param {String} id id of the item to read
+     * @param {Object} settings settings for the ajax request
      * @method read
+     * @returns {Q.Promise} deferred result of the request
      */
     read(id, settings) {
         return this.client.read(id, settings);
@@ -44,16 +50,22 @@ class ClientWrapper extends Client {
 
     /**
      * {{#crossLink "Client/update:method"}}{{/crossLink}}
+     * @param {String} id id of the item to update
+     * @param {Object} item item to update to
+     * @param {Object} settings settings for the ajax request
      * @method update
+     * @returns {Q.Promise} deferred result of the request
      */
     update(id, item, settings) {
         return this.client.update(id, item, settings);
     }
 
-    /*jshint -W024 */
     /**
      * {{#crossLink "Client/delete:method"}}{{/crossLink}}
+     * @param {String} id id of the item to delete
+     * @param {Object} settings settings for the ajax request
      * @method delete
+     * @returns {Q.Promise} deferred result of the request
      */
     delete(id, settings) {
         return this.client.delete(id, settings);

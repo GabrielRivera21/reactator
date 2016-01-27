@@ -1,4 +1,4 @@
-/* global jest, describe, beforeEach, require, it, expect, runs, waitsFor, runs */
+/* global jest, describe, beforeEach, require, it, expect */
 
 /* jshint unused:false */
 /* jshint -W097 */
@@ -13,23 +13,25 @@ describe('DispatcherFactory', function() {
         DispatcherFactory = require('../DispatcherFactory.js');
     });
 
-    it ('creates dispatchers with the specified name', function() {
+    it('creates dispatchers with the specified name', function() {
         var dispatcher = DispatcherFactory.create('foo');
 
         expect(dispatcher.name).toBe('foo');
     });
 
-    it ('reuses already created dispatcher if name is the same', function() {
+    it('reuses already created dispatcher if name is the same', function() {
         var dispatcher1 = DispatcherFactory.create('foo');
 
         var now = new Date();
+
         dispatcher1.bar = now;
 
         var dispatcher2 = DispatcherFactory.create('foo');
+
         expect(dispatcher1.bar).toBe(dispatcher2.bar);
     });
 
-    it ('can be registered with', function() {
+    it('can be registered with', function() {
         var dispatcher = DispatcherFactory.create('foo');
         var listener1 = jest.genMockFunction();
         var listener2 = jest.genMockFunction();

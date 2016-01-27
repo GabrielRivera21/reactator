@@ -1,5 +1,4 @@
-
-/* global jest, describe, beforeEach, require, it, expect, runs, waitsFor, runs */
+/* global jest, describe, beforeEach, require, it, expect */
 
 /* jshint unused:false */
 /* jshint -W097 */
@@ -29,20 +28,23 @@ describe('MetaDataComponent', function() {
     });
 
     it('sets to SM if LG and MD are not visible', function() {
-        $.fn.is = function(name) {
+        $.fn.is = function() {
             switch(this[0].className) {
-                case 'visible-lg-block':
-                    return false;
-                case 'visible-md-block':
-                    return false;
-                case 'visible-sm-block':
-                    return true;
+            case 'visible-lg-block':
+                return false;
+            case 'visible-md-block':
+                return false;
+            case 'visible-sm-block':
+                return true;
+            default:
+                return false;
             }
         };
 
         TestUtils.renderIntoDocument(<MetaDataComponent />);
 
         var state = AppStore.getState().toJS();
+
         expect(state.size).toBeDefined();
         expect(state.size.width).toBeGreaterThan(1);
         expect(state.size.height).toBeGreaterThan(1);
@@ -50,20 +52,23 @@ describe('MetaDataComponent', function() {
     });
 
     it('sets to MD if LG is not visible', function() {
-        $.fn.is = function(name) {
+        $.fn.is = function() {
             switch(this[0].className) {
-                case 'visible-lg-block':
-                    return false;
-                case 'visible-md-block':
-                    return true;
-                case 'visible-sm-block':
-                    return true;
+            case 'visible-lg-block':
+                return false;
+            case 'visible-md-block':
+                return true;
+            case 'visible-sm-block':
+                return true;
+            default:
+                return false;
             }
         };
 
         TestUtils.renderIntoDocument(<MetaDataComponent />);
 
         var state = AppStore.getState().toJS();
+
         expect(state.size).toBeDefined();
         expect(state.size.width).toBeGreaterThan(1);
         expect(state.size.height).toBeGreaterThan(1);
@@ -76,6 +81,7 @@ describe('MetaDataComponent', function() {
         TestUtils.renderIntoDocument(<MetaDataComponent />);
 
         var state = AppStore.getState().toJS();
+
         expect(state.size).toBeDefined();
         expect(state.size.width).toBeGreaterThan(1);
         expect(state.size.height).toBeGreaterThan(1);
@@ -86,6 +92,7 @@ describe('MetaDataComponent', function() {
         TestUtils.renderIntoDocument(<MetaDataComponent />);
 
         var state = AppStore.getState().toJS();
+
         expect(state.size).toBeDefined();
         expect(state.size.width).toBeGreaterThan(1);
         expect(state.size.height).toBeGreaterThan(1);

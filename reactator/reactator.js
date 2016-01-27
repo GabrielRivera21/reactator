@@ -1,7 +1,7 @@
 /* global module, require */
 
 module.exports = {
-    AppStarter : require('./AppStarter.js'),
+    AppStarter: require('./AppStarter.js'),
     actions: {
         AppAction: require('./actions/AppAction.js')
     },

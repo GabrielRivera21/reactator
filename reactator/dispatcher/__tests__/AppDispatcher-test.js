@@ -17,9 +17,11 @@ describe('AppDispatcher', function() {
 
     it('sends actions to subscribers', function() {
         var listener = jest.genMockFunction();
+
         AppDispatcher.register(listener);
 
         var payload = {};
+
         AppDispatcher.dispatch(payload);
         expect(listener.mock.calls.length).toBe(1);
         expect(listener.mock.calls[0][0]).toBe(payload);
@@ -29,7 +31,7 @@ describe('AppDispatcher', function() {
         var payload = {};
 
         var listener1Done = false;
-        var listener1 = function(pl) {
+        var listener1 = function() {
             AppDispatcher.waitFor([index2, index4]);
             // Second, third, and fourth listeners should have now been called
             expect(listener2Done).toBe(true);
@@ -37,10 +39,11 @@ describe('AppDispatcher', function() {
             expect(listener4Done).toBe(true);
             listener1Done = true;
         };
-        var index1 = AppDispatcher.register(listener1);
+
+        AppDispatcher.register(listener1);
 
         var listener2Done = false;
-        var listener2 = function(pl) {
+        var listener2 = function() {
             AppDispatcher.waitFor([index3]);
             expect(listener3Done).toBe(true);
             listener2Done = true;
@@ -48,13 +51,13 @@ describe('AppDispatcher', function() {
         var index2 = AppDispatcher.register(listener2);
 
         var listener3Done = false;
-        var listener3 = function(pl) {
+        var listener3 = function() {
             listener3Done = true;
         };
         var index3 = AppDispatcher.register(listener3);
 
         var listener4Done = false;
-        var listener4 = function(pl) {
+        var listener4 = function() {
             AppDispatcher.waitFor([index3]);
             expect(listener3Done).toBe(true);
             listener4Done = true;
@@ -67,7 +70,7 @@ describe('AppDispatcher', function() {
 
         waitsFor(function() {
             return listener1Done;
-        }, "Not all subscribers were properly called", 500);
+        }, 'Not all subscribers were properly called', 500);
 
         runs(function() {
             expect(listener1Done).toBe(true);
@@ -78,6 +81,7 @@ describe('AppDispatcher', function() {
 
     it('propogates route actions with correct source', function() {
         var listener = jest.genMockFunction();
+
         AppDispatcher.register(listener);
 
         AppDispatcher.handleRouteAction('test');
@@ -89,6 +93,7 @@ describe('AppDispatcher', function() {
 
     it('propogates window resize action with correct source', function() {
         var listener = jest.genMockFunction();
+
         AppDispatcher.register(listener);
 
         AppDispatcher.handleWindowResize('test');

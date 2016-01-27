@@ -1,18 +1,16 @@
 /* global require, module */
 
 const
-    _ = require('lodash'),
     Q = require('../lib/q'),
-    ClientError = require('./ClientError.js'),
-    ClientResponse = require('./ClientResponse.js');
+    ClientError = require('./ClientError.js');
 
 //
 // Simple Q.Promise to throw method not implemented error.
 //
 const methodNotImplementedPromise = Q.Promise(
     /*jshint unused:false*/
-    (resolve, reject, notify) => {
-        reject(new ClientError(400, "Method not implemented!"));
+    (resolve, reject) => {
+        reject(new ClientError(400, 'Method not implemented!'));
     }
 );
 
@@ -23,7 +21,7 @@ const methodNotImplementedPromise = Q.Promise(
  * @constructor
  */
 class Client {
-    /*jshint unused:false*/
+    /* eslint no-unused-vars: 0 */
 
     /**
      * Creates a new item in the resource container.

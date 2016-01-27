@@ -1,4 +1,4 @@
-/* global jest, describe, beforeEach, require, it, expect, runs, waitsFor, runs */
+/* global jest, describe, beforeEach, require, it, expect */
 
 /* jshint unused:false */
 /* jshint -W097 */
@@ -20,6 +20,7 @@ describe('AppAction', function() {
         AppAction.resize(1,2, AppConstants.LG);
 
         var AppDispatcher = require('../../dispatcher/AppDispatcher.js');
+
         expect(AppDispatcher.handleWindowResize.mock.calls.length).toBe(1);
         expect(AppDispatcher.handleWindowResize.mock.calls[0][0].width).toBe(1);
         expect(AppDispatcher.handleWindowResize.mock.calls[0][0].height).toBe(2);

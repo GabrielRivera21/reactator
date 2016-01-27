@@ -15,11 +15,12 @@ const
  */
 const MetaDataComponent = React.createClass({
 
-    handleWindowResize : function() {
+    handleWindowResize: function() {
         const $responsive = $(this.getDOMNode()).find('.responsive');
         var isVisible = className => $responsive.find(className).is(':visible');
 
         var visibility = AppConstants.XS;
+
         if (isVisible('.visible-lg-block')) {
             visibility = AppConstants.LG;
         } else if (isVisible('.visible-md-block')) {

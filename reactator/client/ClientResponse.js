@@ -11,7 +11,7 @@ class ClientResponse {
      * @param {Object} value value of the response
      * @param {Number} status status of the response
      * @param {Object} metaData any meta data associated with the response
-     * @method initialize
+     * @constructor
      */
     constructor(value, status, metaData) {
         this.value = value;

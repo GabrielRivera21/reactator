@@ -16,21 +16,24 @@ describe('Store', function() {
 
     it('should initialize without error', function() {
         var store = new Store();
+
         expect(store).not.toBeUndefined();
     });
 
     it('should bind to dispatcher correctly', function() {
         var foo = DispatcherFactory.create('foo');
+
         foo.register = jest.genMockFunction();
         foo.register.mockReturnValue('foo-id');
 
         var bar = DispatcherFactory.create('bar');
+
         bar.register = jest.genMockFunction();
         bar.register.mockReturnValue('bar-id');
 
         var store = new Store();
-
         var listener = jest.genMockFunction();
+
         store.bindDispatcher(foo, listener);
         store.bindDispatcher(bar, listener);
 
@@ -43,6 +46,7 @@ describe('Store', function() {
 
         var listener1 = jest.genMockFunction();
         var listener2 = jest.genMockFunction();
+
         store.addChangeListener(listener1);
 
         store.emitChange();
@@ -59,12 +63,13 @@ describe('Store', function() {
         expect(listener2.mock.calls.length).toBe(0);
     });
 
-    it ('should not call change listener on an id accordingly', function() {
+    it('should not call change listener on an id accordingly', function() {
         var store = new Store();
 
         var listener1 = jest.genMockFunction();
         var listener2 = jest.genMockFunction();
         var listener3 = jest.genMockFunction();
+
         store.addChangeListener(listener1);
         store.addChangeListener(listener2, 'foo');
         store.addChangeListener(listener3, 'bar');

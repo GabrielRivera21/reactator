@@ -1,4 +1,4 @@
-/* global jest, describe, beforeEach, require, it, expect, runs, waitsFor, runs */
+/* global jest, describe, beforeEach, require, it, expect */
 
 /* jshint unused:false */
 /* jshint -W097 */
@@ -15,6 +15,7 @@ describe('ClientError', function() {
 
     it('creates a new object even without arguments', function() {
         var error = new ClientError();
+
         expect(error.name).toBe('ClientError');
         expect(error.status).toBe(400);
         expect(error.message).toBeDefined();
@@ -23,6 +24,7 @@ describe('ClientError', function() {
 
     it('creates a error object with values passed in', function() {
         var error = new ClientError('foo', 'bar', 'yay');
+
         expect(error.name).toBe('ClientError');
         expect(error.status).toBe('foo');
         expect(error.message).toBe('bar');

@@ -102,6 +102,7 @@ var BootstrapModalMixin = {
      * Configures the modal.
      *
      * @method componentDidMount
+     * @returns {undefined}
      */
     componentDidMount: function() {
         const $modal = $(this.getDOMNode()).modal({
@@ -126,6 +127,7 @@ var BootstrapModalMixin = {
      * Clears modal configurations.
      *
      * @method componentWillUnmount
+     * @returns {undefined}
      */
     componentWillUnmount: function() {
         const $modal = $(this.getDOMNode());
@@ -145,6 +147,7 @@ var BootstrapModalMixin = {
      * Hides the modal.
      *
      * @method hide
+     * @returns {undefined}
      */
     hide: function() {
         $(this.getDOMNode()).modal('hide');
@@ -154,6 +157,7 @@ var BootstrapModalMixin = {
      * Shows the modal.
      *
      * @method show
+     * @returns {undefined}
      */
     show: function() {
         $(this.getDOMNode()).modal('show');
@@ -163,6 +167,7 @@ var BootstrapModalMixin = {
      * Toggles the modal.
      *
      * @method toggle
+     * @returns {undefined}
      */
     toggle: function() {
         $(this.getDOMNode()).modal('toggle');
@@ -172,10 +177,11 @@ var BootstrapModalMixin = {
      * Renders the close button
      *
      * @method renderCloseButton
+     * @returns {Object} the button
      */
     renderCloseButton: function() {
         return (
-            <button type="button" className="close" onClick={this.hide} dangerouslySetInnerHTML={{__html:'&times'}} />
+            <button type="button" className="close" onClick={this.hide} dangerouslySetInnerHTML={{__html: '&times'}} />
         );
     }
 };

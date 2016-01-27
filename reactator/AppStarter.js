@@ -18,7 +18,7 @@ require('./stores/AppStore.js');
 class AppStarter {
 
     /**
-     * @method constructor
+     * @constructor
      */
     constructor() {
         this.routes = undefined;
@@ -53,6 +53,7 @@ class AppStarter {
      * Starts the app
      *
      * @method start
+     * @returns {undefined}
      */
     start() {
         // The MetaData Component providing common functionality / support.

@@ -18,12 +18,13 @@ const DispatcherFactory = {
      * @return {Dispatcher} the newly created dispatcher, or the existing one.
      * @method create
      */
-    create : function(name) {
+    create: function(name) {
         if (dispatchers[name]) {
             return dispatchers[name];
         }
 
         const dispatcher = new Dispatcher();
+
         dispatcher.name = name;
 
         dispatchers[name] = dispatcher;

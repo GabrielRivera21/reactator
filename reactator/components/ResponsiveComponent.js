@@ -8,9 +8,13 @@ const
 
 /**
  * @method getPropVisibility
+ * @param {Object} props props
+ * @param {Object} visibility visibility
+ * @returns {Object} props
  */
 const getPropVisibility = (props, visibility) => {
     var isVisible = false;
+
     return _.find(
         AppConstants.VISIBILITY_ORDER,
         (level) => {
@@ -32,25 +36,25 @@ const getPropVisibility = (props, visibility) => {
  */
 const ResponsiveComponent = React.createClass({
 
-    getInitialState : function() {
+    getInitialState: function() {
         return {
-            visibility : AppStore.getState().get('size').get('visibility')
+            visibility: AppStore.getState().get('size').get('visibility')
         };
     },
 
-    componentWillMount : function() {
+    componentWillMount: function() {
         AppStore.addChangeListener(this.onAppStoreChange, 'size');
     },
 
-    componentWillUnmount : function() {
+    componentWillUnmount: function() {
         AppStore.removeChangeListener(this.onAppStoreChange, 'size');
     },
 
-    onAppStoreChange : function() {
+    onAppStoreChange: function() {
         this.setState(this.getInitialState());
     },
 
-    shouldComponentUpdate : function(nextProps, nextState) {
+    shouldComponentUpdate: function(nextProps, nextState) {
         return getPropVisibility(this.props, this.state.visibility) !==
                 getPropVisibility(nextProps, nextState.visibility);
     },

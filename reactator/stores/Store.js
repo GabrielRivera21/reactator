@@ -4,10 +4,10 @@ const
     _ = require('lodash'),
     EventEmitter = require('events').EventEmitter;
 
-const CHANGE_EVENT = "change";
+const CHANGE_EVENT = 'change';
 
 const changeEvent = (id) => {
-    return CHANGE_EVENT + "-" + id;
+    return CHANGE_EVENT + '-' + id;
 };
 
 /**
@@ -32,6 +32,7 @@ class Store {
      * @param {Dispatcher} dispatcher dispatcher to bind to
      * @param {Function} callback callback function to bind
      * @method bindDispatcher
+     * @returns {undefined}
      */
     bindDispatcher(dispatcher, callback) {
         this._dispatchers[dispatcher.name] = dispatcher.register(callback.bind(this));
@@ -50,15 +51,19 @@ class Store {
 
     /**
      * Emits the change event on the store
+     * @param {String} id id of the event to emit
      * @method emitChange
+     * @returns {undefined}
      */
     emitChange(id) {
         if (_.isUndefined(id)) {
+            var self = this;
+
             _.each(
                 /*jshint -W069 */
-                Object.keys(this._emitter['_events']),
+                Object.keys(self._emitter['_events']),
                 function(event) {
-                    this._emitter.emit(event);
+                    self._emitter.emit(event);
                 },
                 this);
         } else {
@@ -72,6 +77,7 @@ class Store {
      * @param {Function} callback callback function to register
      * @param {String} id id of the change event
      * @method addChangeListener
+     * @returns {undefined}
      */
     addChangeListener(callback, id) {
         if (!_.isUndefined(id)) {
@@ -86,6 +92,7 @@ class Store {
      * @param  {Function} callback callback funciton to unregister
      * @param {String} id id of the change event
      * @method removeChangeListener
+     * @returns {undefined}
      */
     removeChangeListener(callback, id) {
         if (!_.isUndefined(id)) {
