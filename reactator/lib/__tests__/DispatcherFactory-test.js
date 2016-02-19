@@ -1,9 +1,5 @@
 /* global jest, describe, beforeEach, require, it, expect */
 
-/* jshint unused:false */
-/* jshint -W097 */
-"use strict";
-
 jest.autoMockOff();
 
 describe('DispatcherFactory', function() {

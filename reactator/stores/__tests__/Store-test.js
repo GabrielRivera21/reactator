@@ -1,8 +1,5 @@
 /* global require, jest, describe, beforeEach, it, expect */
 
-/* jshint -W097 */
-"use strict";
-
 jest.autoMockOff();
 
 describe('Store', function() {

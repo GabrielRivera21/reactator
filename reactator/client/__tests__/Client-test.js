@@ -1,8 +1,5 @@
 /* global jest, describe, afterEach, beforeEach, require, it, expect */
 
-/* jshint newcap:false, unused:false, -W024, -W097 */
-"use strict";
-
 jest.autoMockOff();
 
 var Q = require('../../lib/q.js');

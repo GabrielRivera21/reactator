@@ -1,9 +1,5 @@
 /* global jest, describe, beforeEach, require, it, expect, runs, waitsFor, runs */
 
-/* jshint unused:false */
-/* jshint -W097 */
-"use strict";
-
 jest.autoMockOff();
 
 describe('AppDispatcher', function() {

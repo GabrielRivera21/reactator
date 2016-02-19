@@ -1,6 +1,6 @@
 {
     "jest": {
-        "scriptPreprocessor": "../reactator/spec/support/jest-preprocessor.js",
+        "scriptPreprocessor": "../node_modules/babel-jest",
         "unmockedModulePathPatterns": ["node_modules/react"],
         "testPathIgnorePatterns": ["node_modules"],
         "moduleFileExtensions": ["js", "json", "react"],
