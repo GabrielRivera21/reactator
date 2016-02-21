@@ -2,6 +2,7 @@
 
 const
     React = require('react'),
+    ReactDOM = require('react-dom'),
     $ = require('../lib/jquery.js'),
     _ = require('lodash'),
     AppConstants = require('../constants/AppConstants.js'),
@@ -16,7 +17,7 @@ const
 const MetaDataComponent = React.createClass({
 
     handleWindowResize: function() {
-        const $responsive = $(this.getDOMNode()).find('.responsive');
+        const $responsive = $(ReactDOM.findDOMNode(this)).find('.responsive');
         var isVisible = className => $responsive.find(className).is(':visible');
 
         var visibility = AppConstants.XS;

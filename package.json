@@ -17,7 +17,7 @@
     "package": "bin/build-node-package.sh",
     "doc": "jsdoc reactator -r",
     "lint": "eslint reactator",
-    "test": "gulp test-reactator"
+    "tests": "gulp test-reactator"
   },
   "keywords": [
     "react",
@@ -39,6 +39,7 @@
     "q": "^1.4.1",
     "react": "^0.14.5",
     "react-addons-test-utils": "^0.14.7",
+    "react-dom": "^0.14.7",
     "react-router": "^2.0.0-rc4"
   },
   "devDependencies": {
