@@ -9,10 +9,8 @@ const
 var state = Immutable.fromJS({
     route: {
         action: null,
-        params: null,
-        path: null,
         pathname: null,
-        query: null
+        params: null
     },
     size: {
         width: null,
@@ -48,10 +46,8 @@ class AppStore extends Store {
         case AppConstants.ROUTE_ACTION:
             state = state.mergeDeep({route: {
                 action: event.action.action,
-                params: event.action.params,
-                path: event.action.path,
                 pathname: event.action.pathname,
-                query: event.action.query
+                params: event.action.params || {}
             }});
 
             this.emitChange('route');

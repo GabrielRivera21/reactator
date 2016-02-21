@@ -14,11 +14,15 @@ const
 var MainComponent = React.createClass({
 
     contextTypes: {
-        router: React.PropTypes.func
+        router: React.PropTypes.object
     },
 
-    profilePage : function() {
-        this.context.router.transitionTo('/profile', {}, {});
+    profilePage: function() {
+        this.context.router.push({
+            pathname: '/profile',
+            query: {},
+            state: {}
+        });
     },
 
     render: function() {

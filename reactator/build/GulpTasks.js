@@ -296,7 +296,6 @@ var GulpTasks = {
                     GulpTasks.start([
                         n('watchify'),
                         n('watch-less'),
-                        n('watch-js'),
                         n('watch-test')
                     ]));
             }

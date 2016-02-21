@@ -10,15 +10,20 @@ const
  */
 const ProfileComponent = React.createClass({
 
+
     contextTypes: {
-        router: React.PropTypes.func
+        router: React.PropTypes.object
     },
 
-    mainPage : function() {
-        this.context.router.transitionTo('/', {}, {});
+    mainPage: function() {
+        this.context.router.push({
+            pathname: '/',
+            query: {},
+            state: {}
+        });
     },
 
-    backPage : function() {
+    backPage: function() {
         this.context.router.goBack();
     },
 

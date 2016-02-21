@@ -1,7 +1,7 @@
 /* global require, document */
 
 const
-    reactator = require('reactator/reactator'),
+    reactator = require('reactator/index'),
     demo = require('./demo.js'),
     AppStarter = require('reactator/AppStarter'),
     DemoRoutes = require('./routes/DemoRoutes.js');

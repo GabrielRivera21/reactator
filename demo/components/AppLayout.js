@@ -2,8 +2,7 @@
 
 const
     React = require('react'),
-    Router = require('react-router'),
-    RouteHandler = Router.RouteHandler;
+    Router = require('react-router');
 
 /**
  * React component AppLayout
@@ -14,7 +13,7 @@ const AppLayout = React.createClass({
     render: function() {
         return (
             <div className='app'>
-                <RouteHandler />
+                {this.props.children}
             </div>
         );
     }

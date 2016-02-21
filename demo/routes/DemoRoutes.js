@@ -5,9 +5,9 @@ const
     Router = require('react-router'),
     Route = Router.Route,
     CompositeRoutes = require('reactator/routes/CompositeRoutes'),
-    MainRoutes = require("./MainRoutes.js"),
+    MainRoutes = require('./MainRoutes.js'),
     ProfileRoutes = require('./ProfileRoutes.js'),
-    AppLayout = require("../components/AppLayout");
+    AppLayout = require('../components/AppLayout');
 
 /**
  * @class DemoRoutes
@@ -15,14 +15,14 @@ const
 class DemoRoutes extends CompositeRoutes {
     constructor() {
         super([
-                new MainRoutes(),
-                new ProfileRoutes()
-            ]);
+            new MainRoutes(),
+            new ProfileRoutes()
+        ]);
     }
 
     getRoutes() {
         return (
-                <Route handler={AppLayout}>
+                <Route component={AppLayout}>
                     {super.getRoutes()}
                 </Route>
             );

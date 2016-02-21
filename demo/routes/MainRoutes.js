@@ -4,10 +4,10 @@ const
     React = require('react'),
     Router = require('react-router'),
     Route = Router.Route,
-    DefaultRoute = Router.DefaultRoute,
+    IndexRoute = Router.IndexRoute,
     Routes = require('reactator/routes/Routes'),
-    BasicLayout = require("reactator/components/BasicLayout"),
-    MainComponent = require("../components/main/MainComponent");
+    BasicLayout = require('reactator/components/BasicLayout'),
+    MainComponent = require('../components/main/MainComponent');
 
 /**
  * React Router definition for main app
@@ -17,8 +17,8 @@ const
 class MainRoutes extends Routes {
     getRoutes() {
         return (
-                <Route key="main" name="main" path="/" handler={BasicLayout}>
-                    <DefaultRoute handler={MainComponent} />
+                <Route key="main" name="main" path="/" component={BasicLayout}>
+                    <IndexRoute component={MainComponent} />
                 </Route>
             );
     }

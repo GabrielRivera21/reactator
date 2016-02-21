@@ -1,9 +1,7 @@
 /* global require, module */
 
 const
-    React = require('react'),
-    Router = require('react-router'),
-    RouteHandler = Router.RouteHandler;
+    React = require('react');
 
 /**
  * React component BasicLayout
@@ -13,7 +11,9 @@ const
 const BasicLayout = React.createClass({
     render: function() {
         return (
-            <RouteHandler />
+          <div>
+            {this.props.children}
+          </div>
         );
     }
 });
