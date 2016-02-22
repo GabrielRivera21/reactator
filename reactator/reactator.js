@@ -16,7 +16,8 @@ module.exports = {
         BasicLayout: require('./components/BasicLayout.js'),
         BootstrapModal: require('./components/BootstrapModal.js'),
         MetaDataComponent: require('./components/MetaDataComponent.js'),
-        ResponsiveComponent: require('./components/ResponsiveComponent.js')
+        ResponsiveComponent: require('./components/ResponsiveComponent.js'),
+        RootRouteComponent: require('./components/RootRouteComponent.js')
     },
     constants: {
         AppConstants: require('./constants/AppConstants.js')

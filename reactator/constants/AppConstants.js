@@ -8,6 +8,7 @@
 const keyMirror = require('keymirror');
 
 const AppConstants = keyMirror({
+    ROUTE_UPDATE: null,
     ROUTE_ACTION: null,
     WINDOW_RESIZE_ACTION: null,
 

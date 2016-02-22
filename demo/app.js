@@ -2,9 +2,9 @@
 /* global require, document */
 
 import reactator from 'reactator/index';
-import demo from './demo';
 import AppStarter from 'reactator/AppStarter';
-import DemoRoutes from './routes/DemoRoutes';
+import demo from './demo.js';
+import DemoRoutes from './routes/DemoRoutes.js';
 
 //
 // Make the packages available

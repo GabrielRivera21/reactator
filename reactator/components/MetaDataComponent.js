@@ -36,6 +36,10 @@ const MetaDataComponent = React.createClass({
     componentDidMount: function() {
         window.addEventListener('resize', _.debounce(this.handleWindowResize, 500));
         this.handleWindowResize();
+
+        if (!_.isUndefined(this.props.onComponentDidMount)) {
+            this.props.onComponentDidMount();
+        }
     },
 
     render: function() {

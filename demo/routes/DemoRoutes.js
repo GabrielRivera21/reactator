@@ -5,7 +5,7 @@ import {Route} from 'react-router';
 import CompositeRoutes from 'reactator/routes/CompositeRoutes';
 import MainRoutes from './MainRoutes.js';
 import ProfileRoutes from './ProfileRoutes.js';
-import AppLayout from '../components/AppLayout';
+import AppLayout from '../components/AppLayout.js';
 
 /**
  * @class

@@ -1,7 +1,7 @@
 /* global require, module */
 
 const
-    Q = require('../lib/q'),
+    Q = require('../lib/q.js'),
     ClientError = require('./ClientError.js');
 
 //

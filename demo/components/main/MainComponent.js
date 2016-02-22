@@ -2,7 +2,7 @@
 
 import React from 'react';
 import ResponsiveComponent from 'reactator/components/ResponsiveComponent';
-import ExampleModal from './ExampleModal';
+import ExampleModal from './ExampleModal.js';
 
 /**
  * @class

@@ -4,7 +4,7 @@ import React from 'react';
 import {Route, IndexRoute} from 'react-router';
 import Routes from 'reactator/routes/Routes';
 import BasicLayout from 'reactator/components/BasicLayout';
-import ProfileComponent from '../components/profile/ProfileComponent';
+import ProfileComponent from '../components/profile/ProfileComponent.js';
 
 /**
  * @class
