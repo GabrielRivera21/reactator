@@ -1,7 +1,7 @@
 /* global require, module */
 
 const
-    React = require('react/addons');
+    React = require('react');
 
 /**
  * React component BootstrapModal

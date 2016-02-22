@@ -7,6 +7,7 @@
  */
 const
     React = require('react'),
+    ReactDOM = require('react-dom'),
     $ = require('../../lib/jquery.js');
 
 const bootstrapModalEvents = {
@@ -105,7 +106,7 @@ var BootstrapModalMixin = {
      * @returns {undefined}
      */
     componentDidMount: function() {
-        const $modal = $(this.getDOMNode()).modal({
+        const $modal = $(ReactDOM.findDOMNode(this)).modal({
             backdrop: this.props.backdrop,
             keyboard: this.props.keyboard,
             show: this.props.show,
@@ -130,7 +131,7 @@ var BootstrapModalMixin = {
      * @returns {undefined}
      */
     componentWillUnmount: function() {
-        const $modal = $(this.getDOMNode());
+        const $modal = $(ReactDOM.findDOMNode(this));
 
         handlerProps.forEach((prop) => {
             if (this[prop]) {
@@ -150,7 +151,7 @@ var BootstrapModalMixin = {
      * @returns {undefined}
      */
     hide: function() {
-        $(this.getDOMNode()).modal('hide');
+        $(ReactDOM.findDOMNode(this)).modal('hide');
     },
 
     /**
@@ -160,7 +161,7 @@ var BootstrapModalMixin = {
      * @returns {undefined}
      */
     show: function() {
-        $(this.getDOMNode()).modal('show');
+        $(ReactDOM.findDOMNode(this)).modal('show');
     },
 
     /**
@@ -170,7 +171,7 @@ var BootstrapModalMixin = {
      * @returns {undefined}
      */
     toggle: function() {
-        $(this.getDOMNode()).modal('toggle');
+        $(ReactDOM.findDOMNode(this)).modal('toggle');
     },
 
     /**

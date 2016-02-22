@@ -198,7 +198,6 @@ var GulpTasks = {
                 //
                 // jest
                 //
-
                 gulp.task(
                     n('jest'),
                     ['clean-coverage'],

@@ -1,18 +1,16 @@
 /* global require, module */
 
-const
-    React = require('react'),
-    AppStore = require('reactator/stores/AppStore'),
-    AppAction = require('reactator/actions/AppAction'),
-    ResponsiveComponent = require('reactator/components/ResponsiveComponent');
+import React from 'react';
+import ResponsiveComponent from 'reactator/components/ResponsiveComponent';
+import ExampleModal from './ExampleModal';
 
 /**
- * React component MainComponent
- *
- * @class MainComponent
+ * @class
+ * @memberof module:Demo
+ * @classdesc MainComponent is a simple default page for the demo.
+ *            Demonstrate use of context.router and {@link ResponsiveComponent}
  */
-var MainComponent = React.createClass({
-
+const MainComponent = React.createClass({
     contextTypes: {
         router: React.PropTypes.object
     },
@@ -25,6 +23,10 @@ var MainComponent = React.createClass({
         });
     },
 
+    showModal: function() {
+        this.refs.exampleModal.show();
+    },
+
     render: function() {
         return (
             <div>
@@ -33,6 +35,8 @@ var MainComponent = React.createClass({
                     XS={<div>You shall render XS!</div>} />
                 <br />
                 <a className='btn btn-primary' onClick={this.profilePage}>Profile Page</a>
+                <a className='btn btn-primary' onClick={this.showModal}>Show Modal</a>
+                <ExampleModal ref="exampleModal" />
             </div>
         );
     }

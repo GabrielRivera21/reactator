@@ -1,26 +1,27 @@
 /* global require, module */
 
-const
-    React = require('react'),
-    Router = require('react-router'),
-    Route = Router.Route,
-    IndexRoute = Router.IndexRoute,
-    Routes = require('reactator/routes/Routes'),
-    BasicLayout = require('reactator/components/BasicLayout'),
-    MainComponent = require('../components/main/MainComponent');
+import React from 'react';
+import {Route, IndexRoute} from 'react-router';
+import Routes from 'reactator/routes/Routes';
+import BasicLayout from 'reactator/components/BasicLayout';
+import MainComponent from '../components/main/MainComponent';
 
 /**
- * React Router definition for main app
- *
- * @class MainRoutes
+ * @class
+ * @memberof module:Demo
+ * @classdesc MainRoutes is an example of {@link Routes} for the demo app's main page.
  */
 class MainRoutes extends Routes {
+    /**
+     * Provides the routes for the main component of the demo app.
+     * @return {Route} the route representing the main component
+     */
     getRoutes() {
         return (
-                <Route key="main" name="main" path="/" component={BasicLayout}>
-                    <IndexRoute component={MainComponent} />
-                </Route>
-            );
+            <Route key="main" name="main" path="/" component={BasicLayout}>
+                <IndexRoute component={MainComponent} />
+            </Route>
+        );
     }
 }
 

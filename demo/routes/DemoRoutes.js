@@ -1,16 +1,16 @@
 /* global require, module */
 
-const
-    React = require('react'),
-    Router = require('react-router'),
-    Route = Router.Route,
-    CompositeRoutes = require('reactator/routes/CompositeRoutes'),
-    MainRoutes = require('./MainRoutes.js'),
-    ProfileRoutes = require('./ProfileRoutes.js'),
-    AppLayout = require('../components/AppLayout');
+import React from 'react';
+import {Route} from 'react-router';
+import CompositeRoutes from 'reactator/routes/CompositeRoutes';
+import MainRoutes from './MainRoutes.js';
+import ProfileRoutes from './ProfileRoutes.js';
+import AppLayout from '../components/AppLayout';
 
 /**
- * @class DemoRoutes
+ * @class
+ * @memberof module:Demo
+ * @classdesc DemoRoutes is an example of {@link CompositeRoutes} for the demo app.
  */
 class DemoRoutes extends CompositeRoutes {
     constructor() {
@@ -20,12 +20,17 @@ class DemoRoutes extends CompositeRoutes {
         ]);
     }
 
+    /**
+     * Provides the composite react-router routes for the demo.
+     *
+     * @return {Route} composite route
+     */
     getRoutes() {
         return (
-                <Route component={AppLayout}>
-                    {super.getRoutes()}
-                </Route>
-            );
+            <Route component={AppLayout}>
+                {super.getRoutes()}
+            </Route>
+        );
     }
 }
 

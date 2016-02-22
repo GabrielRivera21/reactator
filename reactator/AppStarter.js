@@ -17,7 +17,7 @@ require('./stores/AppStore.js');
 var app = undefined;
 
 class App extends React.Component {
-    render () {
+    render() {
         app = this;
 
         return (

@@ -1,13 +1,11 @@
 /* global require, module */
 
-const
-    React = require('react'),
-    Router = require('react-router');
+import React from 'react';
 
 /**
- * React component AppLayout
- *
- * @class AppLayout
+ * @class
+ * @memberof module:Demo
+ * @classdesc AppLayout is a basic layout for the demo adding a div.app around its children.
  */
 const AppLayout = React.createClass({
     render: function() {

@@ -15,7 +15,7 @@
     "clean": "bin/clean.sh",
     "demo": "gulp build-demo connect-demo",
     "dev": "gulp dev connect-demo",
-    "package": "bin/build-node-package.sh",
+    "package": "bin/package.sh",
     "doc": "jsdoc reactator -r",
     "lint": "eslint reactator",
     "tests": "gulp test-reactator"
