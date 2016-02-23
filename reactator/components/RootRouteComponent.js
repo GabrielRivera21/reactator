@@ -1,5 +1,3 @@
-/* global require, module */
-
 import React from 'react';
 import {EventEmitter} from 'events';
 import AppDispatcher from '../dispatcher/AppDispatcher.js';

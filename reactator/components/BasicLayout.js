@@ -1,12 +1,10 @@
-/* global require, module */
-
-const
-    React = require('react');
+import React from 'react';
 
 /**
  * React component BasicLayout
  *
  * @class BasicLayout
+ * @memberof module:Reactator
  */
 const BasicLayout = React.createClass({
     render: function() {

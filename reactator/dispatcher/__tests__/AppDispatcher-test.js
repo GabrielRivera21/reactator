@@ -1,4 +1,4 @@
-/* global jest, describe, beforeEach, require, it, expect, runs, waitsFor, runs */
+/* global jest, describe, beforeEach, it, expect, runs, waitsFor, runs */
 
 jest.autoMockOff();
 

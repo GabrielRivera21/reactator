@@ -1,5 +1,4 @@
 /** @module Demo */
-/* global require, document */
 
 import reactator from 'reactator/index';
 import AppStarter from 'reactator/AppStarter';

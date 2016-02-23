@@ -1,12 +1,9 @@
-/* global require, module */
-
-const
-    _ = require('lodash'),
-    Q = require('../lib/q.js'),
-    $ = require('../lib/jquery.js'),
-    Client = require('./Client.js'),
-    ClientError = require('./ClientError.js'),
-    ClientResponse = require('./ClientResponse.js');
+import _ from 'lodash';
+import Q from '../lib/q.js';
+import $ from '../lib/jquery.js';
+import Client from './Client.js';
+import ClientError from './ClientError.js';
+import ClientResponse from './ClientResponse.js';
 
 //
 // Helper to return a Q.Promise that returns ClientResponse or ClientError for an
@@ -47,7 +44,7 @@ const ajax = (settings, request) => {
  * Class representing the implementation of the Client interface utilizing the jQuery's ajax.
  *
  * @class AjaxClient
- * @constructor
+ * @memberof module:Reactator
  */
 class AjaxClient extends Client {
 
@@ -65,8 +62,7 @@ class AjaxClient extends Client {
      * {{#crossLink "Client/create:method"}}{{/crossLink}}
      * @param {Object} item item to create
      * @param {Object} settings settings for the ajax request
-     * @method create
-     * @returns {Q.Promise} deferred result of the request
+     * @return {Q.Promise} deferred result of the request
      */
     create(item, settings) {
         return ajax(settings, {
@@ -82,8 +78,7 @@ class AjaxClient extends Client {
      * {{#crossLink "Client/read:method"}}{{/crossLink}}
      * @param {String} id id of the item to read
      * @param {Object} settings settings for the ajax request
-     * @method read
-     * @returns {Q.Promise} deferred result of the request
+     * @return {Q.Promise} deferred result of the request
      */
     read(id, settings) {
         return ajax(settings, {
@@ -98,8 +93,7 @@ class AjaxClient extends Client {
      * @param {String} id id of the item to update
      * @param {Object} item item to update to
      * @param {Object} settings settings for the ajax request
-     * @method update
-     * @returns {Q.Promise} deferred result of the request
+     * @return {Q.Promise} deferred result of the request
      */
     update(id, item, settings) {
         return ajax(settings, {
@@ -116,8 +110,7 @@ class AjaxClient extends Client {
      * {{#crossLink "Client/delete:method"}}{{/crossLink}}
      * @param {String} id id of the item to delete
      * @param {Object} settings settings for the ajax request
-     * @method delete
-     * @returns {Q.Promise} deferred result of the request
+     * @return {Q.Promise} deferred result of the request
      */
     delete(id, settings) {
         return ajax(settings, {

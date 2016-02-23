@@ -1,5 +1,3 @@
-/* global require, module */
-
 import React from 'react';
 import BootstrapModalMixin from 'reactator/components/mixin/BootstrapModalMixin';
 import BootstrapModal from 'reactator/components/BootstrapModal';

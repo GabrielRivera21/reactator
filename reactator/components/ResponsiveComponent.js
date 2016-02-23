@@ -1,17 +1,8 @@
-/* global require, module */
+import _ from 'lodash';
+import React from 'react';
+import AppStore from '../stores/AppStore.js';
+import AppConstants from '../constants/AppConstants.js';
 
-const
-    _ = require('lodash'),
-    React = require('react'),
-    AppStore = require('../stores/AppStore.js'),
-    AppConstants = require('../constants/AppConstants.js');
-
-/**
- * @method getPropVisibility
- * @param {Object} props props
- * @param {Object} visibility visibility
- * @returns {Object} props
- */
 const getPropVisibility = (props, visibility) => {
     var isVisible = false;
 
@@ -33,6 +24,7 @@ const getPropVisibility = (props, visibility) => {
  *             XS={<div>You shall render SM or XS!</div>} />
  *
  * @class ResponsiveComponent
+ * @memberof module:Reactator
  */
 const ResponsiveComponent = React.createClass({
 

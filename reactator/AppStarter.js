@@ -1,17 +1,11 @@
 /** @module Reactator */
-/* global require, document */
 
-//import { Router, Route, Link, browserHistory } from 'react-router'
-
-const
-    React = require('react'),
-    ReactDOM = require('react-dom'),
-    ReactRouter = require('react-router'),
-    Router = ReactRouter.Router,
-    Route = ReactRouter.Route,
-    RootRouteComponent = require('./components/RootRouteComponent.js'),
-    AppConstants = require('./constants/AppConstants.js'),
-    MetaDataComponent = require('./components/MetaDataComponent.js');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import {Router, Route, browserHistory} from 'react-router';
+import AppConstants from './constants/AppConstants.js';
+import RootRouteComponent from './components/RootRouteComponent.js';
+import MetaDataComponent from './components/MetaDataComponent.js';
 
 // Just to ensure that AppStore is initialized and listening to
 // AppDispatcher prior to having router initialized.
@@ -19,6 +13,7 @@ require('./stores/AppStore.js');
 
 /**
  * @class
+ * @memberof module:Reactator
  * @classdesc AppStarter helping to configure and start the app
  */
 class AppStarter {
@@ -55,7 +50,7 @@ class AppStarter {
 
     /**
      * Callback for Router updates
-     * @returns {undefined}
+     * @return {undefined}
      */
     onUpdate() {
         RootRouteComponent.emitter.emit(AppConstants.ROUTE_UPDATE);
@@ -63,13 +58,13 @@ class AppStarter {
 
     /**
      * Renders the app
-     * @returns {undefined}
+     * @return {undefined}
      */
     render() {
         this.routes.initialize();
 
         ReactDOM.render(
-            <Router history={ReactRouter.browserHistory} onUpdate={this.onUpdate}>
+            <Router history={browserHistory} onUpdate={this.onUpdate}>
                 <Route component={RootRouteComponent}>
                     {this.routes.getRoutes()}
                 </Route>
@@ -80,7 +75,7 @@ class AppStarter {
 
     /**
      * Starts the app
-     * @returns {undefined}
+     * @return {undefined}
      */
     start() {
         ReactDOM.render(

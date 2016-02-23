@@ -1,7 +1,4 @@
-/* global require, console, module */
-
-const
-    _ = require('lodash');
+import _ from 'lodash';
 
 const _p8 = (s, v) => {
     var p = (v.toString(16) + '000000000').substr(2,8);
@@ -21,20 +18,19 @@ const _m8 = (s) => {
  * All sort of common helper functionality.
  *
  * @class  U
+ * @memberof module:Reactator
  */
 const U = {
 
     /**
-     * @method out
-     * @returns {undefined}
+     * @return {undefined}
      */
     out: function() {
         console.log(arguments);
     },
 
     /**
-     * @method err
-     * @returns {undefined}
+     * @return {undefined}
      */
     err: function() {
         console.error(arguments);
@@ -42,8 +38,7 @@ const U = {
 
     /**
      * @param {Q} q q
-     * @method outq
-     * @returns {undefined}
+     * @return {undefined}
      */
     outq: function(q) {
         q.then((r) => console.log(r))
@@ -58,7 +53,6 @@ const U = {
      * @param {Object} object object to analyze
      * @param {Array} names names of the functions
      * @return {Array} names of functions not implemented
-     * @method verifyRequiredFunctions
      */
     verifyRequiredFunctions: function(type, object, names) {
         const missing = [];
@@ -78,7 +72,6 @@ const U = {
     /**
      * A helper for generating GUIDs
      * @return {String} next guid
-     * @method guid
      */
     guid: function() {
         return _m8() + _m8(true) + _m8(true) + _d8();
@@ -92,7 +85,6 @@ const U = {
      * @param {Function} func function to call on events
      * @param {Object} obj object to bind to
      * @return {Object} map of events to registered bound functions
-     * @method addListeners
      */
     addListeners: function(emitter, events, func, obj) {
         const listeners = {};
@@ -112,8 +104,7 @@ const U = {
      * Removes listeners from an EventEmitter
      * @param {EventEmitter} emitter emitter to remove listeners from
      * @param {Object} listeners listeners map to remove
-     * @method removeListeners
-     * @returns {undefined}
+     * @return {undefined}
      */
     removeListeners: function(emitter, listeners) {
         _.each(

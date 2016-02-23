@@ -1,13 +1,12 @@
-/* global require, module */
+import {Dispatcher} from 'flux';
 
-const
-    Dispatcher = require('flux').Dispatcher,
-    dispatchers = {};
+const dispatchers = {};
 
 /**
  * Dispatcher factory, ensures creation of single dispatcher for a given name
  *
  * @class DispatcherFactory
+ * @memberof module:Reactator
  */
 const DispatcherFactory = {
 
@@ -16,7 +15,6 @@ const DispatcherFactory = {
      *
      * @param  {String} name name of the dispatcher (unique)
      * @return {Dispatcher} the newly created dispatcher, or the existing one.
-     * @method create
      */
     create: function(name) {
         if (dispatchers[name]) {

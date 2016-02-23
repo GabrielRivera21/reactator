@@ -1,12 +1,10 @@
-/* global window, global, require, module */
-
 /**
  * Wrapper for getting jQuery and all its plugins
  *
  * @class jQuery
+ * @memberof module:Reactator
  */
-const
-    jQuery = require('jquery');
+import jQuery from 'jquery';
 
 if(typeof window !== 'undefined')  {
     window.$ = global.$ = global.jQuery = jQuery;

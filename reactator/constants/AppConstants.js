@@ -1,12 +1,11 @@
-/* global require, module */
+import keyMirror from 'keymirror';
 
 /**
  * All the main App constants that the AppDispatcher or others may use.
  *
  * @class AppConstants
+ * @memberof module:Reactator
  */
-const keyMirror = require('keymirror');
-
 const AppConstants = keyMirror({
     ROUTE_UPDATE: null,
     ROUTE_ACTION: null,

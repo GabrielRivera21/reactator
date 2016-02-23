@@ -1,10 +1,7 @@
-/* global require, module */
-
-const
-    Immutable = require('immutable'),
-    Store = require('./Store.js'),
-    AppConstants = require('../constants/AppConstants.js'),
-    AppDispatcher = require('../dispatcher/AppDispatcher.js');
+import Immutable from 'immutable';
+import Store from './Store.js';
+import AppConstants from '../constants/AppConstants.js';
+import AppDispatcher from '../dispatcher/AppDispatcher.js';
 
 var state = Immutable.fromJS({
     route: {
@@ -23,6 +20,7 @@ var state = Immutable.fromJS({
  * Store for the app values.
  *
  * @class AppStore
+ * @memberof module:Reactator
  */
 class AppStore extends Store {
     /*jshint unused:false*/
@@ -38,8 +36,7 @@ class AppStore extends Store {
 
     /**
      * @param {Object} event event
-     * @method appDispatcherListener
-     * @returns {undefined}
+     * @return {undefined}
      */
     appDispatcherListener(event) {
         switch (event.source) {
@@ -69,8 +66,7 @@ class AppStore extends Store {
     }
 
     /**
-     * @method getState
-     * @returns {Object} state of the store
+     * @return {Object} state of the store
      */
     getState() {
         return state;

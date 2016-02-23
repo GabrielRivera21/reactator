@@ -1,5 +1,3 @@
-/* global module, require */
-
 module.exports = {
     components: {
         AppLayout: require('./components/AppLayout.js'),

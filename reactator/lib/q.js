@@ -1,12 +1,10 @@
-/* global require, module */
-
 /**
  * Wrapper for Q
  *
  * @class Q
+ * @memberof module:Reactator
  */
-const
-    Q = require('q');
+import Q from 'q';
 
 Q.longStackSupport = true;
 

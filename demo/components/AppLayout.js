@@ -1,5 +1,3 @@
-/* global require, module */
-
 import React from 'react';
 
 /**

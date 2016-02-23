@@ -1,10 +1,8 @@
-/* global require, module */
-
 /**
  * Class representing the ClientResponse returned by the {{#crossLink "Client"}}{{/crossLink}}
  *
  * @class ClientResponse
- * @constructor
+ * @memberof module:Reactator
  */
 class ClientResponse {
     /**

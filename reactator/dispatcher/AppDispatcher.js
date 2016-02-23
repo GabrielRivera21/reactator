@@ -1,21 +1,19 @@
-/* global require, module */
+import AppConstants from '../constants/AppConstants.js';
+import DispatcherFactory from '../lib/DispatcherFactory.js';
 
 /**
  * Main dispatcher for the App
  *
  * @class AppDispatcher
+ * @memberof module:Reactator
  */
-const
-    AppConstants = require('../constants/AppConstants.js'),
-    DispatcherFactory = require('../lib/DispatcherFactory.js'),
-    AppDispatcher = DispatcherFactory.create('AppDispatcher');
+const AppDispatcher = DispatcherFactory.create('AppDispatcher');
 
 /**
  * Dispatches a route action of ROUTE_ACTION
  *
- * @method handleRouteAction
  * @param {Object} state route state to be dispatched
- * @returns {undefined}
+ * @return {undefined}
  */
 AppDispatcher.handleRouteAction = function(state) {
     this.dispatch({
@@ -27,9 +25,8 @@ AppDispatcher.handleRouteAction = function(state) {
 /**
  * Dispatches a window resize action of WINDOW_RESIZE_ACTION
  *
- * @method handleWindowResize
  * @param {Object} state window state to be dispatched
- * @returns {undefined}
+ * @return {undefined}
  */
 AppDispatcher.handleWindowResize = function(state) {
     this.dispatch({

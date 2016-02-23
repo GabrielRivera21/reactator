@@ -1,5 +1,3 @@
-/* global module, require */
-
 module.exports = {
     AppStarter: require('./AppStarter.js'),
     actions: {

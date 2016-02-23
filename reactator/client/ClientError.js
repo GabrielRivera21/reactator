@@ -1,7 +1,4 @@
-/* global require, module */
-
-const
-    _ = require('lodash');
+import _ from 'lodash';
 
 /**
  * Error thrown by {{#crossLink "Client"}}{{/crossLink}} on failed operations.
@@ -10,7 +7,7 @@ const
  * @param {String} message message of the error
  * @param {String} request request that failed
  * @class ClientError
- * @constructor
+ * @memberof module:Reactator
  */
 function ClientError(status, message, request) {
     this.name = 'ClientError';
@@ -25,7 +22,8 @@ _.extend(ClientError.prototype, {
 
     /**
      * @return {Boolean} is unauthorized error
-     * @method isUnauthorized
+     * @inner
+     * @memberOf ClientError
      */
     isUnauthorized: function() {
         return this.status === 401;
@@ -33,7 +31,8 @@ _.extend(ClientError.prototype, {
 
     /**
      * @return {Boolean} is forbidden error
-     * @method isForbidden
+     * @inner
+     * @memberOf ClientError
      */
     isForbidden: function() {
         return this.status === 403;
@@ -41,7 +40,8 @@ _.extend(ClientError.prototype, {
 
     /**
      * @return {Boolean} is not found
-     * @method isNotFound
+     * @inner
+     * @memberOf ClientError
      */
     isNotFound: function() {
         return this.status === 404;
@@ -49,7 +49,8 @@ _.extend(ClientError.prototype, {
 
     /**
      * @return {Boolean} is service not available
-     * @method isServiceUnavailable
+     * @inner
+     * @memberOf ClientError
      */
     isServiceUnavailable: function() {
         return this.status === 503;

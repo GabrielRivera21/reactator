@@ -1,22 +1,19 @@
-/* global require, module */
-
 /**
  * @class Routes
+ * @memberof module:Reactator
  */
 class Routes {
 
     /**
      * Initialize is called on the routes of interest.
      *
-     * @method initialize
-     * @returns {undefined}
+     * @return {undefined}
      */
     initialize() {
     }
 
     /**
-     * @method getRoutes
-     * @returns {undefined}
+     * @return {undefined}
      */
     getRoutes() {
     }

@@ -1,12 +1,10 @@
-/* global require, module */
-
-const
-    React = require('react');
+import React from 'react';
 
 /**
  * React component BootstrapModal
  *
  * @class BootstrapModal
+ * @memberof module:Reactator
  */
 const BootstrapModal = React.createClass({
     propTypes: {

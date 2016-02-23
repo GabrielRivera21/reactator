@@ -1,5 +1,3 @@
-/* global require, module */
-
 import React from 'react';
 import {Route} from 'react-router';
 import CompositeRoutes from 'reactator/routes/CompositeRoutes';

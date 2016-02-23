@@ -1,14 +1,6 @@
-/* global require, module */
-
-/**
- * Mixin for react components to have a modal object.
- *
- * @class BootstrapModalMixin
- */
-const
-    React = require('react'),
-    ReactDOM = require('react-dom'),
-    $ = require('../../lib/jquery.js');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import $ from '../../lib/jquery.js';
 
 const bootstrapModalEvents = {
     handleShow: 'show.bs.modal',
@@ -18,33 +10,34 @@ const bootstrapModalEvents = {
 };
 
 const handlerProps = [
-
     /**
      * Optional callback for modal event 'handleShow'
-     * @event handleShow
      */
     'handleShow',
 
     /**
      * Optional callback for modal event 'handleShown'
-     * @event handleShown
      */
     'handleShown',
 
     /**
      * Optional callback for modal event 'handleHide'
-     * @event handleHide
      */
     'handleHide',
 
     /**
      * Optional callback for modal event 'handleHidden'
-     * @event handleHidden
      */
     'handleHidden'
 ];
 
-var BootstrapModalMixin = {
+/**
+ * Mixin for react components to have a modal object.
+ *
+ * @class BootstrapModalMixin
+ * @memberof module:Reactator
+ */
+const BootstrapModalMixin = {
     propTypes: {
         handleShow: React.PropTypes.func,
         handleShown: React.PropTypes.func,
@@ -87,7 +80,6 @@ var BootstrapModalMixin = {
     /**
      * Returns the default props for the mixin
      *
-     * @method getDefaultProps
      * @return {Dictionary} { backdrop: true, keyboard: true, show: true, remote: '' }
      */
     getDefaultProps: function() {
@@ -102,8 +94,7 @@ var BootstrapModalMixin = {
     /**
      * Configures the modal.
      *
-     * @method componentDidMount
-     * @returns {undefined}
+     * @return {undefined}
      */
     componentDidMount: function() {
         const $modal = $(ReactDOM.findDOMNode(this)).modal({
@@ -127,8 +118,7 @@ var BootstrapModalMixin = {
     /**
      * Clears modal configurations.
      *
-     * @method componentWillUnmount
-     * @returns {undefined}
+     * @return {undefined}
      */
     componentWillUnmount: function() {
         const $modal = $(ReactDOM.findDOMNode(this));
@@ -147,8 +137,7 @@ var BootstrapModalMixin = {
     /**
      * Hides the modal.
      *
-     * @method hide
-     * @returns {undefined}
+     * @return {undefined}
      */
     hide: function() {
         $(ReactDOM.findDOMNode(this)).modal('hide');
@@ -157,8 +146,7 @@ var BootstrapModalMixin = {
     /**
      * Shows the modal.
      *
-     * @method show
-     * @returns {undefined}
+     * @return {undefined}
      */
     show: function() {
         $(ReactDOM.findDOMNode(this)).modal('show');
@@ -167,8 +155,7 @@ var BootstrapModalMixin = {
     /**
      * Toggles the modal.
      *
-     * @method toggle
-     * @returns {undefined}
+     * @return {undefined}
      */
     toggle: function() {
         $(ReactDOM.findDOMNode(this)).modal('toggle');
@@ -177,8 +164,7 @@ var BootstrapModalMixin = {
     /**
      * Renders the close button
      *
-     * @method renderCloseButton
-     * @returns {Object} the button
+     * @return {Object} the button
      */
     renderCloseButton: function() {
         return (

@@ -1,18 +1,16 @@
-/* global require, module, window */
-
-const
-    React = require('react'),
-    ReactDOM = require('react-dom'),
-    $ = require('../lib/jquery.js'),
-    _ = require('lodash'),
-    AppConstants = require('../constants/AppConstants.js'),
-    AppAction = require('../actions/AppAction.js');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import $ from '../lib/jquery.js';
+import _ from 'lodash';
+import AppConstants from '../constants/AppConstants.js';
+import AppAction from '../actions/AppAction.js';
 
 /**
  * React component MetaDataComponent that handles window resize and provides information on the
  * state of the responsive css to the {{#crossLink "AppStore"}}{{/crossLink}}.
  *
  * @class MetaDataComponent
+ * @memberof module:Reactator
  */
 const MetaDataComponent = React.createClass({
 
