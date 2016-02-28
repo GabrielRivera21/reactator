@@ -1,6 +1,6 @@
 {
   "name": "reactator",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "description": "Single Page Application based on Flux & React.",
   "author": "Armin Bahramshahry",
   "repository": {
