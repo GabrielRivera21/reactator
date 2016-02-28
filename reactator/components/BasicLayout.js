@@ -1,9 +1,8 @@
 import React from 'react';
 
 /**
- * React component BasicLayout
- *
- * @class BasicLayout
+ * @class
+ * @classdesc React component BasicLayout
  * @memberof module:Reactator
  */
 const BasicLayout = React.createClass({

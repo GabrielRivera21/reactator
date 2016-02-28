@@ -8,7 +8,7 @@ import AppLayout from '../components/AppLayout.js';
 /**
  * @class
  * @memberof module:Demo
- * @classdesc DemoRoutes is an example of {@link CompositeRoutes} for the demo app.
+ * @classdesc DemoRoutes is an example of {@link module:Reactator.CompositeRoutes} for the demo app.
  */
 class DemoRoutes extends CompositeRoutes {
     constructor() {
@@ -22,6 +22,7 @@ class DemoRoutes extends CompositeRoutes {
      * Provides the composite react-router routes for the demo.
      *
      * @return {Route} composite route
+     * @inheritdoc
      */
     getRoutes() {
         return (

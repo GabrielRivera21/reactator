@@ -32,9 +32,8 @@ const handlerProps = [
 ];
 
 /**
- * Mixin for react components to have a modal object.
- *
- * @class BootstrapModalMixin
+ * @class
+ * @classdesc Mixin for react components to have a modal object.
  * @memberof module:Reactator
  */
 const BootstrapModalMixin = {

@@ -7,12 +7,13 @@ import MainComponent from '../components/main/MainComponent.js';
 /**
  * @class
  * @memberof module:Demo
- * @classdesc MainRoutes is an example of {@link Routes} for the demo app's main page.
+ * @classdesc MainRoutes is an example of {@link module:Reactator.Routes} for the demo app's main page.
  */
 class MainRoutes extends Routes {
     /**
      * Provides the routes for the main component of the demo app.
      * @return {Route} the route representing the main component
+     * @inheritdoc
      */
     getRoutes() {
         return (

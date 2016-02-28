@@ -1,9 +1,8 @@
 import AppDispatcher from '../dispatcher/AppDispatcher.js';
 
 /**
- * Class for performing app actions. Triggers on AppDispatcher.
- *
- * @class AppAction
+ * @class
+ * @classdesc Class for performing app actions. Triggers on AppDispatcher.
  * @memberof module:Reactator
  */
 const AppAction = {

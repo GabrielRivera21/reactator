@@ -14,8 +14,8 @@ if (typeof window !== 'undefined') {
 }
 
 /**
- * DemoApp is a simple single page app built using reactator.
- * @class DemoApp
+ * @class
+ * @classdesc DemoApp is a simple single page app built using reactator.
  */
 AppStarter
     .withRoutes(new DemoRoutes())

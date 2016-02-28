@@ -5,8 +5,12 @@ import AppConstants from '../constants/AppConstants.js';
 
 const emitter = new EventEmitter();
 
-var RootRouteComponent = React.createClass({
-
+/**
+ * @class
+ * @classdesc root component for rendering the app tying to {@link module:Reactator.AppDispatcher} for route actions
+ * @memberof module:Reactator
+ */
+const RootRouteComponent = React.createClass({
     dispatch: function() {
         AppDispatcher.handleRouteAction({
             action: this.props.location.action,

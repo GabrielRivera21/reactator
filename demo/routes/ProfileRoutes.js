@@ -7,12 +7,13 @@ import ProfileComponent from '../components/profile/ProfileComponent.js';
 /**
  * @class
  * @memberof module:Demo
- * @classdesc ProfileRoutes is an example of {@link Routes} for the demo app's profile page.
+ * @classdesc ProfileRoutes is an example of {@link module:Reactator.Routes} for the demo app's profile page.
  */
 class ProfileRoutes extends Routes {
     /**
      * Provides the routes for the profile component of the demo app.
      * @return {Route} the route representing the profile component
+     * @inheritdoc
      */
     getRoutes() {
         return (

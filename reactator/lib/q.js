@@ -1,7 +1,6 @@
 /**
- * Wrapper for Q
- *
  * @class Q
+ * @classdesc Wrapper for Q
  * @memberof module:Reactator
  */
 import Q from 'q';

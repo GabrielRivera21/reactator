@@ -3,9 +3,8 @@ import {Dispatcher} from 'flux';
 const dispatchers = {};
 
 /**
- * Dispatcher factory, ensures creation of single dispatcher for a given name
- *
- * @class DispatcherFactory
+ * @class
+ * @classdesc Dispatcher factory, ensures creation of single dispatcher for a given name
  * @memberof module:Reactator
  */
 const DispatcherFactory = {

@@ -1,9 +1,8 @@
 import React from 'react';
 
 /**
- * React component BootstrapModal
- *
- * @class BootstrapModal
+ * @class
+ * @classdesc React component BootstrapModal
  * @memberof module:Reactator
  */
 const BootstrapModal = React.createClass({

@@ -1,7 +1,6 @@
 /**
- * Class representing the ClientResponse returned by the {{#crossLink "Client"}}{{/crossLink}}
- *
- * @class ClientResponse
+ * @class
+ * @classdesc Class representing the ClientResponse returned by the {@link module:Reactator.Client}
  * @memberof module:Reactator
  */
 class ClientResponse {

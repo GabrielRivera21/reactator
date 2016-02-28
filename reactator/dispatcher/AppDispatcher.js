@@ -2,9 +2,8 @@ import AppConstants from '../constants/AppConstants.js';
 import DispatcherFactory from '../lib/DispatcherFactory.js';
 
 /**
- * Main dispatcher for the App
- *
- * @class AppDispatcher
+ * @class
+ * @classdesc Main dispatcher for the App
  * @memberof module:Reactator
  */
 const AppDispatcher = DispatcherFactory.create('AppDispatcher');

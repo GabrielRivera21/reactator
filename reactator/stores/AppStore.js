@@ -17,9 +17,8 @@ var state = Immutable.fromJS({
 });
 
 /**
- * Store for the app values.
- *
- * @class AppStore
+ * @class
+ * @classdesc Store for the app values.
  * @memberof module:Reactator
  */
 class AppStore extends Store {

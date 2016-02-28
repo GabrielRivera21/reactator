@@ -1,12 +1,11 @@
 import _ from 'lodash';
 
 /**
- * Error thrown by {{#crossLink "Client"}}{{/crossLink}} on failed operations.
- *
  * @param {Number} status http status code of the error
  * @param {String} message message of the error
  * @param {String} request request that failed
- * @class ClientError
+ * @class
+ * @classdesc Error thrown by {@link module:Reactator.Client} on failed operations.
  * @memberof module:Reactator
  */
 function ClientError(status, message, request) {

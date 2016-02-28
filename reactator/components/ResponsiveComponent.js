@@ -14,16 +14,18 @@ const getPropVisibility = (props, visibility) => {
         });
 };
 
-/**
- * React component for adapting to the window size and visibility according
- * to {{#crossLink "AppStore"}}{{/crossLink}}. The ResponsiveComponent will render
- * the largest child that would be visible or empty div is non is applicable, e.g.:
- *
+/*
  *     <ResponsiveComponent
  *             MD={<div>You shall render LG or MD!</div>}
  *             XS={<div>You shall render SM or XS!</div>} />
+ */
+
+/**
+ * @class
+ * @classdesc React component for adapting to the window size and visibility according
+ *            to {@link module:Reactator.AppStore}. The ResponsiveComponent will render
+ *            the largest child that would be visible or empty div is non is applicable.
  *
- * @class ResponsiveComponent
  * @memberof module:Reactator
  */
 const ResponsiveComponent = React.createClass({

@@ -5,7 +5,7 @@ import BootstrapModal from 'reactator/components/BootstrapModal';
 /**
  * @class
  * @memberof module:Demo
- * @classdesc ExampleModal is a simple example of a modal in a page using {@link BootstrapModalMixin} and {@link BootstrapModal}.
+ * @classdesc ExampleModal is a simple example of a modal in a page using {@link module:Reactator.BootstrapModalMixin} and {@link module:Reactator.BootstrapModal}.
  */
 const ExampleModal = React.createClass({
     mixins: [BootstrapModalMixin],

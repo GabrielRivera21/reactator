@@ -6,10 +6,9 @@ import AppConstants from '../constants/AppConstants.js';
 import AppAction from '../actions/AppAction.js';
 
 /**
- * React component MetaDataComponent that handles window resize and provides information on the
- * state of the responsive css to the {{#crossLink "AppStore"}}{{/crossLink}}.
- *
- * @class MetaDataComponent
+ * @class
+ * @classdesc React component MetaDataComponent that handles window resize and provides information on the
+ *            state of the responsive css to the {@link module:Reactator.AppStore}.
  * @memberof module:Reactator
  */
 const MetaDataComponent = React.createClass({

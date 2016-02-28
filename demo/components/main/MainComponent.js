@@ -6,7 +6,7 @@ import ExampleModal from './ExampleModal.js';
  * @class
  * @memberof module:Demo
  * @classdesc MainComponent is a simple default page for the demo.
- *            Demonstrate use of context.router and {@link ResponsiveComponent}
+ *            Demonstrate use of context.router and {@link module:Reactator.ResponsiveComponent}
  */
 const MainComponent = React.createClass({
     contextTypes: {

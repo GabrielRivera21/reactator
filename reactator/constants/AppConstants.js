@@ -1,9 +1,8 @@
 import keyMirror from 'keymirror';
 
 /**
- * All the main App constants that the AppDispatcher or others may use.
- *
- * @class AppConstants
+ * @class
+ * @classdesc All the main App constants that the AppDispatcher or others may use.
  * @memberof module:Reactator
  */
 const AppConstants = keyMirror({

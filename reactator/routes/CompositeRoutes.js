@@ -2,9 +2,8 @@ import _ from 'lodash';
 import Routes from './Routes.js';
 
 /**
- * See {{#crossLink "Routes"}}{{/crossLink}}
- *
- * @class CompositeRoutes
+ * @class
+ * @classdesc See {@link module:Reactator.Routes}
  * @memberof module:Reactator
  */
 class CompositeRoutes extends Routes {

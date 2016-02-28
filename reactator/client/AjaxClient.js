@@ -41,16 +41,15 @@ const ajax = (settings, request) => {
 };
 
 /**
- * Class representing the implementation of the Client interface utilizing the jQuery's ajax.
- *
- * @class AjaxClient
+ * @class
+ * @classdesc Class representing the implementation of the Client interface utilizing the jQuery's ajax.
  * @memberof module:Reactator
  */
 class AjaxClient extends Client {
 
     /**
      * @param {String} uri uri to the resource
-     * @constructor
+     * @return {undefined}
      */
     constructor(uri) {
         super();
@@ -59,10 +58,10 @@ class AjaxClient extends Client {
     }
 
     /**
-     * {{#crossLink "Client/create:method"}}{{/crossLink}}
      * @param {Object} item item to create
      * @param {Object} settings settings for the ajax request
      * @return {Q.Promise} deferred result of the request
+     * @inheritdoc
      */
     create(item, settings) {
         return ajax(settings, {
@@ -75,10 +74,10 @@ class AjaxClient extends Client {
     }
 
     /**
-     * {{#crossLink "Client/read:method"}}{{/crossLink}}
      * @param {String} id id of the item to read
      * @param {Object} settings settings for the ajax request
      * @return {Q.Promise} deferred result of the request
+     * @inheritdoc
      */
     read(id, settings) {
         return ajax(settings, {
@@ -89,11 +88,11 @@ class AjaxClient extends Client {
     }
 
     /**
-     * {{#crossLink "Client/update:method"}}{{/crossLink}}
      * @param {String} id id of the item to update
      * @param {Object} item item to update to
      * @param {Object} settings settings for the ajax request
      * @return {Q.Promise} deferred result of the request
+     * @inheritdoc
      */
     update(id, item, settings) {
         return ajax(settings, {
@@ -107,10 +106,10 @@ class AjaxClient extends Client {
 
     /*jshint -W024 */
     /**
-     * {{#crossLink "Client/delete:method"}}{{/crossLink}}
      * @param {String} id id of the item to delete
      * @param {Object} settings settings for the ajax request
      * @return {Q.Promise} deferred result of the request
+     * @inheritdoc
      */
     delete(id, settings) {
         return ajax(settings, {

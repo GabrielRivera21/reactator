@@ -35,10 +35,8 @@ describe('AppStore', function() {
 
         AppDispatcher.handleRouteAction({
             action: 'some-action',
-            params: 'some-params',
-            path: 'some-path',
             pathname: 'some-pathname',
-            query: 'some-query'
+            params: 'some-params'
         });
 
         AppStore.removeChangeListener(listener);
@@ -48,9 +46,7 @@ describe('AppStore', function() {
         var route = AppStore.getState().toJS().route;
 
         expect(route.action).toBe('some-action');
-        expect(route.params).toBe('some-params');
-        expect(route.path).toBe('some-path');
         expect(route.pathname).toBe('some-pathname');
-        expect(route.query).toBe('some-query');
+        expect(route.params).toBe('some-params');
     });
 });

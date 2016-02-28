@@ -1,5 +1,6 @@
 /**
- * @class Routes
+ * @class
+ * @classdesc Interface for routes
  * @memberof module:Reactator
  */
 class Routes {

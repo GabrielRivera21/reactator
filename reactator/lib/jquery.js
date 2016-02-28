@@ -1,7 +1,6 @@
 /**
- * Wrapper for getting jQuery and all its plugins
- *
  * @class jQuery
+ * @classdesc Wrapper for getting jQuery and all its plugins
  * @memberof module:Reactator
  */
 import jQuery from 'jquery';

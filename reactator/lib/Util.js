@@ -15,9 +15,8 @@ const _m8 = (s) => {
 };
 
 /**
- * All sort of common helper functionality.
- *
- * @class  U
+ * @class
+ * @classdesc All sort of common helper functionality.
  * @memberof module:Reactator
  */
 const U = {
