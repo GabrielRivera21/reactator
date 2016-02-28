@@ -1,29 +1,23 @@
-/* global require, module */
-
-const
-    _ = require('lodash'),
-    Q = require('../lib/q'),
-    ClientError = require('./ClientError.js'),
-    ClientResponse = require('./ClientResponse.js');
+import Q from '../lib/q.js';
+import ClientError from './ClientError.js';
 
 //
 // Simple Q.Promise to throw method not implemented error.
 //
 const methodNotImplementedPromise = Q.Promise(
     /*jshint unused:false*/
-    (resolve, reject, notify) => {
-        reject(new ClientError(400, "Method not implemented!"));
+    (resolve, reject) => {
+        reject(new ClientError(400, 'Method not implemented!'));
     }
 );
 
 /**
- * Class representing the common interface for the client.
- *
- * @class Client
- * @constructor
+ * @class
+ * @classdesc Class representing the common interface for the client.
+ * @memberof module:Reactator
  */
 class Client {
-    /*jshint unused:false*/
+    /* eslint no-unused-vars: 0 */
 
     /**
      * Creates a new item in the resource container.
@@ -32,7 +26,6 @@ class Client {
      * @param {Object} settings settings for performing the create
      * @return {ClientResponse} id of the newly created item (Q.Promise)
      * @throws {ClientError} on failure to perform the create
-     * @method create
      */
     create(item, settings) {
         return methodNotImplementedPromise;
@@ -45,7 +38,6 @@ class Client {
      * @param {Object} settings settings for performing the read
      * @return {ClientResponse} item item represented by the id (Q.Promise)
      * @throws {ClientError} on failure to perform the read
-     * @method read
      */
     read(id, settings) {
         return methodNotImplementedPromise;
@@ -59,7 +51,6 @@ class Client {
      * @param {Object} settings settings for performing the update
      * @return {ClientResponse} update response (Q.Promise)
      * @throws {ClientError} on failure to perform the update
-     * @method update
      */
     update(id, item, settings) {
         return methodNotImplementedPromise;
@@ -73,7 +64,6 @@ class Client {
      * @param {Object} settings settings for performing the create
      * @return {ClientResponse} delete response (Q.Promise)
      * @throws {ClientError} on failure to perform the delete operation
-     * @method delete
      */
     delete(id, settings) {
         return methodNotImplementedPromise;

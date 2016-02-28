@@ -1,10 +1,9 @@
-/* global require, document */
+/** @module Demo */
 
-const
-    reactator = require('reactator/reactator'),
-    demo = require('./demo.js'),
-    AppStarter = require('reactator/AppStarter'),
-    DemoRoutes = require('./routes/DemoRoutes.js');
+import reactator from 'reactator/index';
+import AppStarter from 'reactator/AppStarter';
+import demo from './demo.js';
+import DemoRoutes from './routes/DemoRoutes.js';
 
 //
 // Make the packages available
@@ -15,9 +14,8 @@ if (typeof window !== 'undefined') {
 }
 
 /**
- * App the begining of it all.
- *
- * @class App
+ * @class
+ * @classdesc DemoApp is a simple single page app built using reactator.
  */
 AppStarter
     .withRoutes(new DemoRoutes())

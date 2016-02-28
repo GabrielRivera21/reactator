@@ -1,59 +1,63 @@
-/* global require, module */
-
-const
-    Client = require('./Client.js');
+import Client from './Client.js';
 
 /**
- * Class wrapping the {{#crossLink "Client"}}{{/crossLink}}.
- *
- * @class ClientWrapper
- * @constructor
+ * @class
+ * @classdesc Class wrapping the {@link module:Reactator.Client}.
+ * @memberof module:Reactator
  */
 class ClientWrapper extends Client {
-    /*jshint unused:false*/
+    /* eslint no-unused-vars: 0 */
 
     /**
      * @param {Client} client client to decorate
-     * @method initialize
+     * @constructor
      */
     constructor(client) {
         super();
 
         if (!(client instanceof Client)) {
-            throw new Error("ClientWrapper can only wrap instance of the Client.");
+            throw new Error('ClientWrapper can only wrap instance of the Client.');
         }
 
         this.client = client;
     }
 
     /**
-     * {{#crossLink "Client/create:method"}}{{/crossLink}}
-     * @method create
+     * @param {Object} item item to create
+     * @param {Object} settings settings for the ajax request
+     * @return {Q.Promise} deferred result of the request
+     * @inheritdoc
      */
     create(item, settings) {
         return this.client.create(item, settings);
     }
 
     /**
-     * {{#crossLink "Client/read:method"}}{{/crossLink}}
-     * @method read
+     * @param {String} id id of the item to read
+     * @param {Object} settings settings for the ajax request
+     * @return {Q.Promise} deferred result of the request
+     * @inheritdoc
      */
     read(id, settings) {
         return this.client.read(id, settings);
     }
 
     /**
-     * {{#crossLink "Client/update:method"}}{{/crossLink}}
-     * @method update
+     * @param {String} id id of the item to update
+     * @param {Object} item item to update to
+     * @param {Object} settings settings for the ajax request
+     * @return {Q.Promise} deferred result of the request
+     * @inheritdoc
      */
     update(id, item, settings) {
         return this.client.update(id, item, settings);
     }
 
-    /*jshint -W024 */
     /**
-     * {{#crossLink "Client/delete:method"}}{{/crossLink}}
-     * @method delete
+     * @param {String} id id of the item to delete
+     * @param {Object} settings settings for the ajax request
+     * @return {Q.Promise} deferred result of the request
+     * @inheritdoc
      */
     delete(id, settings) {
         return this.client.delete(id, settings);

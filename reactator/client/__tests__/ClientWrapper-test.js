@@ -1,7 +1,4 @@
-/* global jest, describe, afterEach, beforeEach, require, it, expect, runs, waitsFor, runs */
-
-/* jshint newcap:false, unused:false, -W024, -W097 */
-"use strict";
+/* global jest, describe, beforeEach, afterEach, it, expect */
 
 jest.autoMockOff();
 
@@ -31,14 +28,16 @@ describe('ClientWrapper', function() {
     it('can wrap subclass of client', function() {
         var AjaxClient = require('../AjaxClient.js');
         var ac = new AjaxClient('uri');
+
         c = new ClientWrapper(ac);
         expect(c.client).toBe(ac);
     });
 
     it('throws error on invalid client', function() {
         var client;
+
         try {
-            client = new ClientWrapper("invalid");
+            client = new ClientWrapper('invalid');
         } catch (err) {
         }
 

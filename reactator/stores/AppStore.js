@@ -1,37 +1,31 @@
-/* global require, module */
-
-const
-    _ = require('lodash'),
-    Immutable = require('immutable'),
-    Store = require('./Store.js'),
-    AppConstants = require('../constants/AppConstants.js'),
-    AppDispatcher = require('../dispatcher/AppDispatcher.js');
+import Immutable from 'immutable';
+import Store from './Store.js';
+import AppConstants from '../constants/AppConstants.js';
+import AppDispatcher from '../dispatcher/AppDispatcher.js';
 
 var state = Immutable.fromJS({
-    route : {
+    route: {
         action: null,
-        params: null,
-        path: null,
         pathname: null,
-        query: null
+        params: null
     },
-    size : {
-      width : null,
-      height : null,
-      visibility : null
+    size: {
+        width: null,
+        height: null,
+        visibility: null
     }
 });
 
 /**
- * Store for the app values.
- *
- * @class AppStore
+ * @class
+ * @classdesc Store for the app values.
+ * @memberof module:Reactator
  */
 class AppStore extends Store {
     /*jshint unused:false*/
 
     /**
-     * @method initialize
+     * @constructor
      */
     constructor() {
         super();
@@ -40,37 +34,38 @@ class AppStore extends Store {
     }
 
     /**
-     * @method appDispatcherListener
+     * @param {Object} event event
+     * @return {undefined}
      */
     appDispatcherListener(event) {
         switch (event.source) {
-            case AppConstants.ROUTE_ACTION:
-                state = state.mergeDeep({route: {
-                    action: event.action.action,
-                    params: event.action.params,
-                    path: event.action.path,
-                    pathname: event.action.pathname,
-                    query: event.action.query
-                }});
+        case AppConstants.ROUTE_ACTION:
+            state = state.mergeDeep({route: {
+                action: event.action.action,
+                pathname: event.action.pathname,
+                params: event.action.params || {}
+            }});
 
-                this.emitChange('route');
+            this.emitChange('route');
             break;
-            case AppConstants.WINDOW_RESIZE_ACTION:
-                state = state.mergeDeep({
-                    size: {
-                        width : event.action.width,
-                        height : event.action.height,
-                        visibility : event.action.visibility
-                    }
-                });
+        case AppConstants.WINDOW_RESIZE_ACTION:
+            state = state.mergeDeep({
+                size: {
+                    width: event.action.width,
+                    height: event.action.height,
+                    visibility: event.action.visibility
+                }
+            });
 
-                this.emitChange('size');
+            this.emitChange('size');
+            break;
+        default:
             break;
         }
     }
 
     /**
-     * @method getState
+     * @return {Object} state of the store
      */
     getState() {
         return state;

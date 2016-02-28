@@ -1,48 +1,48 @@
-
-/* global jest, describe, beforeEach, require, it, expect, runs, waitsFor, runs */
-
-/* jshint unused:false */
-/* jshint -W097 */
-"use strict";
+/* global jest, describe, beforeEach, it, expect */
 
 jest.autoMockOff();
 
 describe('MetaDataComponent', function() {
     var $;
     var React;
-    var TestUtils;
+    var ReactTestUtils;
     var MetaDataComponent;
     var AppStore;
     var AppConstants;
 
     beforeEach(function() {
         $ = require('../../lib/jquery.js');
-        React = require('react/addons');
-        TestUtils = React.addons.TestUtils;
+        React = require('react');
+        ReactTestUtils = require('react-addons-test-utils');
         MetaDataComponent = require('../MetaDataComponent.js');
         AppStore = require('../../stores/AppStore.js');
         AppConstants = require('../../constants/AppConstants.js');
     });
 
     it('renders to dom without errors', function() {
-        TestUtils.renderIntoDocument(<MetaDataComponent />);
+        $.fn.is = function() { return false; };
+
+        ReactTestUtils.renderIntoDocument(<MetaDataComponent />);
     });
 
     it('sets to SM if LG and MD are not visible', function() {
-        $.fn.is = function(name) {
+        $.fn.is = function() {
             switch(this[0].className) {
-                case 'visible-lg-block':
-                    return false;
-                case 'visible-md-block':
-                    return false;
-                case 'visible-sm-block':
-                    return true;
+            case 'visible-lg-block':
+                return false;
+            case 'visible-md-block':
+                return false;
+            case 'visible-sm-block':
+                return true;
+            default:
+                return false;
             }
         };
 
-        TestUtils.renderIntoDocument(<MetaDataComponent />);
+        ReactTestUtils.renderIntoDocument(<MetaDataComponent />);
 
         var state = AppStore.getState().toJS();
+
         expect(state.size).toBeDefined();
         expect(state.size.width).toBeGreaterThan(1);
         expect(state.size.height).toBeGreaterThan(1);
@@ -50,20 +50,23 @@ describe('MetaDataComponent', function() {
     });
 
     it('sets to MD if LG is not visible', function() {
-        $.fn.is = function(name) {
+        $.fn.is = function() {
             switch(this[0].className) {
-                case 'visible-lg-block':
-                    return false;
-                case 'visible-md-block':
-                    return true;
-                case 'visible-sm-block':
-                    return true;
+            case 'visible-lg-block':
+                return false;
+            case 'visible-md-block':
+                return true;
+            case 'visible-sm-block':
+                return true;
+            default:
+                return false;
             }
         };
 
-        TestUtils.renderIntoDocument(<MetaDataComponent />);
+        ReactTestUtils.renderIntoDocument(<MetaDataComponent />);
 
         var state = AppStore.getState().toJS();
+
         expect(state.size).toBeDefined();
         expect(state.size.width).toBeGreaterThan(1);
         expect(state.size.height).toBeGreaterThan(1);
@@ -73,9 +76,10 @@ describe('MetaDataComponent', function() {
     it('sets to XS if every div is not visible', function() {
         $.fn.is = function() { return false; };
 
-        TestUtils.renderIntoDocument(<MetaDataComponent />);
+        ReactTestUtils.renderIntoDocument(<MetaDataComponent />);
 
         var state = AppStore.getState().toJS();
+
         expect(state.size).toBeDefined();
         expect(state.size.width).toBeGreaterThan(1);
         expect(state.size.height).toBeGreaterThan(1);
@@ -83,9 +87,12 @@ describe('MetaDataComponent', function() {
     });
 
     it('populates the AppStore\'s size data', function() {
-        TestUtils.renderIntoDocument(<MetaDataComponent />);
+        $.fn.is = function() { return true; };
+
+        ReactTestUtils.renderIntoDocument(<MetaDataComponent />);
 
         var state = AppStore.getState().toJS();
+
         expect(state.size).toBeDefined();
         expect(state.size.width).toBeGreaterThan(1);
         expect(state.size.height).toBeGreaterThan(1);

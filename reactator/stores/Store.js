@@ -1,25 +1,22 @@
-/* global require, module */
+import _ from 'lodash';
+import {EventEmitter} from 'events';
 
-const
-    _ = require('lodash'),
-    EventEmitter = require('events').EventEmitter;
-
-const CHANGE_EVENT = "change";
+const CHANGE_EVENT = 'change';
 
 const changeEvent = (id) => {
-    return CHANGE_EVENT + "-" + id;
+    return CHANGE_EVENT + '-' + id;
 };
 
 /**
- * Store base providing common funcitonality to all stores.
- *
- * @class Store
+ * @class
+ * @memberof module:Reactator
+ * @classdesc Store base providing common funcitonality to all stores.
  */
 class Store {
 
     /**
-     * initialize method, creates the emitter and dispatcher mapping.
-     * @method constructor
+     * Creates the emitter and dispatcher mapping.
+     * @constructor
      */
     constructor() {
         this._dispatchers = {};
@@ -31,7 +28,7 @@ class Store {
      *
      * @param {Dispatcher} dispatcher dispatcher to bind to
      * @param {Function} callback callback function to bind
-     * @method bindDispatcher
+     * @return {undefined}
      */
     bindDispatcher(dispatcher, callback) {
         this._dispatchers[dispatcher.name] = dispatcher.register(callback.bind(this));
@@ -40,7 +37,6 @@ class Store {
     /**
      * Returns the store's token for a given dispatcher
      *
-     * @method dispatcherToken
      * @param {Dispatcher} dispatcher the dispatcher to lookup
      * @return {String|undefined} the store's token for the dispatcher or null if not registered
      */
@@ -50,15 +46,18 @@ class Store {
 
     /**
      * Emits the change event on the store
-     * @method emitChange
+     * @param {String} id id of the event to emit
+     * @return {undefined}
      */
     emitChange(id) {
         if (_.isUndefined(id)) {
+            var self = this;
+
             _.each(
                 /*jshint -W069 */
-                Object.keys(this._emitter['_events']),
+                Object.keys(self._emitter['_events']),
                 function(event) {
-                    this._emitter.emit(event);
+                    self._emitter.emit(event);
                 },
                 this);
         } else {
@@ -71,7 +70,7 @@ class Store {
      * Registers the callback for the change event on the store
      * @param {Function} callback callback function to register
      * @param {String} id id of the change event
-     * @method addChangeListener
+     * @return {undefined}
      */
     addChangeListener(callback, id) {
         if (!_.isUndefined(id)) {
@@ -85,7 +84,7 @@ class Store {
      * Removes the registered callback for the change event on the store
      * @param  {Function} callback callback funciton to unregister
      * @param {String} id id of the change event
-     * @method removeChangeListener
+     * @return {undefined}
      */
     removeChangeListener(callback, id) {
         if (!_.isUndefined(id)) {

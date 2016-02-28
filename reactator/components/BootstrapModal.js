@@ -1,34 +1,32 @@
-/* global require, module */
-
-const
-    React = require('react/addons');
+import React from 'react';
 
 /**
- * React component BootstrapModal
- *
- * @class BootstrapModal
+ * @class
+ * @classdesc React component BootstrapModal
+ * @memberof module:Reactator
  */
 const BootstrapModal = React.createClass({
     propTypes: {
-        classes : React.PropTypes.arrayOf(React.PropTypes.string)
+        classes: React.PropTypes.arrayOf(React.PropTypes.string)
     },
 
-    getDefaultProps : function() {
+    getDefaultProps: function() {
         return {
-            classes : []
+            classes: []
         };
     },
 
     render: function() {
-        var classes = "modal fade";
+        var classes = 'modal fade';
+
         this.props.classes.forEach(function(className) {
-            classes += " " + className;
+            classes += ' ' + className;
         });
 
         return (
             <div className={classes}>
-                <div className="modal-dialog">
-                    <div className="modal-content">
+                <div className='modal-dialog'>
+                    <div className='modal-content'>
                         {this.props.children}
                     </div>
                 </div>

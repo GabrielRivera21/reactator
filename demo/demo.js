@@ -1,9 +1,8 @@
-/* global module, require */
-
 module.exports = {
     components: {
         AppLayout: require('./components/AppLayout.js'),
         main: {
+            ExampleModal: require('./components/main/ExampleModal.js'),
             MainComponent: require('./components/main/MainComponent.js')
         },
         profile: {

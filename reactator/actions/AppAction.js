@@ -1,12 +1,9 @@
-/* global require, module */
-
-const
-    AppDispatcher = require('../dispatcher/AppDispatcher.js');
+import AppDispatcher from '../dispatcher/AppDispatcher.js';
 
 /**
- * Class for performing app actions. Triggers on AppDispatcher.
- *
- * @class AppAction
+ * @class
+ * @classdesc Class for performing app actions. Triggers on AppDispatcher.
+ * @memberof module:Reactator
  */
 const AppAction = {
 
@@ -14,13 +11,14 @@ const AppAction = {
      * @param {Number} width width of the app
      * @param {Number} height height of the app
      * @param {String} visibility visibliity of the app: XS, SM, MD, LG
-     * @method resize
+     *
+     * @return {undefined}
      */
-    resize : function(width, height, visibility) {
+    resize: function(width, height, visibility) {
         AppDispatcher.handleWindowResize({
-            width : width,
-            height : height,
-            visibility : visibility
+            width: width,
+            height: height,
+            visibility: visibility
         });
     }
 };

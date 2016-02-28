@@ -8,30 +8,26 @@ var gulp = require('gulp'),
     bower = require('gulp-bower'),
     browserify = require('browserify'),
     buffer = require('vinyl-buffer'),
-    concat = require('gulp-concat'),
     connect = require('gulp-connect'),
-    clean = require('gulp-clean'),
     eventStream = require('event-stream'),
     jest = require('gulp-jest'),
-    jshint = require('gulp-jshint'),
     less = require('gulp-less'),
     notify = require('gulp-notify'),
-    react = require('gulp-react'),
     source = require('vinyl-source-stream'),
     sourcemaps = require('gulp-sourcemaps'),
-    stylish = require('jshint-stylish'),
     uglify = require('gulp-uglify'),
     watchify = require('watchify'),
-    yuidoc = require('gulp-yuidoc');
+    del = require('del'),
+    vinylPaths = require('vinyl-paths');
 
 var GulpTasks = {
-    bower : function() {
+    bower: function() {
         return function() {
-            return new bower();
+            return new bower(); //eslint-disable-line
         };
     },
 
-    watchify : function(root, entries, commonjs, requirejs, options) {
+    watchify: function(root, entries, commonjs, requirejs, options) {
         return function() {
             return eventStream.merge(
                 _.map(entries, function(entry) {
@@ -54,13 +50,13 @@ var GulpTasks = {
                     });
 
                     _.map(requirejs, function(file) {
-                        bundler = bundler.require(file, {expose:file});
+                        bundler = bundler.require(file, {expose: file});
                     });
 
                     bundler
                         .transform(babelify)
                         .on('update', function() {
-                            console.log("Updating " + root + entry.dest + '/' + entry.name);
+                            console.log('Updating ' + root + entry.dest + '/' + entry.name);
                             rebundle();
                         });
 
@@ -70,17 +66,18 @@ var GulpTasks = {
         };
     },
 
-    browserify : function(root, entries, commonjs, requirejs, options) {
+    browserify: function(root, entries, commonjs, requirejs, options) {
         return function() {
             return eventStream.merge(
                 _.map(entries, function(entry) {
                     var bundler = browserify(entry.src, options);
+
                     _.map(commonjs, function(file) {
                         bundler = bundler.external(file);
                     });
 
                     _.map(requirejs, function(file) {
-                        bundler = bundler.require(file, {expose:file});
+                        bundler = bundler.require(file, {expose: file});
                     });
 
                     return bundler
@@ -88,7 +85,7 @@ var GulpTasks = {
                             .bundle()
                             .pipe(source(entry.name))
                             .pipe(buffer())
-                            .pipe(sourcemaps.init({loadMaps:true}))
+                            .pipe(sourcemaps.init({loadMaps: true}))
                             .pipe(uglify())
                             .pipe(sourcemaps.write('./'))
                             .pipe(gulp.dest(root + '/' + entry.dest));
@@ -97,21 +94,21 @@ var GulpTasks = {
         };
     },
 
-    clean : function(paths) {
+    clean: function(paths) {
         return function() {
             return gulp
-                    .src(paths, {read:false})
-                    .pipe(clean({force:true}));
+                    .src(paths, {read: false})
+                    .pipe(vinylPaths(del));
         };
     },
 
-    connect : function(options) {
+    connect: function(options) {
         return function() {
             return connect.server(options);
         };
     },
 
-    copy : function(root, entries) {
+    copy: function(root, entries) {
         return function() {
             return eventStream.merge(
                 _.map(entries, function(entry) {
@@ -123,35 +120,15 @@ var GulpTasks = {
         };
     },
 
-    doc : function(paths, dest) {
+    jest: function(src, options) {
         return function() {
-            return gulp
-                .src(paths)
-                .pipe(yuidoc())
-                .pipe(gulp.dest(dest));
-        };
-    },
-
-    jest : function(src, options) {
-        return function () {
             return gulp
                 .src(src)
                 .pipe(jest(options));
         };
     },
 
-    jshint : function(paths) {
-        return function() {
-            return gulp
-                .src(paths)
-                .pipe(react())
-                .on('error', notify.onError())
-                .pipe(jshint({"esnext" : true}))
-                .pipe(jshint.reporter(stylish));
-        };
-    },
-
-    less : function(root, entries, options) {
+    less: function(root, entries, options) {
         return function() {
             return eventStream.merge(
                 _.map(entries, function(entry) {
@@ -165,19 +142,19 @@ var GulpTasks = {
         };
     },
 
-    start : function(tasks) {
+    start: function(tasks) {
         return function() {
             return gulp.start(tasks);
         };
     },
 
-    watch : function(paths, tasks) {
+    watch: function(paths, tasks) {
         return function() {
             return gulp.watch(paths, tasks);
         };
     },
 
-    initialize : function(srcPaths, config, nodePaths) {
+    initialize: function(srcPaths, config, nodePaths) {
 
         if (nodePaths !== undefined && _.isArray(nodePaths)) {
             process.env.NODE_PATH += nodePaths.join(':');
@@ -199,6 +176,7 @@ var GulpTasks = {
 
 
                 var commonCopy = project.common ? config.common.copy : [];
+
                 gulp.task(
                     n('copy'),
                     GulpTasks.copy(_root, [].concat(commonCopy, project.copy)));
@@ -218,24 +196,8 @@ var GulpTasks = {
                     ));
 
                 //
-                // doc
+                // jest
                 //
-                gulp.task(
-                    n('clean-doc'),
-                    GulpTasks.clean([_root + '/doc/*']));
-
-                gulp.task(
-                    n('doc'),
-                    [n('clean-doc')],
-                    GulpTasks.doc(_src + '/**/*.js', _root + '/doc'));
-
-                //
-                // jshint
-                //
-                gulp.task(
-                    n('jshint'),
-                    GulpTasks.jshint(_src + '/**/*.js'));
-
                 gulp.task(
                     n('jest'),
                     ['clean-coverage'],
@@ -249,16 +211,8 @@ var GulpTasks = {
 
                 gulp.task(
                     n('test'),
-                    [n('jshint')],
                     GulpTasks.start(n('jest')));
 
-                gulp.task(
-                    n('watch-js'),
-                    GulpTasks.watch([
-                        _src + '/**/*.*',
-                        '!' + _src + '/**/*-test.js'
-                    ],
-                    [n('jshint')]));
 
                 gulp.task(
                     n('watch-test'),
@@ -285,15 +239,16 @@ var GulpTasks = {
                 // browserify and watchify
                 //
                 var commonJS = project.common ? config.common.js : [];
+
                 if (project.common) {
                     gulp.task(
                         n('browserify-common'),
                         GulpTasks.browserify(
                             _root,
                             [{
-                                "src": [],
-                                "name": "common.js",
-                                "dest": "/js"
+                                'src': [],
+                                'name': 'common.js',
+                                'dest': '/js'
                             }],
                             [],
                             commonJS,
@@ -312,7 +267,7 @@ var GulpTasks = {
                         config.browserify));
 
                 gulp.task(
-                    n("watchify"),
+                    n('watchify'),
                     GulpTasks.watchify(
                         _root,
                         project.js,
@@ -340,7 +295,6 @@ var GulpTasks = {
                     GulpTasks.start([
                         n('watchify'),
                         n('watch-less'),
-                        n('watch-js'),
                         n('watch-test')
                     ]));
             }
@@ -358,26 +312,24 @@ var GulpTasks = {
         gulp.task('build', GulpTasks.start(all('build')));
         gulp.task('dev', ['build'], GulpTasks.start(all('dev')));
 
-        gulp.task('jshint', GulpTasks.start(all('jshint')));
         gulp.task('jest', GulpTasks.start(all('jest')));
         gulp.task('test', GulpTasks.start(all('test')));
-        gulp.task('doc', GulpTasks.start(all('doc')));
 
-        gulp.task('install', ['bower', 'jshint'], GulpTasks.start(['build']));
+        gulp.task('install', ['bower'], GulpTasks.start(['build']));
 
         gulp.task('default',  function() {
             console.log('\nPossible targets are:');
-            _.each(['install', 'test', 'jshint', 'doc', 'build', 'clean'], function(name) {
-                console.log('\t'+name);
+            _.each(['install', 'test', 'build', 'clean'], function(name) {
+                console.log('\t' + name);
             });
 
-            console.log("\nProjects:");
+            console.log('\nProjects:');
             _.each(Object.keys(config.apps), function(name) {
                 console.log(name);
-                console.log('\t'+'clean-' + name);
-                console.log('\t'+'build-' + name);
-                console.log('\t'+'dev-' + name);
-                console.log('\t'+'connect-' + name);
+                console.log('\t' + 'clean-' + name);
+                console.log('\t' + 'build-' + name);
+                console.log('\t' + 'dev-' + name);
+                console.log('\t' + 'connect-' + name);
             });
         });
 

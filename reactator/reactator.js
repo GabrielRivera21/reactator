@@ -1,7 +1,5 @@
-/* global module, require */
-
 module.exports = {
-    AppStarter : require('./AppStarter.js'),
+    AppStarter: require('./AppStarter.js'),
     actions: {
         AppAction: require('./actions/AppAction.js')
     },
@@ -16,7 +14,8 @@ module.exports = {
         BasicLayout: require('./components/BasicLayout.js'),
         BootstrapModal: require('./components/BootstrapModal.js'),
         MetaDataComponent: require('./components/MetaDataComponent.js'),
-        ResponsiveComponent: require('./components/ResponsiveComponent.js')
+        ResponsiveComponent: require('./components/ResponsiveComponent.js'),
+        RootRouteComponent: require('./components/RootRouteComponent.js')
     },
     constants: {
         AppConstants: require('./constants/AppConstants.js')

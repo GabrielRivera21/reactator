@@ -1,19 +1,16 @@
-/* global require, module */
-
-const
-    React = require('react'),
-    Router = require('react-router'),
-    RouteHandler = Router.RouteHandler;
+import React from 'react';
 
 /**
- * React component BasicLayout
- *
- * @class BasicLayout
+ * @class
+ * @classdesc React component BasicLayout
+ * @memberof module:Reactator
  */
 const BasicLayout = React.createClass({
     render: function() {
         return (
-            <RouteHandler />
+          <div>
+            {this.props.children}
+          </div>
         );
     }
 });

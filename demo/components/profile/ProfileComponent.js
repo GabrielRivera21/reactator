@@ -1,24 +1,25 @@
-/* global require, module */
-
-const
-    React = require('react');
+import React from 'react';
 
 /**
- * React component ProfileComponent
- *
- * @class ProfileComponent
+ * @class
+ * @memberof module:Demo
+ * @classdesc ProfileComponent is a simple page for the demo.
+ *            Demonstrating the use of context.router to link back to the default page.
  */
 const ProfileComponent = React.createClass({
-
     contextTypes: {
-        router: React.PropTypes.func
+        router: React.PropTypes.object
     },
 
-    mainPage : function() {
-        this.context.router.transitionTo('/', {}, {});
+    mainPage: function() {
+        this.context.router.push({
+            pathname: '/',
+            query: {},
+            state: {}
+        });
     },
 
-    backPage : function() {
+    backPage: function() {
         this.context.router.goBack();
     },
 

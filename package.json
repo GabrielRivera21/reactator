@@ -1,80 +1,80 @@
 {
-    "name": "reactator",
-    "version": "0.0.4",
-    "description": "Single Page Application based on Flux & React.",
-    "author": "Armin Bahramshahry",
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/arminbhy/reactator"
-    },
-    "bugs": {
-        "url": "https://github.com/arminbhy/reactator/issues"
-    },
-    "scripts": {
-        "build": "node_modules/.bin/gulp build",
-        "clean": "bin/clean.sh",
-        "demo": "node_modules/.bin/gulp build-demo connect-demo",
-        "doc": "node_modules/.bin/gulp doc",
-        "package": "bin/build-node-package.sh",
-        "test": "node_modules/.bin/gulp test-reactator"
-    },
-    "keywords": [
-        "react",
-        "flux"
-    ],
-    "license": "MPL-2.0",
-    "dependencies": {
-        "bootstrap": "^3.3.4",
-        "classnames": "^1.2.2",
-        "flux": "^2.0.3",
-        "font-awesome": "^4.3.0",
-        "immutable": "^3.7.2",
-        "jquery": "^2.1.4",
-        "keymirror": "~0.1.1",
-        "l20n": "^1.0.2",
-        "lodash": "^3.10.0",
-        "moment": "^2.10.2",
-        "q": "^1.3.0",
-        "react": "^0.13.2",
-        "react-router": "^0.13.3",
-        "typeahead.js": "^0.11.1"
-    },
-    "devDependencies": {
-        "babelify": "^6.0.2",
-        "browserify": "^10.0.0",
-        "envify": "^3.4.0",
-        "event-stream": "^3.3.0",
-        "harmonize": "^1.4.1",
-        "jshint-stylish": "^1.0.1",
-        "react-tools": "^0.13.2",
-        "react-render-visualizer": "^0.2.2",
-        "uglify-js": "~2.4.20",
-        "vinyl-buffer": "^1.0",
-        "vinyl-source-stream": "^1.1.0",
-        "watchify": "^3.2.1",
-
-        "gulp": "^3.8",
-        "gulp-bower": "^0.0.10",
-        "gulp-clean" : "^0.3.1",
-        "gulp-concat": "^2.5.2",
-        "gulp-connect": "2.2.0",
-        "gulp-jest": "^0.4.0",
-        "gulp-jshint": "^1.10.0",
-        "gulp-less": "^3.0.3",
-        "gulp-notify": "^2.2.0",
-        "gulp-react": "^3.0.1",
-        "gulp-sourcemaps": "^1.5.2",
-        "gulp-uglify": "^1.2.0",
-        "gulp-yuidoc": "^0.1.2"
-    },
-    "jshintConfig": {
-        "undef": true,
-        "unused": true,
-        "esnext": true,
-        "nonew": true,
-        "predef": []
-    },
-    "engines" : {
-        "node" : "~0.10.25"
-    }
+  "name": "reactator",
+  "version": "1.0.0",
+  "description": "Single Page Application based on Flux & React.",
+  "author": "Armin Bahramshahry",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/arminbhy/reactator"
+  },
+  "bugs": {
+    "url": "https://github.com/arminbhy/reactator/issues"
+  },
+  "scripts": {
+    "build": "gulp build",
+    "clean": "bin/clean.sh",
+    "demo": "gulp build-demo connect-demo",
+    "dev": "gulp dev connect-demo",
+    "package": "bin/package.sh",
+    "doc": "jsdoc reactator -r",
+    "lint": "eslint reactator",
+    "tests": "gulp test-reactator"
+  },
+  "keywords": [
+    "react",
+    "flux"
+  ],
+  "license": "MPL-2.0",
+  "dependencies": {
+    "babel-jest": "^6.0.1",
+    "bootstrap": "^3.3.6",
+    "classnames": "^2.2.1",
+    "flux": "^2.1.1",
+    "font-awesome": "^4.5.0",
+    "immutable": "^3.7.6",
+    "jquery": "^2.1.4",
+    "keymirror": "~0.1.1",
+    "l20n": "^3.5.0",
+    "lodash": "^4.0.0",
+    "moment": "^2.10.6",
+    "q": "^1.4.1",
+    "react": "^0.14.5",
+    "react-addons-test-utils": "^0.14.7",
+    "react-dom": "^0.14.7",
+    "react-router": "^2.0.0-rc4"
+  },
+  "devDependencies": {
+    "babel-eslint": "^5.0.0-beta6",
+    "babel-preset-es2015": "^6.3.13",
+    "babel-preset-react": "^6.3.13",
+    "babelify": "^7.2.0",
+    "browserify": "^12.0.1",
+    "del": "^2.2.0",
+    "envify": "^3.4.0",
+    "eslint": "^1.10.3",
+    "eslint-config-defaults": "^7.1.1",
+    "eslint-plugin-react": "^3.14.0",
+    "event-stream": "^3.3.2",
+    "gulp": "^3.9",
+    "gulp-babel": "^6.1.1",
+    "gulp-bower": "^0.0.11",
+    "gulp-concat": "^2.6.0",
+    "gulp-connect": "2.3.1",
+    "gulp-jest": "git://github.com/arminbhy/gulp-jest.git",
+    "gulp-less": "^3.0.5",
+    "gulp-notify": "^2.2.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^1.5.1",
+    "harmonize": "^1.4.4",
+    "jsdoc": "^3.4.0",
+    "react-render-visualizer": "^0.2.2",
+    "uglify-js": "~2.6.1",
+    "vinyl-buffer": "^1.0",
+    "vinyl-paths": "^2.1.0",
+    "vinyl-source-stream": "^1.1.0",
+    "watchify": "^3.6.1"
+  },
+  "engines": {
+    "node": "~4.2.4"
+  }
 }

@@ -1,11 +1,9 @@
-/* global require, console, module */
-
-const
-    _ = require('lodash');
+import _ from 'lodash';
 
 const _p8 = (s, v) => {
-    var p = (v.toString(16)+"000000000").substr(2,8);
-    return s ? "-" + p.substr(0,4) + "-" + p.substr(4,4) : p ;
+    var p = (v.toString(16) + '000000000').substr(2,8);
+
+    return s ? '-' + p.substr(0,4) + '-' + p.substr(4,4) : p ;
 };
 
 const _d8 = (s) => {
@@ -17,28 +15,29 @@ const _m8 = (s) => {
 };
 
 /**
- * All sort of common helper functionality.
- *
- * @class  U
+ * @class
+ * @classdesc All sort of common helper functionality.
+ * @memberof module:Reactator
  */
 const U = {
 
     /**
-     * @method out
+     * @return {undefined}
      */
-    out : function() {
+    out: function() {
         console.log(arguments);
     },
 
     /**
-     * @method err
+     * @return {undefined}
      */
     err: function() {
         console.error(arguments);
     },
 
     /**
-     * @method outq
+     * @param {Q} q q
+     * @return {undefined}
      */
     outq: function(q) {
         q.then((r) => console.log(r))
@@ -53,9 +52,8 @@ const U = {
      * @param {Object} object object to analyze
      * @param {Array} names names of the functions
      * @return {Array} names of functions not implemented
-     * @method verifyRequiredFunctions
      */
-    verifyRequiredFunctions : function(type, object, names) {
+    verifyRequiredFunctions: function(type, object, names) {
         const missing = [];
 
         _.each(
@@ -73,9 +71,8 @@ const U = {
     /**
      * A helper for generating GUIDs
      * @return {String} next guid
-     * @method guid
      */
-    guid : function() {
+    guid: function() {
         return _m8() + _m8(true) + _m8(true) + _d8();
     },
 
@@ -87,14 +84,15 @@ const U = {
      * @param {Function} func function to call on events
      * @param {Object} obj object to bind to
      * @return {Object} map of events to registered bound functions
-     * @method addListeners
      */
-    addListeners : function(emitter, events, func, obj) {
+    addListeners: function(emitter, events, func, obj) {
         const listeners = {};
+
         _.each(
             events,
             (event) => {
                 const listener = listeners[event] = func.bind(obj, event);
+
                 emitter.on(event, listener);
             });
 
@@ -105,9 +103,9 @@ const U = {
      * Removes listeners from an EventEmitter
      * @param {EventEmitter} emitter emitter to remove listeners from
      * @param {Object} listeners listeners map to remove
-     * @method removeListeners
+     * @return {undefined}
      */
-    removeListeners : function(emitter, listeners) {
+    removeListeners: function(emitter, listeners) {
         _.each(
             listeners,
             (listener, event) => {

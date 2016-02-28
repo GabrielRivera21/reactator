@@ -1,19 +1,16 @@
-/* global module, require */
-
-const
-    _ = require('lodash'),
-    Routes = require('./Routes.js');
+import _ from 'lodash';
+import Routes from './Routes.js';
 
 /**
- * See {{#crossLink "Routes"}}{{/crossLink}}
- *
- * @class CompositeRoutes
+ * @class
+ * @classdesc See {@link module:Reactator.Routes}
+ * @memberof module:Reactator
  */
 class CompositeRoutes extends Routes {
 
     /**
      * @param {Array} routes array of routes
-     * @method constructor
+     * @constructor
      */
     constructor(routes) {
         super();
@@ -24,7 +21,7 @@ class CompositeRoutes extends Routes {
     /**
      * Initializes all routes
      *
-     * @method initialize
+     * @return {undefined}
      */
     initialize() {
         _.map(this.routes, (r) => r.initialize());
@@ -33,7 +30,7 @@ class CompositeRoutes extends Routes {
     /**
      * Returns array of routes
      *
-     * @method getRoutes
+     * @return {Array} array of the routes
      */
     getRoutes() {
         return _.map(this.routes, (r) => r.getRoutes());

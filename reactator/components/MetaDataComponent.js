@@ -1,25 +1,24 @@
-/* global require, module, window */
-
-const
-    React = require('react'),
-    $ = require('../lib/jquery.js'),
-    _ = require('lodash'),
-    AppConstants = require('../constants/AppConstants.js'),
-    AppAction = require('../actions/AppAction.js');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import $ from '../lib/jquery.js';
+import _ from 'lodash';
+import AppConstants from '../constants/AppConstants.js';
+import AppAction from '../actions/AppAction.js';
 
 /**
- * React component MetaDataComponent that handles window resize and provides information on the
- * state of the responsive css to the {{#crossLink "AppStore"}}{{/crossLink}}.
- *
- * @class MetaDataComponent
+ * @class
+ * @classdesc React component MetaDataComponent that handles window resize and provides information on the
+ *            state of the responsive css to the {@link module:Reactator.AppStore}.
+ * @memberof module:Reactator
  */
 const MetaDataComponent = React.createClass({
 
-    handleWindowResize : function() {
-        const $responsive = $(this.getDOMNode()).find('.responsive');
+    handleWindowResize: function() {
+        const $responsive = $(ReactDOM.findDOMNode(this)).find('.responsive');
         var isVisible = className => $responsive.find(className).is(':visible');
 
         var visibility = AppConstants.XS;
+
         if (isVisible('.visible-lg-block')) {
             visibility = AppConstants.LG;
         } else if (isVisible('.visible-md-block')) {
@@ -34,6 +33,10 @@ const MetaDataComponent = React.createClass({
     componentDidMount: function() {
         window.addEventListener('resize', _.debounce(this.handleWindowResize, 500));
         this.handleWindowResize();
+
+        if (!_.isUndefined(this.props.onComponentDidMount)) {
+            this.props.onComponentDidMount();
+        }
     },
 
     render: function() {
