@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: demo/components/main/MainComponent.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,61 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: demo/components/main/MainComponent.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import ResponsiveComponent from 'reactator/components/ResponsiveComponent';
+import ExampleModal from './ExampleModal.js';
 
+/**
+ * @class
+ * @memberof module:Demo
+ * @classdesc MainComponent is a simple default page for the demo.
+ *            Demonstrate use of context.router and {@link module:Reactator.ResponsiveComponent}
+ */
+const MainComponent = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.object
+    },
 
-    <h3> </h3>
+    profilePage: function() {
+        this.context.router.push({
+            pathname: '/profile',
+            query: {},
+            state: {}
+        });
+    },
 
+    showModal: function() {
+        this.refs.exampleModal.show();
+    },
 
+    render: function() {
+        return (
+            &lt;div>
+                &lt;ResponsiveComponent
+                    SM={&lt;div>You shall render gte SM!&lt;/div>}
+                    XS={&lt;div>You shall render XS!&lt;/div>} />
+                &lt;br />
+                &lt;a className='btn btn-primary' onClick={this.profilePage}>Profile Page&lt;/a>
+                &lt;a className='btn btn-primary' onClick={this.showModal}>Show Modal&lt;/a>
+                &lt;ExampleModal ref="exampleModal" />
+            &lt;/div>
+        );
+    }
+});
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = MainComponent;
+</code></pre>
+        </article>
+    </section>
 
 
 

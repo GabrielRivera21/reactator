@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: demo/routes/DemoRoutes.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,54 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: demo/routes/DemoRoutes.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import {Route} from 'react-router';
+import CompositeRoutes from 'reactator/routes/CompositeRoutes';
+import MainRoutes from './MainRoutes.js';
+import ProfileRoutes from './ProfileRoutes.js';
+import AppLayout from '../components/AppLayout.js';
 
+/**
+ * @class
+ * @memberof module:Demo
+ * @classdesc DemoRoutes is an example of {@link module:Reactator.CompositeRoutes} for the demo app.
+ */
+class DemoRoutes extends CompositeRoutes {
+    constructor() {
+        super([
+            new MainRoutes(),
+            new ProfileRoutes()
+        ]);
+    }
 
-    <h3> </h3>
+    /**
+     * Provides the composite react-router routes for the demo.
+     *
+     * @return {Route} composite route
+     * @inheritdoc
+     */
+    getRoutes() {
+        return (
+            &lt;Route component={AppLayout}>
+                {super.getRoutes()}
+            &lt;/Route>
+        );
+    }
+}
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = DemoRoutes;
+</code></pre>
+        </article>
+    </section>
 
 
 

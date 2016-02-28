@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: demo/components/profile/ProfileComponent.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,56 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: demo/components/profile/ProfileComponent.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
 
+/**
+ * @class
+ * @memberof module:Demo
+ * @classdesc ProfileComponent is a simple page for the demo.
+ *            Demonstrating the use of context.router to link back to the default page.
+ */
+const ProfileComponent = React.createClass({
+    contextTypes: {
+        router: React.PropTypes.object
+    },
 
-    <h3> </h3>
+    mainPage: function() {
+        this.context.router.push({
+            pathname: '/',
+            query: {},
+            state: {}
+        });
+    },
 
+    backPage: function() {
+        this.context.router.goBack();
+    },
 
+    render: function() {
+        return (
+            &lt;div>
+                &lt;div>
+                    &lt;a className='btn btn-primary' onClick={this.mainPage}>Main Page&lt;/a>
+                    &lt;a className='btn btn-primary' onClick={this.backPage}>Back&lt;/a>
+                &lt;/div>
+            &lt;/div>
+        );
+    }
+});
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = ProfileComponent;
+</code></pre>
+        </article>
+    </section>
 
 
 

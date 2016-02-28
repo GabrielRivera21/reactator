@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: reactator/components/BasicLayout.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,36 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: reactator/components/BasicLayout.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
 
+/**
+ * @class
+ * @classdesc React component BasicLayout
+ * @memberof module:Reactator
+ */
+const BasicLayout = React.createClass({
+    render: function() {
+        return (
+          &lt;div>
+            {this.props.children}
+          &lt;/div>
+        );
+    }
+});
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = BasicLayout;
+</code></pre>
+        </article>
+    </section>
 
 
 

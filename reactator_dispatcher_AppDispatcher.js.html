@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: reactator/dispatcher/AppDispatcher.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,55 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: reactator/dispatcher/AppDispatcher.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import AppConstants from '../constants/AppConstants.js';
+import DispatcherFactory from '../lib/DispatcherFactory.js';
 
+/**
+ * @class
+ * @classdesc Main dispatcher for the App
+ * @memberof module:Reactator
+ */
+const AppDispatcher = DispatcherFactory.create('AppDispatcher');
 
-    <h3> </h3>
+/**
+ * Dispatches a route action of ROUTE_ACTION
+ *
+ * @param {Object} state route state to be dispatched
+ * @return {undefined}
+ */
+AppDispatcher.handleRouteAction = function(state) {
+    this.dispatch({
+        source: AppConstants.ROUTE_ACTION,
+        action: state
+    });
+};
 
+/**
+ * Dispatches a window resize action of WINDOW_RESIZE_ACTION
+ *
+ * @param {Object} state window state to be dispatched
+ * @return {undefined}
+ */
+AppDispatcher.handleWindowResize = function(state) {
+    this.dispatch({
+        source: AppConstants.WINDOW_RESIZE_ACTION,
+        action: state
+    });
+};
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = AppDispatcher;
+</code></pre>
+        </article>
+    </section>
 
 
 

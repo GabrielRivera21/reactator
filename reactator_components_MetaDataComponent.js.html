@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: reactator/components/MetaDataComponent.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,74 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: reactator/components/MetaDataComponent.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import ReactDOM from 'react-dom';
+import $ from '../lib/jquery.js';
+import _ from 'lodash';
+import AppConstants from '../constants/AppConstants.js';
+import AppAction from '../actions/AppAction.js';
 
+/**
+ * @class
+ * @classdesc React component MetaDataComponent that handles window resize and provides information on the
+ *            state of the responsive css to the {@link module:Reactator.AppStore}.
+ * @memberof module:Reactator
+ */
+const MetaDataComponent = React.createClass({
 
-    <h3> </h3>
+    handleWindowResize: function() {
+        const $responsive = $(ReactDOM.findDOMNode(this)).find('.responsive');
+        var isVisible = className => $responsive.find(className).is(':visible');
 
+        var visibility = AppConstants.XS;
 
+        if (isVisible('.visible-lg-block')) {
+            visibility = AppConstants.LG;
+        } else if (isVisible('.visible-md-block')) {
+            visibility = AppConstants.MD;
+        } else if (isVisible('.visible-sm-block')) {
+            visibility = AppConstants.SM;
+        }
 
+        AppAction.resize(window.innerWidth, window.innerHeight, visibility);
+    },
 
+    componentDidMount: function() {
+        window.addEventListener('resize', _.debounce(this.handleWindowResize, 500));
+        this.handleWindowResize();
 
+        if (!_.isUndefined(this.props.onComponentDidMount)) {
+            this.props.onComponentDidMount();
+        }
+    },
 
+    render: function() {
+        return (
+            &lt;div>
+                &lt;div className='responsive'>
+                    &lt;div className='visible-lg-block' />
+                    &lt;div className='visible-md-block' />
+                    &lt;div className='visible-sm-block' />
+                &lt;/div>
+            &lt;/div>
+        );
+    }
 
+});
 
-
-
-    
-
-
-
-
-
+module.exports = MetaDataComponent;
+</code></pre>
+        </article>
+    </section>
 
 
 

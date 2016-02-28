@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: reactator/actions/AppAction.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,44 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: reactator/actions/AppAction.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import AppDispatcher from '../dispatcher/AppDispatcher.js';
 
+/**
+ * @class
+ * @classdesc Class for performing app actions. Triggers on AppDispatcher.
+ * @memberof module:Reactator
+ */
+const AppAction = {
 
-    <h3> </h3>
+    /**
+     * @param {Number} width width of the app
+     * @param {Number} height height of the app
+     * @param {String} visibility visibliity of the app: XS, SM, MD, LG
+     *
+     * @return {undefined}
+     */
+    resize: function(width, height, visibility) {
+        AppDispatcher.handleWindowResize({
+            width: width,
+            height: height,
+            visibility: visibility
+        });
+    }
+};
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = AppAction;
+</code></pre>
+        </article>
+    </section>
 
 
 

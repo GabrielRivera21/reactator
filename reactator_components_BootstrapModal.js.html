@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: reactator/components/BootstrapModal.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,57 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: reactator/components/BootstrapModal.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
 
+/**
+ * @class
+ * @classdesc React component BootstrapModal
+ * @memberof module:Reactator
+ */
+const BootstrapModal = React.createClass({
+    propTypes: {
+        classes: React.PropTypes.arrayOf(React.PropTypes.string)
+    },
 
-    <h3> </h3>
+    getDefaultProps: function() {
+        return {
+            classes: []
+        };
+    },
 
+    render: function() {
+        var classes = 'modal fade';
 
+        this.props.classes.forEach(function(className) {
+            classes += ' ' + className;
+        });
 
+        return (
+            &lt;div className={classes}>
+                &lt;div className='modal-dialog'>
+                    &lt;div className='modal-content'>
+                        {this.props.children}
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        );
+    }
 
+});
 
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = BootstrapModal;
+</code></pre>
+        </article>
+    </section>
 
 
 

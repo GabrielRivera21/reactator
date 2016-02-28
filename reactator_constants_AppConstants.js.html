@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: reactator/constants/AppConstants.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,44 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: reactator/constants/AppConstants.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import keyMirror from 'keymirror';
 
+/**
+ * @class
+ * @classdesc All the main App constants that the AppDispatcher or others may use.
+ * @memberof module:Reactator
+ */
+const AppConstants = keyMirror({
+    ROUTE_UPDATE: null,
+    ROUTE_ACTION: null,
+    WINDOW_RESIZE_ACTION: null,
 
-    <h3> </h3>
+    XS: null,
+    SM: null,
+    MD: null,
+    LG: null
+});
 
+AppConstants.VISIBILITY_ORDER = [
+    AppConstants.LG,
+    AppConstants.MD,
+    AppConstants.SM,
+    AppConstants.XS
+];
 
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = AppConstants;
+</code></pre>
+        </article>
+    </section>
 
 
 

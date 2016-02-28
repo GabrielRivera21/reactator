@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: demo/routes/MainRoutes.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,45 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: demo/routes/MainRoutes.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import {Route, IndexRoute} from 'react-router';
+import Routes from 'reactator/routes/Routes';
+import BasicLayout from 'reactator/components/BasicLayout';
+import MainComponent from '../components/main/MainComponent.js';
 
+/**
+ * @class
+ * @memberof module:Demo
+ * @classdesc MainRoutes is an example of {@link module:Reactator.Routes} for the demo app's main page.
+ */
+class MainRoutes extends Routes {
+    /**
+     * Provides the routes for the main component of the demo app.
+     * @return {Route} the route representing the main component
+     * @inheritdoc
+     */
+    getRoutes() {
+        return (
+            &lt;Route key="main" name="main" path="/" component={BasicLayout}>
+                &lt;IndexRoute component={MainComponent} />
+            &lt;/Route>
+        );
+    }
+}
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = MainRoutes;
+</code></pre>
+        </article>
+    </section>
 
 
 

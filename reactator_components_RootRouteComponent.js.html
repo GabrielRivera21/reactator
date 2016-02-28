@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: reactator/components/RootRouteComponent.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,53 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: reactator/components/RootRouteComponent.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import {EventEmitter} from 'events';
+import AppDispatcher from '../dispatcher/AppDispatcher.js';
+import AppConstants from '../constants/AppConstants.js';
 
+const emitter = new EventEmitter();
 
-    <h3> </h3>
+/**
+ * @class
+ * @classdesc root component for rendering the app tying to {@link module:Reactator.AppDispatcher} for route actions
+ * @memberof module:Reactator
+ */
+const RootRouteComponent = React.createClass({
+    dispatch: function() {
+        AppDispatcher.handleRouteAction({
+            action: this.props.location.action,
+            pathname: this.props.location.pathname,
+            params: this.props.location.query
+        });
+    },
 
+    componentDidMount: function() {
+        emitter.on(AppConstants.ROUTE_UPDATE, this.dispatch);
+        this.dispatch();
+    },
 
+    render: function() {
+        return &lt;div>{this.props.children}&lt;/div>;
+    }
 
+});
 
+RootRouteComponent.emitter = emitter;
 
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = RootRouteComponent;
+</code></pre>
+        </article>
+    </section>
 
 
 
