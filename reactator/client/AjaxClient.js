@@ -33,9 +33,15 @@ const promise = ($ajax) => {
     });
 };
 
-//
-// Helper for requesting the ajax and returning the promise
-//
+/**
+ * Helper for requesting the ajax and returning the promise
+ *
+ * @param {Object} settings settings for the request
+ * @param {Object} request the request
+ * @function
+ * @return {Q.Promise} promise for the request
+ * @memberof module:Reactator.AjaxClient
+ */
 const ajax = (settings, request) => {
     return promise($.ajax(_.extend({}, settings, request)));
 };
@@ -119,5 +125,7 @@ class AjaxClient extends Client {
         });
     }
 }
+
+AjaxClient.ajax = ajax;
 
 module.exports = AjaxClient;

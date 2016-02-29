@@ -1,13 +1,16 @@
 import Q from '../lib/q.js';
 import ClientError from './ClientError.js';
 
-//
-// Simple Q.Promise to throw method not implemented error.
-//
-const methodNotImplementedPromise = Q.Promise(
-    /*jshint unused:false*/
-    (resolve, reject) => {
-        reject(new ClientError(400, 'Method not implemented!'));
+/**
+ * Simple Q.Promise to throw method not implemented error.
+ *
+ * @member MethodNotSupported
+ * @memberof module:Reactator.Client
+ */
+const MethodNotSupported = Q.Promise(
+    /*eslint no-unused-vars: 0*/
+    (resolve, reject, notify) => {
+        reject(new ClientError(405, 'Method Not Supported!'));
     }
 );
 
@@ -28,7 +31,7 @@ class Client {
      * @throws {ClientError} on failure to perform the create
      */
     create(item, settings) {
-        return methodNotImplementedPromise;
+        return MethodNotSupported;
     }
 
     /**
@@ -40,7 +43,7 @@ class Client {
      * @throws {ClientError} on failure to perform the read
      */
     read(id, settings) {
-        return methodNotImplementedPromise;
+        return MethodNotSupported;
     }
 
     /**
@@ -53,7 +56,7 @@ class Client {
      * @throws {ClientError} on failure to perform the update
      */
     update(id, item, settings) {
-        return methodNotImplementedPromise;
+        return MethodNotSupported;
     }
 
     /*jshint -W024 */
@@ -66,8 +69,10 @@ class Client {
      * @throws {ClientError} on failure to perform the delete operation
      */
     delete(id, settings) {
-        return methodNotImplementedPromise;
+        return MethodNotSupported;
     }
 }
+
+Client.MethodNotSupported = MethodNotSupported;
 
 module.exports = Client;
