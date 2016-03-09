@@ -36,14 +36,15 @@ const promise = ($ajax) => {
 /**
  * Helper for requesting the ajax and returning the promise
  *
+ * @param {Object} base base
  * @param {Object} settings settings for the request
  * @param {Object} request the request
  * @function
  * @return {Q.Promise} promise for the request
  * @memberof module:Reactator.AjaxClient
  */
-const ajax = (settings, request) => {
-    return promise($.ajax(_.extend({}, settings, request)));
+const ajax = (base, settings, request) => {
+    return promise($.ajax(_.extend({}, base, settings, request)));
 };
 
 /**
@@ -70,13 +71,17 @@ class AjaxClient extends Client {
      * @inheritdoc
      */
     create(item, settings) {
-        return ajax(settings, {
-            method: 'POST',
-            url: this.uri,
-            contentType: 'application/json',
-            data: JSON.stringify(item),
-            dataType: 'json'
-        });
+        return ajax(
+            {
+                dataType: 'json'
+            },
+            settings,
+            {
+                method: 'POST',
+                url: this.uri,
+                contentType: 'application/json',
+                data: JSON.stringify(item)
+            });
     }
 
     /**
@@ -86,11 +91,15 @@ class AjaxClient extends Client {
      * @inheritdoc
      */
     read(id, settings) {
-        return ajax(settings, {
-            method: 'GET',
-            url: `${this.uri}/${id}`,
-            dataType: 'json'
-        });
+        return ajax(
+            {
+                dataType: 'json'
+            },
+            settings,
+            {
+                method: 'GET',
+                url: `${this.uri}/${id}`
+            });
     }
 
     /**
@@ -101,13 +110,17 @@ class AjaxClient extends Client {
      * @inheritdoc
      */
     update(id, item, settings) {
-        return ajax(settings, {
-            method: 'PUT',
-            url: `${this.uri}/${id}`,
-            contentType: 'application/json',
-            data: JSON.stringify(item),
-            dataType: 'json'
-        });
+        return ajax(
+            {
+                dataType: 'json'
+            },
+            settings,
+            {
+                method: 'PUT',
+                url: `${this.uri}/${id}`,
+                contentType: 'application/json',
+                data: JSON.stringify(item)
+            });
     }
 
     /*jshint -W024 */
@@ -118,11 +131,15 @@ class AjaxClient extends Client {
      * @inheritdoc
      */
     delete(id, settings) {
-        return ajax(settings, {
-            method: 'DELETE',
-            url: `${this.uri}/${id}`,
-            dataType: 'text'
-        });
+        return ajax(
+            {
+                dataType: 'text'
+            },
+            settings,
+            {
+                method: 'DELETE',
+                url: `${this.uri}/${id}`
+            });
     }
 }
 
