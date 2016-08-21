@@ -1,4 +1,4 @@
-/* global jest, describe, beforeEach, it, expect, runs, waitsFor, runs */
+/* global jest, describe, beforeEach, it, expect */
 
 jest.autoMockOff();
 
@@ -23,52 +23,56 @@ describe('AppDispatcher', function() {
         expect(listener.mock.calls[0][0]).toBe(payload);
     });
 
-    it('waits with chained dependencies properly', function() {
-        var payload = {};
+    describe('waits with chained dependencies properly', function() {
 
         var listener1Done = false;
-        var listener1 = function() {
-            AppDispatcher.waitFor([index2, index4]);
-            // Second, third, and fourth listeners should have now been called
-            expect(listener2Done).toBe(true);
-            expect(listener3Done).toBe(true);
-            expect(listener4Done).toBe(true);
-            listener1Done = true;
-        };
-
-        AppDispatcher.register(listener1);
-
         var listener2Done = false;
-        var listener2 = function() {
-            AppDispatcher.waitFor([index3]);
-            expect(listener3Done).toBe(true);
-            listener2Done = true;
-        };
-        var index2 = AppDispatcher.register(listener2);
-
         var listener3Done = false;
-        var listener3 = function() {
-            listener3Done = true;
-        };
-        var index3 = AppDispatcher.register(listener3);
-
         var listener4Done = false;
-        var listener4 = function() {
-            AppDispatcher.waitFor([index3]);
-            expect(listener3Done).toBe(true);
-            listener4Done = true;
-        };
-        var index4 = AppDispatcher.register(listener4);
 
-        runs(function() {
+        beforeEach(function(done) {
+            var payload = {};
+
+            var listener1 = function() {
+                AppDispatcher.waitFor([index2, index4]);
+                // Second, third, and fourth listeners should have now been called
+                expect(listener2Done).toBe(true);
+                expect(listener3Done).toBe(true);
+                expect(listener4Done).toBe(true);
+
+                listener1Done = true;
+
+                done();
+            };
+
+            AppDispatcher.register(listener1);
+
+            var listener2 = function() {
+                AppDispatcher.waitFor([index3]);
+                expect(listener3Done).toBe(true);
+                listener2Done = true;
+            };
+
+            var index2 = AppDispatcher.register(listener2);
+
+            var listener3 = function() {
+                listener3Done = true;
+            };
+
+            var index3 = AppDispatcher.register(listener3);
+
+            var listener4 = function() {
+                AppDispatcher.waitFor([index3]);
+                expect(listener3Done).toBe(true);
+                listener4Done = true;
+            };
+
+            var index4 = AppDispatcher.register(listener4);
+
             AppDispatcher.dispatch(payload);
         });
 
-        waitsFor(function() {
-            return listener1Done;
-        }, 'Not all subscribers were properly called', 500);
-
-        runs(function() {
+        it('should call all listeners', function() {
             expect(listener1Done).toBe(true);
             expect(listener2Done).toBe(true);
             expect(listener3Done).toBe(true);

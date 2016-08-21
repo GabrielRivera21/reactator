@@ -10,7 +10,6 @@ var gulp = require('gulp'),
     buffer = require('vinyl-buffer'),
     connect = require('gulp-connect'),
     eventStream = require('event-stream'),
-    jest = require('gulp-jest'),
     less = require('gulp-less'),
     notify = require('gulp-notify'),
     source = require('vinyl-source-stream'),
@@ -120,14 +119,6 @@ var GulpTasks = {
         };
     },
 
-    jest: function(src, options) {
-        return function() {
-            return gulp
-                .src(src)
-                .pipe(jest(options));
-        };
-    },
-
     less: function(root, entries, options) {
         return function() {
             return eventStream.merge(
@@ -164,7 +155,6 @@ var GulpTasks = {
             config.apps,
             function(project, name) {
                 var _root = 'dist/' + name;
-                var _src = project.src;
 
                 var n = function(id) {
                     return id + '-' + name;
@@ -194,31 +184,6 @@ var GulpTasks = {
                         project.less.map(function(entry) { return entry.src; }),
                         [n('less')]
                     ));
-
-                //
-                // jest
-                //
-                gulp.task(
-                    n('jest'),
-                    ['clean-coverage'],
-                    GulpTasks.jest(
-                        _src,
-                        _.extend(
-                            {rootDir: _src},
-                            config.jest)
-                        )
-                    );
-
-                gulp.task(
-                    n('test'),
-                    GulpTasks.start(n('jest')));
-
-
-                gulp.task(
-                    n('watch-test'),
-                    GulpTasks.watch(
-                        _src + '/**/*-test.js',
-                        [n('test')]));
 
                 //
                 // connect
@@ -294,8 +259,7 @@ var GulpTasks = {
                     [n('build')],
                     GulpTasks.start([
                         n('watchify'),
-                        n('watch-less'),
-                        n('watch-test')
+                        n('watch-less')
                     ]));
             }
         );
@@ -312,14 +276,11 @@ var GulpTasks = {
         gulp.task('build', GulpTasks.start(all('build')));
         gulp.task('dev', ['build'], GulpTasks.start(all('dev')));
 
-        gulp.task('jest', GulpTasks.start(all('jest')));
-        gulp.task('test', GulpTasks.start(all('test')));
-
         gulp.task('install', ['bower'], GulpTasks.start(['build']));
 
         gulp.task('default',  function() {
             console.log('\nPossible targets are:');
-            _.each(['install', 'test', 'build', 'clean'], function(name) {
+            _.each(['install', 'build', 'clean'], function(name) {
                 console.log('\t' + name);
             });
 
