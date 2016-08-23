@@ -10,39 +10,83 @@ describe('lodash', function() {
         _ = require('../lodash.js');
     });
 
-    it('should not throw exception when defined', function() {
 
-        var obj = 'foo';
+    describe('_.checkDefined', function() {
+        it('should not throw exception when defined', function() {
 
-        var pass = () => {
-            _.checkDefined(obj);
-        };
+            var obj = 'foo';
 
-        expect(pass).not.toThrow();
+            var pass = () => {
+                expect(_.checkDefined(obj)).toBe(obj);
+            };
+
+            expect(pass).not.toThrow();
+        });
+
+        it('should throw exception when not defined', function() {
+
+            var obj1;
+            var obj2 = null;
+            var obj3 = void 0;
+
+            var failUndefined = () => {
+                _.checkDefined(obj1);
+            };
+
+            var failNull = () => {
+                _.checkDefined(obj2);
+            };
+
+
+            var fail0 = () => {
+                _.checkDefined(obj3);
+            };
+
+            expect(failUndefined).toThrow();
+            expect(failNull).toThrow();
+            expect(fail0).toThrow();
+        });
     });
 
-    it('should throw exception when not defined', function() {
+    describe('_.checkNotDefined', function() {
 
-        var obj1;
-        var obj2 = null;
-        var obj3 = void 0;
+        it('should throw exception when defined', function() {
 
-        var failUndefined = () => {
-            _.checkDefined(obj1);
-        };
+            var obj = 'foo';
 
-        var failNull = () => {
-            _.checkDefined(obj2);
-        };
+            var pass = () => {
+                _.checkNotDefined(obj);
+            };
+
+            expect(pass).toThrow();
+        });
+
+        it('should not throw exception when not defined', function() {
+
+            var obj1;
+            var obj2 = null;
+            var obj3 = void 0;
+
+            var failUndefined = () => {
+                _.checkNotDefined(obj1);
+            };
+
+            var failNull = () => {
+                _.checkNotDefined(obj2);
+            };
 
 
-        var fail0 = () => {
-            _.checkDefined(obj3);
-        };
+            var fail0 = () => {
+                _.checkNotDefined(obj3);
+            };
 
-        expect(failUndefined).toThrow();
-        expect(failNull).toThrow();
-        expect(fail0).toThrow();
+            expect(failUndefined).not.toThrow();
+            expect(failNull).not.toThrow();
+            expect(fail0).not.toThrow();
+        });
     });
 
 });
+
+
+

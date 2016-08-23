@@ -1,10 +1,20 @@
 import _ from 'lodash';
 
 const mixins = {
-    checkDefined: (val, message) => {
-        if (_.isNil(val)) {
+    checkDefined: (obj, message) => {
+        if (_.isNil(obj)) {
             throw Error(message || 'Value is not defined!');
         }
+
+        return obj;
+    },
+
+    checkNotDefined: (obj, message) => {
+        if (!_.isNil(obj)) {
+            throw Error(message || 'Value is defined!');
+        }
+
+        return obj;
     }
 };
 
