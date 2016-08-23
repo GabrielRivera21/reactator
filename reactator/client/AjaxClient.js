@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from '../lib/lodash.js';
 import Q from '../lib/q.js';
 import $ from '../lib/jquery.js';
 import Client from './Client.js';

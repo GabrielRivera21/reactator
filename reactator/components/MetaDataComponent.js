@@ -1,7 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import $ from '../lib/jquery.js';
-import _ from 'lodash';
+import _ from '../lib/lodash.js';
 import AppConstants from '../constants/AppConstants.js';
 import AppAction from '../actions/AppAction.js';
 

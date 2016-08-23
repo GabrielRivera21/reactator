@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from '../lib/lodash.js';
 
 /**
  * @param {Number} status http status code of the error

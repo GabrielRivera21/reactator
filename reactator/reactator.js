@@ -27,6 +27,7 @@ module.exports = {
         DispatcherFactory: require('./lib/DispatcherFactory.js'),
         jquery: require('./lib/jquery.js'),
         q: require('./lib/q.js'),
+        '_': require('./lib/lodash.js'),
         Util: require('./lib/Util.js')
     },
     routes: {

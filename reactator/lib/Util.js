@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from './lodash.js';
 
 const _p8 = (s, v) => {
     var p = (v.toString(16) + '000000000').substr(2,8);

@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from '../lib/lodash.js';
 import React from 'react';
 import AppStore from '../stores/AppStore.js';
 import AppConstants from '../constants/AppConstants.js';

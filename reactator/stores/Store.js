@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from '../lib/lodash.js';
 import {EventEmitter} from 'events';
 
 const CHANGE_EVENT = 'change';
