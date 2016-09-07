@@ -1,4 +1,5 @@
-import _ from '../lib/lodash.js';
+import _ from 'lodash';
+import HttpStatus from 'http-status-codes';
 
 /**
  * @param {Number} status http status code of the error
@@ -11,7 +12,7 @@ import _ from '../lib/lodash.js';
  */
 function ClientError(status, message, request, error) {
     this.name = 'ClientError';
-    this.status = status || 400;
+    this.status = status || HttpStatus.BAD_REQUEST;
     this.message = message || 'No message.';
     this.request = request || 'Request not specified.';
 
@@ -30,7 +31,7 @@ _.extend(ClientError.prototype, {
      * @memberOf ClientError
      */
     isUnauthorized: function() {
-        return this.status === 401;
+        return this.status === HttpStatus.UNAUTHORIZED;
     },
 
     /**
@@ -39,7 +40,7 @@ _.extend(ClientError.prototype, {
      * @memberOf ClientError
      */
     isForbidden: function() {
-        return this.status === 403;
+        return this.status === HttpStatus.FORBIDDEN;
     },
 
     /**
@@ -48,7 +49,7 @@ _.extend(ClientError.prototype, {
      * @memberOf ClientError
      */
     isNotFound: function() {
-        return this.status === 404;
+        return this.status === HttpStatus.NOT_FOUND;
     },
 
     /**
@@ -57,7 +58,7 @@ _.extend(ClientError.prototype, {
      * @memberOf ClientError
      */
     isServiceUnavailable: function() {
-        return this.status === 503;
+        return this.status === HttpStatus.SERVICE_UNAVAILABLE;
     }
 });
 
