@@ -77,4 +77,9 @@ ClientError.from = function(error, status, message, request) {
     return new ClientError(status, message || error.message, request, error);
 };
 
+/**
+ * @type {Object} Status codes
+ */
+ClientError.HttpStatus = HttpStatus;
+
 module.exports = ClientError;

@@ -1,18 +1,23 @@
 import _ from 'lodash';
 import ClientError from '../client/ClientError.js';
+import HttpStatus from 'http-status-codes';
 
-function newError(message, status) {
+function newError(message, defaultMessage, status) {
     if (!_.isUndefined(status)) {
-        return new ClientError(status, message);
+        if (!_.isUndefined(message)) {
+            return new ClientError(status, message);
+        } else {
+            return new ClientError(status, HttpStatus.getStatusText(status));
+        }
     }
 
-    return new Error(message);
+    return new Error(message || defaultMessage);
 }
 
 const mixins = {
     checkDefined: (obj, message, status) => {
         if (_.isNil(obj)) {
-            throw newError(message || 'Value is not defined!', status);
+            throw newError(message, 'Value is not defined!', status);
         }
 
         return obj;
@@ -20,7 +25,7 @@ const mixins = {
 
     checkNotDefined: (obj, message, status) => {
         if (!_.isNil(obj)) {
-            throw newError(message || 'Value is defined!', status);
+            throw newError(message, 'Value is defined!', status);
         }
 
         return obj;
@@ -28,7 +33,7 @@ const mixins = {
 
     check: (value, message, status) => {
         if (value !== true) {
-            throw newError(message || 'Valid is not true!', status);
+            throw newError(message, 'Valid is not true!', status);
         }
     }
 };
