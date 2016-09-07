@@ -86,6 +86,37 @@ describe('lodash', function() {
         });
     });
 
+    describe('_.emptyToNull', function() {
+        it('should return value if not empty', function() {
+            var obj = 'foo';
+            var ret = _.emptyToNull(obj);
+
+            expect(ret).toBe(obj);
+        });
+
+        it('should return null if value is empty', function() {
+            var obj = ' ';
+            var ret = _.emptyToNull(obj);
+
+            expect(ret).toBe(null);
+        });
+    });
+
+    describe('_.nullToEmpty', function() {
+        it('should return empty if null', function() {
+            var obj = null;
+            var ret = _.nullToEmpty(obj);
+
+            expect(ret).toBe('');
+        });
+
+        it('should return value if value is not null', function() {
+            var obj = 'foo';
+            var ret = _.nullToEmpty(obj);
+
+            expect(ret).toBe(obj);
+        });
+    });
 });
 
 

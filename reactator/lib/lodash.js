@@ -35,6 +35,16 @@ const mixins = {
         if (value !== true) {
             throw newError(message, 'Valid is not true!', status);
         }
+    },
+
+    emptyToNull: (value) => {
+        var trimmed = _.trim(value);
+
+        return _.isEmpty(trimmed) ? null : trimmed;
+    },
+
+    nullToEmpty: (value) => {
+        return _.isNil(value) ? '' : value;
     }
 };
 
