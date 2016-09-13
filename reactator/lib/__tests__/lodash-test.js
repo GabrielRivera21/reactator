@@ -1,4 +1,4 @@
-/* global jest, describe, beforeEach, it, expect */
+/* global jest, describe, beforeEach, it, expect, fail */
 
 jest.autoMockOff();
 
@@ -45,6 +45,17 @@ describe('lodash', function() {
             expect(failUndefined).toThrow();
             expect(failNull).toThrow();
             expect(fail0).toThrow();
+        });
+    });
+
+    describe('_.check', function() {
+        it('should throw exception with severity', function() {
+            try {
+                _.check(false, 'Foo', 400, 'trace');
+                fail();
+            } catch (e) {
+                expect(e.options.severity).toBe('trace');
+            }
         });
     });
 

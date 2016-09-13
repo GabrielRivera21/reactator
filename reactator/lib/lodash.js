@@ -2,38 +2,43 @@ import _ from 'lodash';
 import ClientError from '../client/ClientError.js';
 import HttpStatus from 'http-status-codes';
 
-function newError(message, defaultMessage, status) {
+function newError(message, defaultMessage, status, severity) {
     if (!_.isUndefined(status)) {
-        if (!_.isUndefined(message)) {
-            return new ClientError(status, message);
-        } else {
-            return new ClientError(status, HttpStatus.getStatusText(status));
+        var msg = !_.isUndefined(message) ? message : HttpStatus.getStatusText(status);
+        var options;
+
+        if (!_.isUndefined(severity)) {
+            options = {
+                severity: severity
+            };
         }
+
+        return new ClientError(status, msg,  undefined, undefined, options);
     }
 
     return new Error(message || defaultMessage);
 }
 
 const mixins = {
-    checkDefined: (obj, message, status) => {
+    checkDefined: (obj, message, status, severity) => {
         if (_.isNil(obj)) {
-            throw newError(message, 'Value is not defined!', status);
+            throw newError(message, 'Value is not defined!', status, severity);
         }
 
         return obj;
     },
 
-    checkNotDefined: (obj, message, status) => {
+    checkNotDefined: (obj, message, status, severity) => {
         if (!_.isNil(obj)) {
-            throw newError(message, 'Value is defined!', status);
+            throw newError(message, 'Value is defined!', status, severity);
         }
 
         return obj;
     },
 
-    check: (value, message, status) => {
+    check: (value, message, status, severity) => {
         if (value !== true) {
-            throw newError(message, 'Valid is not true!', status);
+            throw newError(message, 'Value is not true!', status, severity);
         }
     },
 

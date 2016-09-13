@@ -6,15 +6,20 @@ import HttpStatus from 'http-status-codes';
  * @param {String} message message of the error
  * @param {String} request request that failed
  * @param {Error} error error to wrap
+ * @param {Object} options options to go with the error
  * @class
  * @classdesc Error thrown by {@link module:Reactator.Client} on failed operations.
  * @memberof module:Reactator
  */
-function ClientError(status, message, request, error) {
+function ClientError(status, message, request, error, options) {
     this.name = 'ClientError';
     this.status = status || HttpStatus.BAD_REQUEST;
     this.message = message || 'No message.';
     this.request = request || 'Request not specified.';
+
+    if (options) {
+        this.options = options;
+    }
 
     if (error) {
         this.stack = error.stack;
