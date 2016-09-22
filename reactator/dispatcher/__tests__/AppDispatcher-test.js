@@ -1,4 +1,4 @@
-/* global jest, describe, beforeEach, it, expect */
+/* global jest, describe, beforeEach, afterEach, it, expect */
 
 jest.autoMockOff();
 
@@ -9,6 +9,10 @@ describe('AppDispatcher', function() {
     beforeEach(function() {
         AppDispatcher = require('../AppDispatcher.js');
         AppConstants = require('../../constants/AppConstants.js');
+    });
+
+    afterEach(function() {
+        jest.runAllTicks();
     });
 
     it('sends actions to subscribers', function() {
@@ -42,7 +46,7 @@ describe('AppDispatcher', function() {
 
                 listener1Done = true;
 
-                done();
+                process.nextTick(done);
             };
 
             AppDispatcher.register(listener1);
