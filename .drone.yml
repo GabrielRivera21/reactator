@@ -1,0 +1,17 @@
+build:
+    image: reactator/drone
+    volumes:
+        - /Users/drone/.npmrc:/root/.npmrc
+    commands:
+        - npm -v
+        - node -v
+        - npm run clean
+        - npm run lint
+        - npm run test
+        - npm run package
+        - cd dist/package
+        - |
+          echo "\n" >> README.md
+          echo "# Published\n" >> README.md
+          echo "`TZ=US/Pacific date`" >> README.md
+        - npm publish -f

@@ -1,10 +1,10 @@
-# reactator
+# Reactator
 React & Flux Based Single Page Application Framework
 
-# npm
+# NPM
 npm install reactator
 
 https://www.npmjs.com/package/reactator
 
-# docs
+# Docs
 http://arminbhy.github.io/reactator/
