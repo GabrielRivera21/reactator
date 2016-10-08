@@ -128,6 +128,44 @@ describe('lodash', function() {
             expect(ret).toBe(obj);
         });
     });
+
+    describe('_.getOnlyElement', function() {
+        it('should return the element if its the only one', function() {
+            expect(_.getOnlyElement([1])).toBe(1);
+        });
+
+        it('should throw exception if collection is not an array', function() {
+            var go = function() {
+                _.getOnlyElement({});
+            };
+
+            expect(go).toThrow();
+        });
+
+        it('should throw exception if collection is a string', function() {
+            var go = function() {
+                _.getOnlyElement('foo');
+            };
+
+            expect(go).toThrow();
+        });
+
+        it('should return throw if no elements', function() {
+            var go = function() {
+                _.getOnlyElement([]);
+            };
+
+            expect(go).toThrow();
+        });
+
+        it('should return throw if more than one elements', function() {
+            var go = function() {
+                _.getOnlyElement([1, 2]);
+            };
+
+            expect(go).toThrow();
+        });
+    });
 });
 
 

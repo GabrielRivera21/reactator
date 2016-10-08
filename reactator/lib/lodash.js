@@ -50,6 +50,22 @@ const mixins = {
 
     nullToEmpty: (value) => {
         return _.isNil(value) ? '' : value;
+    },
+
+    getOnlyElement: (collection) => {
+        if (!_.isArray(collection)) {
+            throw new Error('Collection has to be an array!');
+        }
+
+        const size = _.size(collection);
+
+        if (size === 1) {
+            return _.first(collection);
+        } else if (size === 0) {
+            throw new Error('Empty collection, while expecting one element!');
+        } else {
+            throw new Error('Expecting one element, got more!');
+        }
     }
 };
 
