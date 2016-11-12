@@ -6,3 +6,4 @@
 /.modules
 /out
 /jest
+/npm-debug.log

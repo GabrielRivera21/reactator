@@ -1,17 +1,35 @@
 build:
-    image: reactator/drone
-    volumes:
-        - /Users/drone/.npmrc:/root/.npmrc
-    commands:
-        - npm -v
-        - node -v
-        - npm run clean
-        - npm run lint
-        - npm run test
-        - npm run package
-        - cd dist/package
-        - |
-          echo "\n" >> README.md
-          echo "# Published\n" >> README.md
-          echo "`TZ=US/Pacific date`" >> README.md
-        - npm publish -f
+    localBump:
+        image: reactator/drone
+        commands:
+            - npm version patch --force --no-git-tag-version
+        when:
+            event: local
+    realBump:
+        image: reactator/drone
+        commands:
+            - npm version patch
+        when:
+            event: publish
+    package:
+        image: reactator/drone
+        commands:
+            - npm -v
+            - node -v
+            - npm run clean
+            - npm run lint
+            - npm run test
+            - npm run package
+            - cd dist/package
+            - |
+              echo "\n" >> README.md
+              echo "# Published\n" >> README.md
+              echo "`TZ=US/Pacific date`" >> README.md
+publish:
+    npm:
+        username: $$NPM_USERNAME
+        password: $$NPM_PASSWORD
+        email: $$NPM_EMAIL
+        registry: $$NPM_REGISTRY
+        folder: dist/package
+        always_auth: true
