@@ -1,6 +1,6 @@
 {
   "name": "reactator",
-  "version": "1.0.9",
+  "version": "1.0.10",
   "description": "Single Page Application based on Flux & React.",
   "author": "Armin Bahramshahry",
   "repository": {
@@ -18,7 +18,11 @@
     "doc": "jsdoc reactator -r",
     "lint": "eslint reactator",
     "package": "bin/package.sh",
-    "test": "jest"
+    "test": "jest",
+    "start-sinopia": "docker run --name sinopia -d -p 4873:4873 keyvanfatehi/sinopia:latest",
+    "docker-clean": "docker rmi reactator/drone",
+    "docker-build": "docker build -t reactator/drone -f docker/drone.docker docker",
+    "drone-local": "drone exec -e NPM_USERNAME=admin NPM_PASSWORD=admin NPM_EMAIL=admin@test.com NPM_REGISTRY=http://localhost:4873 --deploy"
   },
   "jest": {
     "verbose": true,
