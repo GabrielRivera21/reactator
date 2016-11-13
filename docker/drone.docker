@@ -1,4 +1,0 @@
-FROM node:6.3.1
-
-RUN npm install -g babel-cli
-RUN npm install -g npm-cli-login

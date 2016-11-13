@@ -1,18 +1,18 @@
 build:
     localBump:
-        image: reactator/drone
+        image: arminbhy/node-babeljs
         commands:
             - npm version patch --force --no-git-tag-version
         when:
             event: local
     realBump:
-        image: reactator/drone
+        image: arminbhy/node-babeljs
         commands:
             - npm version patch
         when:
             event: publish
     package:
-        image: reactator/drone
+        image: arminbhy/node-babeljs
         commands:
             - npm -v
             - node -v
