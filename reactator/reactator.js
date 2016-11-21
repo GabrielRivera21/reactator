@@ -26,7 +26,7 @@ module.exports = {
     lib: {
         DispatcherFactory: require('./lib/DispatcherFactory.js'),
         jquery: require('./lib/jquery.js'),
-        q: require('./lib/q.js'),
+        'Promise': require('bluebird'),
         '_': require('./lib/lodash.js'),
         Util: require('./lib/Util.js')
     },

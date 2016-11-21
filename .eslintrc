@@ -1,33 +1,33 @@
 {
-  "extends": "defaults/configurations/google",
-  "ecmaFeatures": {
-    "jsx": true,
-    "modules": true
-  },
+    "extends": "defaults/configurations/google",
+    "ecmaFeatures": {
+        "jsx": true,
+        "modules": true
+    },
 
-  "env": {
-    "browser": true,
-    "node": true
-  },
+    "env": {
+        "browser": true,
+        "node": true
+    },
 
-  "parser": "babel-eslint",
+    "parser": "babel-eslint",
 
-  "rules": {
-    "no-extra-parens": [2, "functions"],
-    "max-len": [2, 200, 4],
-    "dot-location": [2, "property"],
-    "indent": [2, 4],
-    "quotes": [2, "single"],
-    "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
-    "eol-last": [2],
-    "new-cap": 0,
-    "strict": [2, "never"],
-    "react/jsx-uses-react": 2,
-    "react/jsx-uses-vars": 2,
-    "react/react-in-jsx-scope": 2
-  },
+    "rules": {
+        "no-extra-parens": [2, "functions"],
+        "max-len": [2, 200, 4],
+        "dot-location": [2, "property"],
+        "indent": [2, 4],
+        "quotes": [2, "single"],
+        "no-unused-vars": [2, {"vars": "all", "args": "after-used"}],
+        "eol-last": [2],
+        "new-cap": 0,
+        "strict": [2, "never"],
+        "react/jsx-uses-react": 2,
+        "react/jsx-uses-vars": 2,
+        "react/react-in-jsx-scope": 2
+    },
 
-  "plugins": [
-    "react"
-  ]
+    "plugins": [
+        "react"
+    ]
 }
