@@ -9,6 +9,9 @@ import ClientError from './ClientError.js';
  */
 const MethodNotSupported = Promise.reject(new ClientError(405, 'Method Not Supported!'));
 
+// Handle the exception so it doesn't get logged right away.
+MethodNotSupported.catch(() => {});
+
 /**
  * @class
  * @classdesc Class representing the common interface for the client.
