@@ -25,7 +25,7 @@ class ClientWrapper extends Client {
     /**
      * @param {Object} item item to create
      * @param {Object} settings settings for the ajax request
-     * @return {Q.Promise} deferred result of the request
+     * @return {Promise} deferred result of the request
      * @inheritdoc
      */
     create(item, settings) {
@@ -35,7 +35,7 @@ class ClientWrapper extends Client {
     /**
      * @param {String} id id of the item to read
      * @param {Object} settings settings for the ajax request
-     * @return {Q.Promise} deferred result of the request
+     * @return {Promise} deferred result of the request
      * @inheritdoc
      */
     read(id, settings) {
@@ -46,7 +46,7 @@ class ClientWrapper extends Client {
      * @param {String} id id of the item to update
      * @param {Object} item item to update to
      * @param {Object} settings settings for the ajax request
-     * @return {Q.Promise} deferred result of the request
+     * @return {Promise} deferred result of the request
      * @inheritdoc
      */
     update(id, item, settings) {
@@ -56,7 +56,7 @@ class ClientWrapper extends Client {
     /**
      * @param {String} id id of the item to delete
      * @param {Object} settings settings for the ajax request
-     * @return {Q.Promise} deferred result of the request
+     * @return {Promise} deferred result of the request
      * @inheritdoc
      */
     delete(id, settings) {

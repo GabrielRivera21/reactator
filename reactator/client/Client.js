@@ -1,18 +1,16 @@
-import Q from '../lib/q.js';
+import Promise from 'bluebird';
 import ClientError from './ClientError.js';
 
 /**
- * Simple Q.Promise to throw method not implemented error.
+ * Simple Promise to throw method not implemented error.
  *
  * @member MethodNotSupported
  * @memberof module:Reactator.Client
  */
-const MethodNotSupported = Q.Promise(
-    /*eslint no-unused-vars: 0*/
-    (resolve, reject, notify) => {
-        reject(new ClientError(405, 'Method Not Supported!'));
-    }
-);
+const MethodNotSupported = Promise.reject(new ClientError(405, 'Method Not Supported!'));
+
+// Handle the exception so it doesn't get logged right away.
+MethodNotSupported.catch(() => {});
 
 /**
  * @class
@@ -27,7 +25,7 @@ class Client {
      *
      * @param {Object} item item to create
      * @param {Object} settings settings for performing the create
-     * @return {ClientResponse} id of the newly created item (Q.Promise)
+     * @return {ClientResponse} id of the newly created item (Promise)
      * @throws {ClientError} on failure to perform the create
      */
     create(item, settings) {
@@ -39,7 +37,7 @@ class Client {
      *
      * @param {String} id id of the item to read
      * @param {Object} settings settings for performing the read
-     * @return {ClientResponse} item item represented by the id (Q.Promise)
+     * @return {ClientResponse} item item represented by the id (Promise)
      * @throws {ClientError} on failure to perform the read
      */
     read(id, settings) {
@@ -52,7 +50,7 @@ class Client {
      * @param {String} id id of the item
      * @param {Object} item item to update to
      * @param {Object} settings settings for performing the update
-     * @return {ClientResponse} update response (Q.Promise)
+     * @return {ClientResponse} update response (Promise)
      * @throws {ClientError} on failure to perform the update
      */
     update(id, item, settings) {
@@ -65,7 +63,7 @@ class Client {
      *
      * @param {String} id id of the item
      * @param {Object} settings settings for performing the create
-     * @return {ClientResponse} delete response (Q.Promise)
+     * @return {ClientResponse} delete response (Promise)
      * @throws {ClientError} on failure to perform the delete operation
      */
     delete(id, settings) {

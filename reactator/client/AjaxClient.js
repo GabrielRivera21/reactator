@@ -1,12 +1,12 @@
 import _ from '../lib/lodash.js';
-import Q from '../lib/q.js';
+import Promise from 'bluebird';
 import $ from '../lib/jquery.js';
 import Client from './Client.js';
 import ClientError from './ClientError.js';
 import ClientResponse from './ClientResponse.js';
 
 //
-// Helper to return a Q.Promise that returns ClientResponse or ClientError for an
+// Helper to return a Promise that returns ClientResponse or ClientError for an
 // ajax request.
 //
 const promise = ($ajax) => {
@@ -25,12 +25,12 @@ const promise = ($ajax) => {
         return headers;
     };
 
-    return Q.Promise(function(resolve, reject) {
-        Q($ajax)
-        .then((response) => resolve(new ClientResponse(response, $ajax.status, getHeaders())))
-        .catch((error) => reject(new ClientError(error.status, error.responseText, $ajax)))
-        .done();
-    });
+    return Promise.resolve($ajax)
+        .then((response) => {
+            return new ClientResponse(response, $ajax.status, getHeaders());
+        }).catch((error) => {
+            throw new ClientError(error.status, error.responseText, $ajax);
+        });
 };
 
 /**
@@ -40,7 +40,7 @@ const promise = ($ajax) => {
  * @param {Object} settings settings for the request
  * @param {Object} request the request
  * @function
- * @return {Q.Promise} promise for the request
+ * @return {Promise} promise for the request
  * @memberof module:Reactator.AjaxClient
  */
 const ajax = (base, settings, request) => {
@@ -67,7 +67,7 @@ class AjaxClient extends Client {
     /**
      * @param {Object} item item to create
      * @param {Object} settings settings for the ajax request
-     * @return {Q.Promise} deferred result of the request
+     * @return {Promise} deferred result of the request
      * @inheritdoc
      */
     create(item, settings) {
@@ -87,7 +87,7 @@ class AjaxClient extends Client {
     /**
      * @param {String} id id of the item to read
      * @param {Object} settings settings for the ajax request
-     * @return {Q.Promise} deferred result of the request
+     * @return {Promise} deferred result of the request
      * @inheritdoc
      */
     read(id, settings) {
@@ -106,7 +106,7 @@ class AjaxClient extends Client {
      * @param {String} id id of the item to update
      * @param {Object} item item to update to
      * @param {Object} settings settings for the ajax request
-     * @return {Q.Promise} deferred result of the request
+     * @return {Promise} deferred result of the request
      * @inheritdoc
      */
     update(id, item, settings) {
@@ -127,7 +127,7 @@ class AjaxClient extends Client {
     /**
      * @param {String} id id of the item to delete
      * @param {Object} settings settings for the ajax request
-     * @return {Q.Promise} deferred result of the request
+     * @return {Promise} deferred result of the request
      * @inheritdoc
      */
     delete(id, settings) {

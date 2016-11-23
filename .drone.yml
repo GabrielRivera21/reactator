@@ -1,4 +1,15 @@
 build:
+    info:
+        image: arminbhy/node-babeljs
+        commands:
+            - npm -v
+            - node -v
+    install:
+        image: arminbhy/node-babeljs
+        commands:
+            - npm install
+        when:
+            event: install
     localBump:
         image: arminbhy/node-babeljs
         commands:
@@ -14,8 +25,6 @@ build:
     package:
         image: arminbhy/node-babeljs
         commands:
-            - npm -v
-            - node -v
             - npm run clean
             - npm run lint
             - npm run test

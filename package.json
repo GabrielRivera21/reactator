@@ -1,6 +1,6 @@
 {
   "name": "reactator",
-  "version": "1.0.9",
+  "version": "2.0.0",
   "description": "Single Page Application based on Flux & React.",
   "author": "Armin Bahramshahry",
   "repository": {
@@ -21,6 +21,7 @@
     "test": "jest",
     "start-sinopia": "docker run --name sinopia -d -p 4873:4873 keyvanfatehi/sinopia:latest",
     "docker-clean": "docker rmi reactator/drone",
+    "drone-install": "drone exec --event \"install\"",
     "drone-local": "bin/drone.sh local",
     "drone-publish": "bin/drone.sh publish"
   },
@@ -47,7 +48,6 @@
     "l20n": "^4.0.0-alpha.3",
     "lodash": "^4.15.0",
     "moment": "^2.14.1",
-    "q": "^1.4.1",
     "react": "^15.3.1",
     "react-addons-test-utils": "^15.3.1",
     "react-dom": "^15.3.1",
@@ -55,6 +55,9 @@
   },
   "devDependencies": {
     "babel-eslint": "^6.1.2",
+    "babel-plugin-transform-class-properties": "^6.19.0",
+    "babel-plugin-transform-function-bind": "^6.8.0",
+    "babel-plugin-transform-object-rest-spread": "^6.19.0",
     "babel-preset-es2015": "^6.13.2",
     "babel-preset-react": "^6.11.1",
     "babelify": "^7.3.0",

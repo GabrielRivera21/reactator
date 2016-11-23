@@ -2,18 +2,17 @@
 
 jest.autoMockOff();
 
-var Q = require('../../lib/q.js');
+var Promise = require('bluebird');
 
 function verify(promise) {
-    Q(promise)
+    return Promise.resolve(promise)
         .then(function() {
             expect(true).toBeFalsy();
         })
         .catch(function(error) {
             expect(error.status).toBe(405);
             expect(error.message).toBe('Method Not Supported!');
-        })
-        .done();
+        });
 }
 
 describe('Client', function() {
@@ -30,18 +29,18 @@ describe('Client', function() {
     });
 
     it('returns a promise on create that throws 405', function() {
-        verify(c.create());
+        return verify(c.create());
     });
 
     it('returns a promise on read that throws 405', function() {
-        verify(c.read());
+        return verify(c.read());
     });
 
     it('returns a promise on update that throws 405', function() {
-        verify(c.update());
+        return verify(c.update());
     });
 
     it('returns a promise on delete that throws 405', function() {
-        verify(c.delete());
+        return verify(c.delete());
     });
 });

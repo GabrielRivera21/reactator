@@ -36,13 +36,12 @@ const U = {
     },
 
     /**
-     * @param {Q} q q
+     * @param {Promise} promise promise
      * @return {undefined}
      */
-    outq: function(q) {
-        q.then((r) => console.log(r))
-         .catch((e) => console.error(e))
-         .done();
+    outq: function(promise) {
+        promise.then((r) => console.log(r))
+         .catch((e) => console.error(e));
     },
 
     /**
