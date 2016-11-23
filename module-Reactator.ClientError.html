@@ -45,7 +45,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="ClientError"><span class="type-signature"></span>new ClientError<span class="signature">(status, message, request)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ClientError"><span class="type-signature"></span>new ClientError<span class="signature">(status, message, request, error, options)</span><span class="type-signature"></span></h4>
 
     
 
@@ -150,6 +150,52 @@
         </tr>
 
     
+
+        <tr>
+            
+                <td class="name"><code>error</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Error</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">error to wrap</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>options</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">options to go with the error</td>
+        </tr>
+
+    
     </tbody>
 </table>
 
@@ -187,7 +233,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reactator_client_ClientError.js.html">reactator/client/ClientError.js</a>, <a href="reactator_client_ClientError.js.html#line11">line 11</a>
+        <a href="reactator_client_ClientError.js.html">reactator/client/ClientError.js</a>, <a href="reactator_client_ClientError.js.html#line14">line 14</a>
     </li></ul></dd>
     
 
@@ -229,6 +275,228 @@
     
 
     
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id=".from"><span class="type-signature">(static) </span>from<span class="signature">(error, status, message, request)</span><span class="type-signature"> &rarr; {<a href="ClientError.html">ClientError</a>}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>error</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Error</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">error to wrap</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>status</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Status</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">status to set if needed</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>message</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">message to set if needed</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>request</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">request that failed</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reactator_client_ClientError.js.html">reactator/client/ClientError.js</a>, <a href="reactator_client_ClientError.js.html#line77">line 77</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    Error of type ClientError
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="ClientError.html">ClientError</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
 
     
 
@@ -243,13 +511,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Demo.html">Demo</a></li><li><a href="module-Reactator.html">Reactator</a></li></ul><h3>Classes</h3><ul><li><a href="module-Demo.AppLayout.html">AppLayout</a></li><li><a href="module-Demo.DemoRoutes.html">DemoRoutes</a></li><li><a href="module-Demo.ExampleModal.html">ExampleModal</a></li><li><a href="module-Demo.MainComponent.html">MainComponent</a></li><li><a href="module-Demo.MainRoutes.html">MainRoutes</a></li><li><a href="module-Demo.ProfileComponent.html">ProfileComponent</a></li><li><a href="module-Demo.ProfileRoutes.html">ProfileRoutes</a></li><li><a href="module-Reactator.AjaxClient.html">AjaxClient</a></li><li><a href="module-Reactator.AppAction.html">AppAction</a></li><li><a href="module-Reactator.AppConstants.html">AppConstants</a></li><li><a href="module-Reactator.AppDispatcher.html">AppDispatcher</a></li><li><a href="module-Reactator.AppStarter.html">AppStarter</a></li><li><a href="module-Reactator.AppStore.html">AppStore</a></li><li><a href="module-Reactator.BasicLayout.html">BasicLayout</a></li><li><a href="module-Reactator.BootstrapModal.html">BootstrapModal</a></li><li><a href="module-Reactator.BootstrapModalMixin.html">BootstrapModalMixin</a></li><li><a href="module-Reactator.Client.html">Client</a></li><li><a href="module-Reactator.ClientError.html">ClientError</a></li><li><a href="module-Reactator.ClientResponse.html">ClientResponse</a></li><li><a href="module-Reactator.ClientWrapper.html">ClientWrapper</a></li><li><a href="module-Reactator.CompositeRoutes.html">CompositeRoutes</a></li><li><a href="module-Reactator.DispatcherFactory.html">DispatcherFactory</a></li><li><a href="module-Reactator.jQuery.html">jQuery</a></li><li><a href="module-Reactator.MetaDataComponent.html">MetaDataComponent</a></li><li><a href="module-Reactator.Q.html">Q</a></li><li><a href="module-Reactator.ResponsiveComponent.html">ResponsiveComponent</a></li><li><a href="module-Reactator.RootRouteComponent.html">RootRouteComponent</a></li><li><a href="module-Reactator.Routes.html">Routes</a></li><li><a href="module-Reactator.Store.html">Store</a></li><li><a href="module-Reactator.U.html">U</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Demo.html">Demo</a></li><li><a href="module-Reactator.html">Reactator</a></li></ul><h3>Classes</h3><ul><li><a href="module-Demo.AppLayout.html">AppLayout</a></li><li><a href="module-Demo.DemoRoutes.html">DemoRoutes</a></li><li><a href="module-Demo.ExampleModal.html">ExampleModal</a></li><li><a href="module-Demo.MainComponent.html">MainComponent</a></li><li><a href="module-Demo.MainRoutes.html">MainRoutes</a></li><li><a href="module-Demo.ProfileComponent.html">ProfileComponent</a></li><li><a href="module-Demo.ProfileRoutes.html">ProfileRoutes</a></li><li><a href="module-Reactator.AjaxClient.html">AjaxClient</a></li><li><a href="module-Reactator.AppAction.html">AppAction</a></li><li><a href="module-Reactator.AppConstants.html">AppConstants</a></li><li><a href="module-Reactator.AppDispatcher.html">AppDispatcher</a></li><li><a href="module-Reactator.AppStarter.html">AppStarter</a></li><li><a href="module-Reactator.AppStore.html">AppStore</a></li><li><a href="module-Reactator.BasicLayout.html">BasicLayout</a></li><li><a href="module-Reactator.BootstrapModal.html">BootstrapModal</a></li><li><a href="module-Reactator.BootstrapModalMixin.html">BootstrapModalMixin</a></li><li><a href="module-Reactator.Client.html">Client</a></li><li><a href="module-Reactator.ClientError.html">ClientError</a></li><li><a href="module-Reactator.ClientResponse.html">ClientResponse</a></li><li><a href="module-Reactator.ClientWrapper.html">ClientWrapper</a></li><li><a href="module-Reactator.CompositeRoutes.html">CompositeRoutes</a></li><li><a href="module-Reactator.DispatcherFactory.html">DispatcherFactory</a></li><li><a href="module-Reactator.jQuery.html">jQuery</a></li><li><a href="module-Reactator.MetaDataComponent.html">MetaDataComponent</a></li><li><a href="module-Reactator.ResponsiveComponent.html">ResponsiveComponent</a></li><li><a href="module-Reactator.RootRouteComponent.html">RootRouteComponent</a></li><li><a href="module-Reactator.Routes.html">Routes</a></li><li><a href="module-Reactator.Store.html">Store</a></li><li><a href="module-Reactator.U.html">U</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Feb 27 2016 17:08:39 GMT-0800 (PST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Nov 22 2016 22:55:30 GMT-0800 (PST)
 </footer>
 
 <script> prettyPrint(); </script>

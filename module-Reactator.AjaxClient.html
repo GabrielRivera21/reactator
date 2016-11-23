@@ -141,7 +141,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reactator_client_AjaxClient.js.html">reactator/client/AjaxClient.js</a>, <a href="reactator_client_AjaxClient.js.html#line48">line 48</a>
+        <a href="reactator_client_AjaxClient.js.html">reactator/client/AjaxClient.js</a>, <a href="reactator_client_AjaxClient.js.html#line55">line 55</a>
     </li></ul></dd>
     
 
@@ -190,7 +190,206 @@
 
     
 
-    <h4 class="name" id="create"><span class="type-signature"></span>create<span class="signature">(item, settings)</span><span class="type-signature"> &rarr; {Q.Promise}</span></h4>
+    <h4 class="name" id=".ajax"><span class="type-signature">(static) </span>ajax<span class="signature">(base, settings, request)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Helper for requesting the ajax and returning the promise
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>base</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">base</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>settings</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">settings for the request</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>request</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">the request</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reactator_client_AjaxClient.js.html">reactator/client/AjaxClient.js</a>, <a href="reactator_client_AjaxClient.js.html#line46">line 46</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    promise for the request
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Promise</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="create"><span class="type-signature"></span>create<span class="signature">(item, settings)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -309,7 +508,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reactator_client_AjaxClient.js.html">reactator/client/AjaxClient.js</a>, <a href="reactator_client_AjaxClient.js.html#line66">line 66</a>
+        <a href="reactator_client_AjaxClient.js.html">reactator/client/AjaxClient.js</a>, <a href="reactator_client_AjaxClient.js.html#line73">line 73</a>
     </li></ul></dd>
     
 
@@ -347,7 +546,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Q.Promise</span>
+<span class="param-type">Promise</span>
 
 
     </dd>
@@ -362,7 +561,7 @@
 
     
 
-    <h4 class="name" id="delete"><span class="type-signature"></span>delete<span class="signature">(id, settings)</span><span class="type-signature"> &rarr; {Q.Promise}</span></h4>
+    <h4 class="name" id="delete"><span class="type-signature"></span>delete<span class="signature">(id, settings)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -481,7 +680,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reactator_client_AjaxClient.js.html">reactator/client/AjaxClient.js</a>, <a href="reactator_client_AjaxClient.js.html#line114">line 114</a>
+        <a href="reactator_client_AjaxClient.js.html">reactator/client/AjaxClient.js</a>, <a href="reactator_client_AjaxClient.js.html#line133">line 133</a>
     </li></ul></dd>
     
 
@@ -519,7 +718,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Q.Promise</span>
+<span class="param-type">Promise</span>
 
 
     </dd>
@@ -534,7 +733,7 @@
 
     
 
-    <h4 class="name" id="read"><span class="type-signature"></span>read<span class="signature">(id, settings)</span><span class="type-signature"> &rarr; {Q.Promise}</span></h4>
+    <h4 class="name" id="read"><span class="type-signature"></span>read<span class="signature">(id, settings)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -653,7 +852,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reactator_client_AjaxClient.js.html">reactator/client/AjaxClient.js</a>, <a href="reactator_client_AjaxClient.js.html#line82">line 82</a>
+        <a href="reactator_client_AjaxClient.js.html">reactator/client/AjaxClient.js</a>, <a href="reactator_client_AjaxClient.js.html#line93">line 93</a>
     </li></ul></dd>
     
 
@@ -691,7 +890,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Q.Promise</span>
+<span class="param-type">Promise</span>
 
 
     </dd>
@@ -706,7 +905,7 @@
 
     
 
-    <h4 class="name" id="update"><span class="type-signature"></span>update<span class="signature">(id, item, settings)</span><span class="type-signature"> &rarr; {Q.Promise}</span></h4>
+    <h4 class="name" id="update"><span class="type-signature"></span>update<span class="signature">(id, item, settings)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -848,7 +1047,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="reactator_client_AjaxClient.js.html">reactator/client/AjaxClient.js</a>, <a href="reactator_client_AjaxClient.js.html#line97">line 97</a>
+        <a href="reactator_client_AjaxClient.js.html">reactator/client/AjaxClient.js</a>, <a href="reactator_client_AjaxClient.js.html#line112">line 112</a>
     </li></ul></dd>
     
 
@@ -886,7 +1085,7 @@
     </dt>
     <dd>
         
-<span class="param-type">Q.Promise</span>
+<span class="param-type">Promise</span>
 
 
     </dd>
@@ -912,13 +1111,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Demo.html">Demo</a></li><li><a href="module-Reactator.html">Reactator</a></li></ul><h3>Classes</h3><ul><li><a href="module-Demo.AppLayout.html">AppLayout</a></li><li><a href="module-Demo.DemoRoutes.html">DemoRoutes</a></li><li><a href="module-Demo.ExampleModal.html">ExampleModal</a></li><li><a href="module-Demo.MainComponent.html">MainComponent</a></li><li><a href="module-Demo.MainRoutes.html">MainRoutes</a></li><li><a href="module-Demo.ProfileComponent.html">ProfileComponent</a></li><li><a href="module-Demo.ProfileRoutes.html">ProfileRoutes</a></li><li><a href="module-Reactator.AjaxClient.html">AjaxClient</a></li><li><a href="module-Reactator.AppAction.html">AppAction</a></li><li><a href="module-Reactator.AppConstants.html">AppConstants</a></li><li><a href="module-Reactator.AppDispatcher.html">AppDispatcher</a></li><li><a href="module-Reactator.AppStarter.html">AppStarter</a></li><li><a href="module-Reactator.AppStore.html">AppStore</a></li><li><a href="module-Reactator.BasicLayout.html">BasicLayout</a></li><li><a href="module-Reactator.BootstrapModal.html">BootstrapModal</a></li><li><a href="module-Reactator.BootstrapModalMixin.html">BootstrapModalMixin</a></li><li><a href="module-Reactator.Client.html">Client</a></li><li><a href="module-Reactator.ClientError.html">ClientError</a></li><li><a href="module-Reactator.ClientResponse.html">ClientResponse</a></li><li><a href="module-Reactator.ClientWrapper.html">ClientWrapper</a></li><li><a href="module-Reactator.CompositeRoutes.html">CompositeRoutes</a></li><li><a href="module-Reactator.DispatcherFactory.html">DispatcherFactory</a></li><li><a href="module-Reactator.jQuery.html">jQuery</a></li><li><a href="module-Reactator.MetaDataComponent.html">MetaDataComponent</a></li><li><a href="module-Reactator.Q.html">Q</a></li><li><a href="module-Reactator.ResponsiveComponent.html">ResponsiveComponent</a></li><li><a href="module-Reactator.RootRouteComponent.html">RootRouteComponent</a></li><li><a href="module-Reactator.Routes.html">Routes</a></li><li><a href="module-Reactator.Store.html">Store</a></li><li><a href="module-Reactator.U.html">U</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Demo.html">Demo</a></li><li><a href="module-Reactator.html">Reactator</a></li></ul><h3>Classes</h3><ul><li><a href="module-Demo.AppLayout.html">AppLayout</a></li><li><a href="module-Demo.DemoRoutes.html">DemoRoutes</a></li><li><a href="module-Demo.ExampleModal.html">ExampleModal</a></li><li><a href="module-Demo.MainComponent.html">MainComponent</a></li><li><a href="module-Demo.MainRoutes.html">MainRoutes</a></li><li><a href="module-Demo.ProfileComponent.html">ProfileComponent</a></li><li><a href="module-Demo.ProfileRoutes.html">ProfileRoutes</a></li><li><a href="module-Reactator.AjaxClient.html">AjaxClient</a></li><li><a href="module-Reactator.AppAction.html">AppAction</a></li><li><a href="module-Reactator.AppConstants.html">AppConstants</a></li><li><a href="module-Reactator.AppDispatcher.html">AppDispatcher</a></li><li><a href="module-Reactator.AppStarter.html">AppStarter</a></li><li><a href="module-Reactator.AppStore.html">AppStore</a></li><li><a href="module-Reactator.BasicLayout.html">BasicLayout</a></li><li><a href="module-Reactator.BootstrapModal.html">BootstrapModal</a></li><li><a href="module-Reactator.BootstrapModalMixin.html">BootstrapModalMixin</a></li><li><a href="module-Reactator.Client.html">Client</a></li><li><a href="module-Reactator.ClientError.html">ClientError</a></li><li><a href="module-Reactator.ClientResponse.html">ClientResponse</a></li><li><a href="module-Reactator.ClientWrapper.html">ClientWrapper</a></li><li><a href="module-Reactator.CompositeRoutes.html">CompositeRoutes</a></li><li><a href="module-Reactator.DispatcherFactory.html">DispatcherFactory</a></li><li><a href="module-Reactator.jQuery.html">jQuery</a></li><li><a href="module-Reactator.MetaDataComponent.html">MetaDataComponent</a></li><li><a href="module-Reactator.ResponsiveComponent.html">ResponsiveComponent</a></li><li><a href="module-Reactator.RootRouteComponent.html">RootRouteComponent</a></li><li><a href="module-Reactator.Routes.html">Routes</a></li><li><a href="module-Reactator.Store.html">Store</a></li><li><a href="module-Reactator.U.html">U</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Feb 27 2016 17:08:39 GMT-0800 (PST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Nov 22 2016 22:55:30 GMT-0800 (PST)
 </footer>
 
 <script> prettyPrint(); </script>

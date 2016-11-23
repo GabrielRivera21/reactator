@@ -53,7 +53,7 @@ class ClientWrapper extends Client {
     /**
      * @param {Object} item item to create
      * @param {Object} settings settings for the ajax request
-     * @return {Q.Promise} deferred result of the request
+     * @return {Promise} deferred result of the request
      * @inheritdoc
      */
     create(item, settings) {
@@ -63,7 +63,7 @@ class ClientWrapper extends Client {
     /**
      * @param {String} id id of the item to read
      * @param {Object} settings settings for the ajax request
-     * @return {Q.Promise} deferred result of the request
+     * @return {Promise} deferred result of the request
      * @inheritdoc
      */
     read(id, settings) {
@@ -74,7 +74,7 @@ class ClientWrapper extends Client {
      * @param {String} id id of the item to update
      * @param {Object} item item to update to
      * @param {Object} settings settings for the ajax request
-     * @return {Q.Promise} deferred result of the request
+     * @return {Promise} deferred result of the request
      * @inheritdoc
      */
     update(id, item, settings) {
@@ -84,7 +84,7 @@ class ClientWrapper extends Client {
     /**
      * @param {String} id id of the item to delete
      * @param {Object} settings settings for the ajax request
-     * @return {Q.Promise} deferred result of the request
+     * @return {Promise} deferred result of the request
      * @inheritdoc
      */
     delete(id, settings) {
@@ -103,13 +103,13 @@ module.exports = ClientWrapper;
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Demo.html">Demo</a></li><li><a href="module-Reactator.html">Reactator</a></li></ul><h3>Classes</h3><ul><li><a href="module-Demo.AppLayout.html">AppLayout</a></li><li><a href="module-Demo.DemoRoutes.html">DemoRoutes</a></li><li><a href="module-Demo.ExampleModal.html">ExampleModal</a></li><li><a href="module-Demo.MainComponent.html">MainComponent</a></li><li><a href="module-Demo.MainRoutes.html">MainRoutes</a></li><li><a href="module-Demo.ProfileComponent.html">ProfileComponent</a></li><li><a href="module-Demo.ProfileRoutes.html">ProfileRoutes</a></li><li><a href="module-Reactator.AjaxClient.html">AjaxClient</a></li><li><a href="module-Reactator.AppAction.html">AppAction</a></li><li><a href="module-Reactator.AppConstants.html">AppConstants</a></li><li><a href="module-Reactator.AppDispatcher.html">AppDispatcher</a></li><li><a href="module-Reactator.AppStarter.html">AppStarter</a></li><li><a href="module-Reactator.AppStore.html">AppStore</a></li><li><a href="module-Reactator.BasicLayout.html">BasicLayout</a></li><li><a href="module-Reactator.BootstrapModal.html">BootstrapModal</a></li><li><a href="module-Reactator.BootstrapModalMixin.html">BootstrapModalMixin</a></li><li><a href="module-Reactator.Client.html">Client</a></li><li><a href="module-Reactator.ClientError.html">ClientError</a></li><li><a href="module-Reactator.ClientResponse.html">ClientResponse</a></li><li><a href="module-Reactator.ClientWrapper.html">ClientWrapper</a></li><li><a href="module-Reactator.CompositeRoutes.html">CompositeRoutes</a></li><li><a href="module-Reactator.DispatcherFactory.html">DispatcherFactory</a></li><li><a href="module-Reactator.jQuery.html">jQuery</a></li><li><a href="module-Reactator.MetaDataComponent.html">MetaDataComponent</a></li><li><a href="module-Reactator.Q.html">Q</a></li><li><a href="module-Reactator.ResponsiveComponent.html">ResponsiveComponent</a></li><li><a href="module-Reactator.RootRouteComponent.html">RootRouteComponent</a></li><li><a href="module-Reactator.Routes.html">Routes</a></li><li><a href="module-Reactator.Store.html">Store</a></li><li><a href="module-Reactator.U.html">U</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Demo.html">Demo</a></li><li><a href="module-Reactator.html">Reactator</a></li></ul><h3>Classes</h3><ul><li><a href="module-Demo.AppLayout.html">AppLayout</a></li><li><a href="module-Demo.DemoRoutes.html">DemoRoutes</a></li><li><a href="module-Demo.ExampleModal.html">ExampleModal</a></li><li><a href="module-Demo.MainComponent.html">MainComponent</a></li><li><a href="module-Demo.MainRoutes.html">MainRoutes</a></li><li><a href="module-Demo.ProfileComponent.html">ProfileComponent</a></li><li><a href="module-Demo.ProfileRoutes.html">ProfileRoutes</a></li><li><a href="module-Reactator.AjaxClient.html">AjaxClient</a></li><li><a href="module-Reactator.AppAction.html">AppAction</a></li><li><a href="module-Reactator.AppConstants.html">AppConstants</a></li><li><a href="module-Reactator.AppDispatcher.html">AppDispatcher</a></li><li><a href="module-Reactator.AppStarter.html">AppStarter</a></li><li><a href="module-Reactator.AppStore.html">AppStore</a></li><li><a href="module-Reactator.BasicLayout.html">BasicLayout</a></li><li><a href="module-Reactator.BootstrapModal.html">BootstrapModal</a></li><li><a href="module-Reactator.BootstrapModalMixin.html">BootstrapModalMixin</a></li><li><a href="module-Reactator.Client.html">Client</a></li><li><a href="module-Reactator.ClientError.html">ClientError</a></li><li><a href="module-Reactator.ClientResponse.html">ClientResponse</a></li><li><a href="module-Reactator.ClientWrapper.html">ClientWrapper</a></li><li><a href="module-Reactator.CompositeRoutes.html">CompositeRoutes</a></li><li><a href="module-Reactator.DispatcherFactory.html">DispatcherFactory</a></li><li><a href="module-Reactator.jQuery.html">jQuery</a></li><li><a href="module-Reactator.MetaDataComponent.html">MetaDataComponent</a></li><li><a href="module-Reactator.ResponsiveComponent.html">ResponsiveComponent</a></li><li><a href="module-Reactator.RootRouteComponent.html">RootRouteComponent</a></li><li><a href="module-Reactator.Routes.html">Routes</a></li><li><a href="module-Reactator.Store.html">Store</a></li><li><a href="module-Reactator.U.html">U</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.0</a> on Sat Feb 27 2016 17:08:39 GMT-0800 (PST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Nov 22 2016 22:55:30 GMT-0800 (PST)
 </footer>
 
 <script> prettyPrint(); </script>
