@@ -1,0 +1,14 @@
+language: node_js
+node_js:
+  - "6.3.1"
+before_install:
+  - npm -v
+  - node -v
+  - npm install -g babel-cli
+install:
+  - npm install
+script:
+  - npm run clean
+  - npm run lint
+  - npm run test
+  - npm run package
