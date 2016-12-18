@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/arminbhy/reactator.svg?branch=master)](https://travis-ci.org/arminbhy/reactator)
+
 # Reactator
 React & Flux Based Single Page Application Framework
 
