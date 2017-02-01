@@ -15,13 +15,13 @@ build:
         commands:
             - npm version patch --force --no-git-tag-version
         when:
-            event: local
+            event: local_npm
     realBump:
         image: arminbhy/node-babeljs
         commands:
             - npm version patch
         when:
-            event: publish
+            event: publish_npm
     package:
         image: arminbhy/node-babeljs
         commands:
@@ -34,6 +34,20 @@ build:
               echo "\n" >> README.md
               echo "# Published\n" >> README.md
               echo "`TZ=US/Pacific date`" >> README.md
+    build_docs:
+        image: arminbhy/node-babeljs
+        commands:
+            - npm run doc
+        when:
+            event: publish_gh_pages
+    prepare_gh_pages:
+        image: arminbhy/alpine-utils
+        commands:
+            - rm -rf .gh-pages
+            - git clone -b gh-pages --single-branch $$REPO .gh-pages/
+            - rsync --delete --exclude .git -r out/ .gh-pages/
+        when:
+            event: publish_gh_pages
 publish:
     npm:
         username: $$NPM_USERNAME
@@ -42,3 +56,5 @@ publish:
         registry: $$NPM_REGISTRY
         folder: dist/package
         always_auth: true
+        when:
+            event: npm
