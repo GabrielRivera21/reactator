@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: lib/lodash.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: lib/lodash.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import _ from 'lodash';
+import ClientError from '../client/ClientError.js';
+import HttpStatus from 'http-status-codes';
+
+function newError(message, defaultMessage, status, severity) {
+    if (!_.isUndefined(status)) {
+        const msg = !_.isUndefined(message) ? message : HttpStatus.getStatusText(status);
+        let options;
+
+        if (!_.isUndefined(severity)) {
+            options = {
+                severity: severity
+            };
+        }
+
+        return new ClientError(status, msg,  undefined, undefined, options);
+    } else {
+        return new Error(message || defaultMessage);
+    }
+}
+
+/**
+ * @namespace lodash
+ * @classdesc lodash
+ * @memberOf module:Reactator
+ */
+_.map({
+
+    /**
+     * @method module:Reactator.lodash#checkDefined
+     *
+     * @param {Object} obj object to check
+     * @param {String} message message
+     * @param {Number} status status
+     * @param {Number} severity severity
+     *
+     * @return {Object} the object
+     */
+    checkDefined(obj, message, status, severity) {
+        if (_.isNil(obj)) {
+            throw newError(message, 'Value is not defined!', status, severity);
+        }
+
+        return obj;
+    },
+
+    /**
+     * @method module:Reactator.lodash#checkNotDefined
+     *
+     * @param {Object} obj object to check
+     * @param {String} message message
+     * @param {Number} status status
+     * @param {Number} severity severity
+     *
+     * @return {Object} the object
+     */
+    checkNotDefined(obj, message, status, severity) {
+        if (!_.isNil(obj)) {
+            throw newError(message, 'Value is defined!', status, severity);
+        }
+
+        return obj;
+    },
+
+    /**
+     * @method module:Reactator.lodash#check
+     *
+     * @param {Boolean} value value to check
+     * @param {String} message message
+     * @param {Number} status status
+     * @param {Number} severity severity
+     *
+     * @return {Object} the object
+     */
+    check(value, message, status, severity) {
+        if (value !== true) {
+            throw newError(message, 'Value is not true!', status, severity);
+        }
+    },
+
+    /**
+     * @method module:Reactator.lodash#emptyToNull
+     *
+     * @param {String} value value to check
+     *
+     * @return {String} value or null if value is empty
+     */
+    emptyToNull(value) {
+        var trimmed = _.trim(value);
+
+        return _.isEmpty(trimmed) ? null : trimmed;
+    },
+
+    /**
+     * @method module:Reactator.lodash#nullToEmpty
+     *
+     * @param {String} value value to check
+     *
+     * @return {String} value or empty if null
+     */
+    nullToEmpty(value) {
+        return _.isNil(value) ? '' : value;
+    },
+
+    /**
+     * @method module:Reactator.lodash#getOnlyElement
+     *
+     * @param {Array} collection collection to get the first element of
+     *
+     * @return {Object} first element of the array
+     * @throws {Error} If collection is not an array and doesn't only have a single element
+     */
+    getOnlyElement(collection) {
+        if (!_.isArray(collection)) {
+            throw new Error('Collection has to be an array!');
+        }
+
+        const size = _.size(collection);
+
+        if (size === 1) {
+            return _.first(collection);
+        } else if (size === 0) {
+            throw new Error('Empty collection, while expecting one element!');
+        } else {
+            throw new Error('Expecting one element, got more!');
+        }
+    }
+}, (value, key) => {
+    _.mixin({
+        [key]: value
+    });
+});
+
+module.exports = _;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Reactator.html">Reactator</a></li></ul><h3>Classes</h3><ul><li><a href="module-Reactator.AjaxClient.html">AjaxClient</a></li><li><a href="module-Reactator.BasicLayout.html">BasicLayout</a></li><li><a href="module-Reactator.BootstrapModal.html">BootstrapModal</a></li><li><a href="module-Reactator.Client.html">Client</a></li><li><a href="module-Reactator.ClientError.html">ClientError</a></li><li><a href="module-Reactator.ClientResponse.html">ClientResponse</a></li><li><a href="module-Reactator.ClientWrapper.html">ClientWrapper</a></li><li><a href="module-Reactator.CompositeModule.html">CompositeModule</a></li><li><a href="module-Reactator.CompositeModuleBuilder.html">CompositeModuleBuilder</a></li><li><a href="module-Reactator.CompositeRoutes.html">CompositeRoutes</a></li><li><a href="module-Reactator.Context.html">Context</a></li><li><a href="module-Reactator.jQuery.html">jQuery</a></li><li><a href="module-Reactator.ReactatorApp.html">ReactatorApp</a></li><li><a href="module-Reactator.ReactatorModule.html">ReactatorModule</a></li><li><a href="module-Reactator.ReactLifeCycleCallback.html">ReactLifeCycleCallback</a></li><li><a href="module-Reactator.Reducer.html">Reducer</a></li><li><a href="module-Reactator.ReducerWrapper.html">ReducerWrapper</a></li><li><a href="module-Reactator.ReduxContainerBuilder.html">ReduxContainerBuilder</a></li><li><a href="module-Reactator.ReduxStoreBuilder.html">ReduxStoreBuilder</a></li><li><a href="module-Reactator.ResopnsiveConstants.html">ResopnsiveConstants</a></li><li><a href="module-Reactator.ResponsiveBundle.html">ResponsiveBundle</a></li><li><a href="module-Reactator.ResponsiveComponent.html">ResponsiveComponent</a></li><li><a href="module-Reactator.ResponsiveModule.html">ResponsiveModule</a></li><li><a href="module-Reactator.ResponsiveModuleComponent.html">ResponsiveModuleComponent</a></li><li><a href="module-Reactator.ResponsiveReducer.html">ResponsiveReducer</a></li><li><a href="module-Reactator.Routes.html">Routes</a></li><li><a href="module-Reactator.SerialCompositeModule.html">SerialCompositeModule</a></li><li><a href="module-Reactator.SimpleReducer.html">SimpleReducer</a></li><li><a href="ResponsiveContainer.html">ResponsiveContainer</a></li></ul><h3>Namespaces</h3><ul><li><a href="ActionConstants.html">ActionConstants</a></li><li><a href="module-Reactator.lodash.html">lodash</a></li><li><a href="module-Reactator.ReduxComponet.html">ReduxComponet</a></li><li><a href="module-Reactator.ResponsiveAction.html">ResponsiveAction</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jan 31 2017 22:53:22 GMT-0800 (PST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

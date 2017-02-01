@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: ResponsiveComponent</title>
+    <title>JSDoc: Class: SimpleReducer</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: ResponsiveComponent</h1>
+    <h1 class="page-title">Class: SimpleReducer</h1>
 
     
 
@@ -29,9 +29,9 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>ResponsiveComponent</h2>
+            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>SimpleReducer</h2>
         
-            <div class="class-description">redux component rendering the appropriate element based on window size</div>
+            <div class="class-description">Simple Reducer class taking a method and name on construction</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="ResponsiveComponent"><span class="type-signature"></span>new ResponsiveComponent<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="SimpleReducer"><span class="type-signature"></span>new SimpleReducer<span class="signature">(name, method)</span><span class="type-signature"></span></h4>
 
     
 
@@ -84,13 +84,13 @@
 
         <tr>
             
-                <td class="name"><code>props.visibility</code></td>
+                <td class="name"><code>name</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">ResponsiveConstants</span>
+<span class="param-type">String</span>
 
 
             
@@ -100,20 +100,20 @@
 
             
 
-            <td class="description last">PropTypes.string.isRequired</td>
+            <td class="description last">name of the reducer</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>props.XS</code></td>
+                <td class="name"><code>method</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">ReactElement</span>
+<span class="param-type">function</span>
 
 
             
@@ -123,99 +123,7 @@
 
             
 
-            <td class="description last">React.PropTypes.element</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>props.SM</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ReactElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">React.PropTypes.element</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>props.MD</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ReactElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">React.PropTypes.element</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>props.LG</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ReactElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">React.PropTypes.element</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>props.XL</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ReactElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">React.PropTypes.element</td>
+            <td class="description last">method to wrap as reducer</td>
         </tr>
 
     
@@ -256,7 +164,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_responsive_ResponsiveComponent.js.html">components/responsive/ResponsiveComponent.js</a>, <a href="components_responsive_ResponsiveComponent.js.html#line27">line 27</a>
+        <a href="reducers_Reducer.js.html">reducers/Reducer.js</a>, <a href="reducers_Reducer.js.html#line167">line 167</a>
     </li></ul></dd>
     
 
@@ -286,6 +194,17 @@
     </div>
 
     
+        <h3 class="subsection-title">Extends</h3>
+
+        
+
+
+    <ul>
+        <li><a href="module-Reactator.Reducer.html">module:Reactator.Reducer</a></li>
+    </ul>
+
+
+    
 
     
 
@@ -297,6 +216,296 @@
 
     
 
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="apply"><span class="type-signature"></span>apply<span class="signature">(state, action)</span><span class="type-signature"> &rarr; {Object}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Simply calls the method specified on the construction of the SimpleReducer.
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">current state</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>action</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">action</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-overrides">Overrides:</dt>
+    <dd class="tag-overrides"><ul class="dummy"><li>
+        <a href="module-Reactator.Reducer.html#apply">module:Reactator.Reducer#apply</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reducers_Reducer.js.html">reducers/Reducer.js</a>, <a href="reducers_Reducer.js.html#line180">line 180</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    new state
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Object</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="getName"><span class="type-signature"></span>getName<span class="signature">()</span><span class="type-signature"> &rarr; {String}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+    <dt class="inherited-from">Inherited From:</dt>
+    <dd class="inherited-from"><ul class="dummy"><li>
+        <a href="module-Reactator.Reducer.html#getName">module:Reactator.Reducer#getName</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="reducers_Reducer.js.html">reducers/Reducer.js</a>, <a href="reducers_Reducer.js.html#line71">line 71</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    name of the reducer
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">String</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
     
 
     

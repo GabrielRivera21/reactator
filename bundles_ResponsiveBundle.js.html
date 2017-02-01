@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: bundles/ResponsiveBundle.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,41 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: bundles/ResponsiveBundle.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import ReactatorBundle from '../ReactatorBundle.js';
+import ResponsiveModule from '../modules/ResponsiveModule.js';
+import ResponsiveReducer from '../reducers/ResponsiveReducer.js';
 
+// TEST:
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+/**
+ * @class
+ * @classdesc The responsive bundle installed for every app
+ * @memberOf module:Reactator
+ * @see module:Reactator.ReactatorApp
+ * @see module:Reactator.ResponsiveModule
+ * @see module:Reactator.ResponsiveReducer
+ */
+export default class ResponsiveBundle extends ReactatorBundle {
+    constructor() {
+        super([
+            new ResponsiveReducer()
+        ], [
+            new ResponsiveModule()
+        ]);
+    }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

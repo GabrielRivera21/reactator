@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: ResponsiveComponent</title>
+    <title>JSDoc: Class: ResponsiveContainer</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: ResponsiveComponent</h1>
+    <h1 class="page-title">Class: ResponsiveContainer</h1>
 
     
 
@@ -28,10 +28,9 @@
 
 <header>
     
-        <h2>
-            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>ResponsiveComponent</h2>
+        <h2>ResponsiveContainer</h2>
         
-            <div class="class-description">redux component rendering the appropriate element based on window size</div>
+            <div class="class-description">ResponsiveContainer mapping the 'responsive' state to module:Reactator.ResponsiveComponent</div>
         
     
 </header>
@@ -45,7 +44,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="ResponsiveComponent"><span class="type-signature"></span>new ResponsiveComponent<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ResponsiveContainer"><span class="type-signature"></span>new ResponsiveContainer<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -57,170 +56,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>props.visibility</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ResponsiveConstants</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">PropTypes.string.isRequired</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>props.XS</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ReactElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">React.PropTypes.element</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>props.SM</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ReactElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">React.PropTypes.element</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>props.MD</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ReactElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">React.PropTypes.element</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>props.LG</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ReactElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">React.PropTypes.element</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>props.XL</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ReactElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">React.PropTypes.element</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -256,7 +91,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_responsive_ResponsiveComponent.js.html">components/responsive/ResponsiveComponent.js</a>, <a href="components_responsive_ResponsiveComponent.js.html#line27">line 27</a>
+        <a href="containers_ResopnsiveContainer.js.html">containers/ResopnsiveContainer.js</a>, <a href="containers_ResopnsiveContainer.js.html#line19">line 19</a>
     </li></ul></dd>
     
 
@@ -279,6 +114,13 @@
 
 
 
+
+
+    <h5>Example</h5>
+    
+    <pre class="prettyprint"><code>&lt;ResponsiveContainer
+    XS={myAwesomeXSComponent}
+    XL={myAwesomeXLComponent} /></code></pre>
 
 
 

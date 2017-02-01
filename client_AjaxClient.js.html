@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: client/AjaxClient.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: client/AjaxClient.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import _ from '../lib/lodash.js';
+import Promise from 'bluebird';
+import $ from '../lib/jquery.js';
+import Client from './Client.js';
+import ClientError from './ClientError.js';
+import ClientResponse from './ClientResponse.js';
+
+//
+// Helper to return a Promise that returns ClientResponse or ClientError for an
+// ajax request.
+//
+const promise = ($ajax) => {
+    const getHeaders = () => {
+        const headers = {};
+
+        _.map(
+            $ajax.getAllResponseHeaders().trim().split('\n'),
+            (header) => {
+                var index = header.indexOf(':');
+
+                headers[header.substr(0, index).trim()] = header.substr(index + 1).trim();
+            }
+        );
+
+        return headers;
+    };
+
+    return Promise.resolve($ajax)
+        .then((response) => {
+            return new ClientResponse(response, $ajax.status, getHeaders());
+        }).catch((error) => {
+            throw new ClientError(error.status, error.responseText, $ajax);
+        });
+};
+
+/**
+ * @method module:Reactator.AjaxClient#ajax
+ * @description Helper for requesting the ajax and returning the promise
+ *
+ * @param {Object} base - base
+ * @param {Object} settings - settings for the request
+ * @param {Object} request - the request
+ *
+ * @return {Promise} promise for the request
+ */
+const ajax = (base, settings, request) => {
+    return promise($.ajax(_.extend({}, base, settings, request)));
+};
+
+/**
+ * @class
+ * @classdesc Class representing the implementation of the Client interface utilizing the jQuery's ajax.
+ * @extends {module:Reactator.Client}
+ * @memberOf module:Reactator
+ *
+ * @param {String} uri - uri to the resource
+ */
+class AjaxClient extends Client {
+    constructor(uri) {
+        super();
+
+        /** @member {String} */
+        this.uri = uri;
+    }
+
+    /**
+     * @method module:Reactator.AjaxClient#create
+     * @overrides
+     *
+     * @param {Object} item - item to create
+     * @param {Object} settings - settings for the ajax request
+     *
+     * @return {Promise} deferred result of the request
+     */
+    create(item, settings) {
+        return ajax(
+            {
+                dataType: 'json'
+            },
+            settings,
+            {
+                method: 'POST',
+                url: this.uri,
+                contentType: 'application/json',
+                data: JSON.stringify(item)
+            });
+    }
+
+    /**
+     * @method module:Reactator.AjaxClient#read
+     * @override
+     *
+     * @param {String} id - id of the item to read
+     * @param {Object} settings - settings for the ajax request
+     *
+     * @return {Promise} deferred result of the request
+     */
+    read(id, settings) {
+        return ajax(
+            {
+                dataType: 'json'
+            },
+            settings,
+            {
+                method: 'GET',
+                url: `${this.uri}/${id}`
+            });
+    }
+
+    /**
+     * @method module:Reactator.AjaxClient#update
+     * @override
+     *
+     * @param {String} id - id of the item to update
+     * @param {Object} item - item to update to
+     * @param {Object} settings - settings for the ajax request
+     *
+     * @return {Promise} deferred result of the request
+     */
+    update(id, item, settings) {
+        return ajax(
+            {
+                dataType: 'json'
+            },
+            settings,
+            {
+                method: 'PUT',
+                url: `${this.uri}/${id}`,
+                contentType: 'application/json',
+                data: JSON.stringify(item)
+            });
+    }
+
+    /**
+     * @method module:Reactator.AjaxClient#delete
+     * @override
+     *
+     * @param {String} id - id of the item to delete
+     * @param {Object} settings - settings for the ajax request
+     *
+     * @return {Promise} deferred result of the request
+     */
+    delete(id, settings) {
+        return ajax(
+            {
+                dataType: 'text'
+            },
+            settings,
+            {
+                method: 'DELETE',
+                url: `${this.uri}/${id}`
+            });
+    }
+}
+
+AjaxClient.ajax = ajax;
+module.exports = AjaxClient;
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Reactator.html">Reactator</a></li></ul><h3>Classes</h3><ul><li><a href="module-Reactator.AjaxClient.html">AjaxClient</a></li><li><a href="module-Reactator.BasicLayout.html">BasicLayout</a></li><li><a href="module-Reactator.BootstrapModal.html">BootstrapModal</a></li><li><a href="module-Reactator.Client.html">Client</a></li><li><a href="module-Reactator.ClientError.html">ClientError</a></li><li><a href="module-Reactator.ClientResponse.html">ClientResponse</a></li><li><a href="module-Reactator.ClientWrapper.html">ClientWrapper</a></li><li><a href="module-Reactator.CompositeModule.html">CompositeModule</a></li><li><a href="module-Reactator.CompositeModuleBuilder.html">CompositeModuleBuilder</a></li><li><a href="module-Reactator.CompositeRoutes.html">CompositeRoutes</a></li><li><a href="module-Reactator.Context.html">Context</a></li><li><a href="module-Reactator.jQuery.html">jQuery</a></li><li><a href="module-Reactator.ReactatorApp.html">ReactatorApp</a></li><li><a href="module-Reactator.ReactatorModule.html">ReactatorModule</a></li><li><a href="module-Reactator.ReactLifeCycleCallback.html">ReactLifeCycleCallback</a></li><li><a href="module-Reactator.Reducer.html">Reducer</a></li><li><a href="module-Reactator.ReducerWrapper.html">ReducerWrapper</a></li><li><a href="module-Reactator.ReduxContainerBuilder.html">ReduxContainerBuilder</a></li><li><a href="module-Reactator.ReduxStoreBuilder.html">ReduxStoreBuilder</a></li><li><a href="module-Reactator.ResopnsiveConstants.html">ResopnsiveConstants</a></li><li><a href="module-Reactator.ResponsiveBundle.html">ResponsiveBundle</a></li><li><a href="module-Reactator.ResponsiveComponent.html">ResponsiveComponent</a></li><li><a href="module-Reactator.ResponsiveModule.html">ResponsiveModule</a></li><li><a href="module-Reactator.ResponsiveModuleComponent.html">ResponsiveModuleComponent</a></li><li><a href="module-Reactator.ResponsiveReducer.html">ResponsiveReducer</a></li><li><a href="module-Reactator.Routes.html">Routes</a></li><li><a href="module-Reactator.SerialCompositeModule.html">SerialCompositeModule</a></li><li><a href="module-Reactator.SimpleReducer.html">SimpleReducer</a></li><li><a href="ResponsiveContainer.html">ResponsiveContainer</a></li></ul><h3>Namespaces</h3><ul><li><a href="ActionConstants.html">ActionConstants</a></li><li><a href="module-Reactator.lodash.html">lodash</a></li><li><a href="module-Reactator.ReduxComponet.html">ReduxComponet</a></li><li><a href="module-Reactator.ResponsiveAction.html">ResponsiveAction</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Tue Jan 31 2017 22:53:22 GMT-0800 (PST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

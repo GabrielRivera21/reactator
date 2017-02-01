@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Client</title>
+    <title>JSDoc: Class: CompositeModuleBuilder</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Client</h1>
+    <h1 class="page-title">Class: CompositeModuleBuilder</h1>
 
     
 
@@ -29,9 +29,9 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>Client</h2>
+            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>CompositeModuleBuilder</h2>
         
-            <div class="class-description">Class representing the common interface for the client.</div>
+            <div class="class-description">composite module builder</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="Client"><span class="type-signature"></span>new Client<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="CompositeModuleBuilder"><span class="type-signature"></span>new CompositeModuleBuilder<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -92,7 +92,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line32">line 32</a>
+        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line328">line 328</a>
     </li></ul></dd>
     
 
@@ -141,94 +141,18 @@
 
     
 
-    <h4 class="name" id="create"><span class="type-signature"></span>create<span class="signature">(item, settings)</span><span class="type-signature"> &rarr; {ClientResponse}</span></h4>
+    <h4 class="name" id="build"><span class="type-signature"></span>build<span class="signature">()</span><span class="type-signature"> &rarr; {CompositeModule}</span></h4>
 
     
 
 
 
-<div class="description">
-    Creates a new item in the resource container.
-</div>
 
 
 
 
 
 
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>item</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">item to create</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">settings for performing the create</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -264,7 +188,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line42">line 42</a>
+        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line412">line 412</a>
     </li></ul></dd>
     
 
@@ -285,42 +209,13 @@
 
 
 
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        on failure to perform the create
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">ClientError</span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
 
 
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
-    id of the newly created item (Promise)
+    composite module based on the current state of the builder
 </div>
 
 
@@ -331,7 +226,7 @@
     </dt>
     <dd>
         
-<span class="param-type">ClientResponse</span>
+<span class="param-type">CompositeModule</span>
 
 
     </dd>
@@ -346,15 +241,11 @@
 
     
 
-    <h4 class="name" id="delete"><span class="type-signature"></span>delete<span class="signature">(id, settings)</span><span class="type-signature"> &rarr; {ClientResponse}</span></h4>
+    <h4 class="name" id="withModule"><span class="type-signature"></span>withModule<span class="signature">(module)</span><span class="type-signature"> &rarr; {CompositeModuleBuilder}</span></h4>
 
     
 
 
-
-<div class="description">
-    Deletes an new item in the resource container.
-</div>
 
 
 
@@ -389,13 +280,13 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>module</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">ReactatorModule</span>
 
 
             
@@ -405,30 +296,7 @@
 
             
 
-            <td class="description last">id of the item</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">settings for performing the create</td>
+            <td class="description last">module to add to the composite module</td>
         </tr>
 
     
@@ -469,7 +337,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line91">line 91</a>
+        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line374">line 374</a>
     </li></ul></dd>
     
 
@@ -490,42 +358,13 @@
 
 
 
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        on failure to perform the delete operation
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">ClientError</span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
 
 
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
-    delete response (Promise)
+    this builder
 </div>
 
 
@@ -536,7 +375,7 @@
     </dt>
     <dd>
         
-<span class="param-type">ClientResponse</span>
+<span class="param-type">CompositeModuleBuilder</span>
 
 
     </dd>
@@ -551,97 +390,11 @@
 
     
 
-    <h4 class="name" id="MethodNotSupported"><span class="type-signature"></span>MethodNotSupported<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="withModules"><span class="type-signature"></span>withModules<span class="signature">(modules)</span><span class="type-signature"> &rarr; {CompositeModuleBuilder}</span></h4>
 
     
 
 
-
-<div class="description">
-    Simple Promise to throw method not implemented error.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line17">line 17</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="read"><span class="type-signature"></span>read<span class="signature">(id, settings)</span><span class="type-signature"> &rarr; {ClientResponse}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Reads an item represented by the id.
-</div>
 
 
 
@@ -676,13 +429,13 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>modules</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Array</span>
 
 
             
@@ -692,30 +445,7 @@
 
             
 
-            <td class="description last">id of the item to read</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">settings for performing the read</td>
+            <td class="description last">array of modules</td>
         </tr>
 
     
@@ -756,7 +486,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line56">line 56</a>
+        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line390">line 390</a>
     </li></ul></dd>
     
 
@@ -777,42 +507,13 @@
 
 
 
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        on failure to perform the read
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">ClientError</span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
 
 
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
-    item represented by the id (Promise)
+    this builder
 </div>
 
 
@@ -823,7 +524,7 @@
     </dt>
     <dd>
         
-<span class="param-type">ClientResponse</span>
+<span class="param-type">CompositeModuleBuilder</span>
 
 
     </dd>
@@ -838,15 +539,11 @@
 
     
 
-    <h4 class="name" id="update"><span class="type-signature"></span>update<span class="signature">(id, item, settings)</span><span class="type-signature"> &rarr; {ClientResponse}</span></h4>
+    <h4 class="name" id="withSerialModule"><span class="type-signature"></span>withSerialModule<span class="signature">(enabled)</span><span class="type-signature"> &rarr; {CompositeModuleBuilder}</span></h4>
 
     
 
 
-
-<div class="description">
-    Updates an existing item in the resource container.
-</div>
 
 
 
@@ -881,13 +578,13 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>enabled</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -897,53 +594,7 @@
 
             
 
-            <td class="description last">id of the item</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>item</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">item to update to</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">settings for performing the update</td>
+            <td class="description last">serial or not</td>
         </tr>
 
     
@@ -984,7 +635,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line73">line 73</a>
+        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line342">line 342</a>
     </li></ul></dd>
     
 
@@ -1005,42 +656,13 @@
 
 
 
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        on failure to perform the update
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">ClientError</span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
 
 
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
-    update response (Promise)
+    this builder
 </div>
 
 
@@ -1051,7 +673,156 @@
     </dt>
     <dd>
         
-<span class="param-type">ClientResponse</span>
+<span class="param-type">CompositeModuleBuilder</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="withTimeout"><span class="type-signature"></span>withTimeout<span class="signature">(timeout)</span><span class="type-signature"> &rarr; {CompositeModuleBuilder}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>timeout</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Number</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">timeout for the composite module</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line358">line 358</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    this builder
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">CompositeModuleBuilder</span>
 
 
     </dd>

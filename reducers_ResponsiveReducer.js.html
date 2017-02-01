@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: reducers/ResponsiveReducer.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,74 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: reducers/ResponsiveReducer.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import ResponsiveConstants from '../constants/ResponsiveConstants.js';
+import {Reducer, ReducerWrapper} from './Reducer.js';
 
+// TEST:
 
-    <h3> </h3>
+/**
+ * @class
+ * @classdesc Reducer for the ResponsiveActions, wraps the Reducer with ReducerWrapper
+ * @memberOf module:Reactator
+ * @extends {module:Reactator.Reducer}
+ * @example
+ * // State will be extended with
+ * state.responsive = {
+ *     visibility: ResponsiveConstants.,
+ *     width: ,
+ *     height:
+ * };
+ *
+ * @see module:Reactator.ResponsiveAction
+ * @see module:Reactator.ReducerWrapper
+ */
+export default class ResponsiveReducer extends Reducer {
+    constructor() {
+        super('responsive');
 
+        return new ReducerWrapper(this);
+    }
 
+    /**
+     * @method module:Reactator.ResponsiveReducer#apply
+     * @override
+     * @description apply the state
+     * @param {Object} state - current state
+     *
+     * @return {Object} state
+     */
+    apply(state = {visibility: ResponsiveConstants.MD, width: 960, height: 768}) {
+        return state;
+    }
 
-
-
-
-
-
-
-
-    
-
-
-
-
-
+    /**
+     * @method module:Reactator.ResponsiveReducer#SET_RESPONSIVE_VIEW
+     *
+     * @param {Object} state - current state
+     * @param {Object} action - action
+     *
+     * @return {Object} new state
+     */
+    SET_RESPONSIVE_VIEW(state, action) {
+        if(ResponsiveConstants.isValid(action.payload.visibility)) {
+            return action.payload;
+        } else {
+            return state;
+        }
+    }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

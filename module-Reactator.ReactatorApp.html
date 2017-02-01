@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: Client</title>
+    <title>JSDoc: Class: ReactatorApp</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: Client</h1>
+    <h1 class="page-title">Class: ReactatorApp</h1>
 
     
 
@@ -29,9 +29,9 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>Client</h2>
+            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>ReactatorApp</h2>
         
-            <div class="class-description">Class representing the common interface for the client.</div>
+            <div class="class-description">ReactatorApp helping to configure and start the app</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="Client"><span class="type-signature"></span>new Client<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ReactatorApp"><span class="type-signature"></span>new ReactatorApp<span class="signature">()</span><span class="type-signature"></span></h4>
 
     
 
@@ -92,12 +92,23 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line32">line 32</a>
+        <a href="ReactatorApp.js.html">ReactatorApp.js</a>, <a href="ReactatorApp.js.html#line56">line 56</a>
     </li></ul></dd>
     
 
     
 
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>module:Reactator.ReactatorBundle</li>
+        
+            <li><a href="module-Reactator.ReactatorModule.html">module:Reactator.ReactatorModule</a></li>
+        
+            <li><a href="module-Reactator.ReduxStoreBuilder.html">module:Reactator.ReduxStoreBuilder</a></li>
+        </ul>
+    </dd>
     
 
     
@@ -141,14 +152,14 @@
 
     
 
-    <h4 class="name" id="create"><span class="type-signature"></span>create<span class="signature">(item, settings)</span><span class="type-signature"> &rarr; {ClientResponse}</span></h4>
+    <h4 class="name" id="start"><span class="type-signature"></span>start<span class="signature">()</span><span class="type-signature"> &rarr; {undefined}</span></h4>
 
     
 
 
 
 <div class="description">
-    Creates a new item in the resource container.
+    Renders the app
 </div>
 
 
@@ -157,78 +168,6 @@
 
 
 
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>item</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">item to create</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">settings for performing the create</td>
-        </tr>
-
-    
-    </tbody>
-</table>
 
 
 
@@ -264,7 +203,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line42">line 42</a>
+        <a href="ReactatorApp.js.html">ReactatorApp.js</a>, <a href="ReactatorApp.js.html#line150">line 150</a>
     </li></ul></dd>
     
 
@@ -285,44 +224,11 @@
 
 
 
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        on failure to perform the create
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">ClientError</span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
 
 
 <h5>Returns:</h5>
 
         
-<div class="param-desc">
-    id of the newly created item (Promise)
-</div>
-
 
 
 <dl>
@@ -331,7 +237,7 @@
     </dt>
     <dd>
         
-<span class="param-type">ClientResponse</span>
+<span class="param-type">undefined</span>
 
 
     </dd>
@@ -346,15 +252,11 @@
 
     
 
-    <h4 class="name" id="delete"><span class="type-signature"></span>delete<span class="signature">(id, settings)</span><span class="type-signature"> &rarr; {ClientResponse}</span></h4>
+    <h4 class="name" id="withBundle"><span class="type-signature"></span>withBundle<span class="signature">(bundle)</span><span class="type-signature"> &rarr; {ReactatorApp}</span></h4>
 
     
 
 
-
-<div class="description">
-    Deletes an new item in the resource container.
-</div>
 
 
 
@@ -389,13 +291,13 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>bundle</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">ReactatorBundle</span>
 
 
             
@@ -405,30 +307,7 @@
 
             
 
-            <td class="description last">id of the item</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">settings for performing the create</td>
+            <td class="description last">bundle to configure with the app</td>
         </tr>
 
     
@@ -469,13 +348,20 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line91">line 91</a>
+        <a href="ReactatorApp.js.html">ReactatorApp.js</a>, <a href="ReactatorApp.js.html#line70">line 70</a>
     </li></ul></dd>
     
 
     
 
     
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li>module:Reactator.ReactatorBundle</li>
+        </ul>
+    </dd>
+    
 
     
 </dl>
@@ -490,42 +376,13 @@
 
 
 
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        on failure to perform the delete operation
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">ClientError</span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
 
 
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
-    delete response (Promise)
+    the app starter
 </div>
 
 
@@ -536,7 +393,7 @@
     </dt>
     <dd>
         
-<span class="param-type">ClientResponse</span>
+<span class="param-type">ReactatorApp</span>
 
 
     </dd>
@@ -551,96 +408,14 @@
 
     
 
-    <h4 class="name" id="MethodNotSupported"><span class="type-signature"></span>MethodNotSupported<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="withHistory"><span class="type-signature"></span>withHistory<span class="signature">(history)</span><span class="type-signature"> &rarr; {ReactatorApp}</span></h4>
 
     
 
 
 
 <div class="description">
-    Simple Promise to throw method not implemented error.
-</div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line17">line 17</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="read"><span class="type-signature"></span>read<span class="signature">(id, settings)</span><span class="type-signature"> &rarr; {ClientResponse}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Reads an item represented by the id.
+    Sets the hash setting, true to use hash, false to use html5 history
 </div>
 
 
@@ -676,13 +451,13 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>history</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">Boolean</span>
 
 
             
@@ -692,30 +467,7 @@
 
             
 
-            <td class="description last">id of the item to read</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">settings for performing the read</td>
+            <td class="description last">history to use or not to use</td>
         </tr>
 
     
@@ -756,7 +508,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line56">line 56</a>
+        <a href="ReactatorApp.js.html">ReactatorApp.js</a>, <a href="ReactatorApp.js.html#line120">line 120</a>
     </li></ul></dd>
     
 
@@ -777,42 +529,13 @@
 
 
 
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        on failure to perform the read
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">ClientError</span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
 
 
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
-    item represented by the id (Promise)
+    the app starter
 </div>
 
 
@@ -823,7 +546,7 @@
     </dt>
     <dd>
         
-<span class="param-type">ClientResponse</span>
+<span class="param-type">ReactatorApp</span>
 
 
     </dd>
@@ -838,15 +561,11 @@
 
     
 
-    <h4 class="name" id="update"><span class="type-signature"></span>update<span class="signature">(id, item, settings)</span><span class="type-signature"> &rarr; {ClientResponse}</span></h4>
+    <h4 class="name" id="withModule"><span class="type-signature"></span>withModule<span class="signature">(method)</span><span class="type-signature"> &rarr; {ReactatorApp}</span></h4>
 
     
 
 
-
-<div class="description">
-    Updates an existing item in the resource container.
-</div>
 
 
 
@@ -881,13 +600,13 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>method</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type">function</span>
 
 
             
@@ -897,53 +616,7 @@
 
             
 
-            <td class="description last">id of the item</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>item</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">item to update to</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">settings for performing the update</td>
+            <td class="description last">method to be called with the module builder for the app</td>
         </tr>
 
     
@@ -984,7 +657,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line73">line 73</a>
+        <a href="ReactatorApp.js.html">ReactatorApp.js</a>, <a href="ReactatorApp.js.html#line105">line 105</a>
     </li></ul></dd>
     
 
@@ -1005,42 +678,13 @@
 
 
 
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        on failure to perform the update
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">ClientError</span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
 
 
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
-    update response (Promise)
+    the app starter
 </div>
 
 
@@ -1051,7 +695,316 @@
     </dt>
     <dd>
         
-<span class="param-type">ClientResponse</span>
+<span class="param-type">ReactatorApp</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="withRoutes"><span class="type-signature"></span>withRoutes<span class="signature">(routes)</span><span class="type-signature"> &rarr; {ReactatorApp}</span></h4>
+
+    
+
+
+
+<div class="description">
+    Sets the routes to start the app with
+</div>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>routes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Route</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">routes to start the app with</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ReactatorApp.js.html">ReactatorApp.js</a>, <a href="ReactatorApp.js.html#line135">line 135</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    the app starter
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">ReactatorApp</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="withStore"><span class="type-signature"></span>withStore<span class="signature">(method)</span><span class="type-signature"> &rarr; {ReactatorApp}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>method</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">method to be called with the <a href="module-Reactator.ReduxStoreBuilder.html">store builder</a> for the app</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ReactatorApp.js.html">ReactatorApp.js</a>, <a href="ReactatorApp.js.html#line89">line 89</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="module-Reactator.ReduxStoreBuilder.html">module:Reactator.ReduxStoreBuilder</a></li>
+        </ul>
+    </dd>
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    the app starter
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">ReactatorApp</span>
 
 
     </dd>

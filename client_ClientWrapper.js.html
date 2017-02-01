@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: client/ClientWrapper.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,95 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: client/ClientWrapper.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import Client from './Client.js';
 
+/**
+ * @class
+ * @classdesc Class wrapping the {@link module:Reactator.Client}
+ * @memberOf module:Reactator
+ *
+ * @param {Client} client - client to decorate
+ */
+class ClientWrapper extends Client {
+    /* eslint no-unused-vars: 0 */
+    constructor(client) {
+        super();
 
-    <h3> </h3>
+        if (!(client instanceof Client)) {
+            throw new Error('ClientWrapper can only wrap instance of the Client.');
+        }
 
+        /** @member {Client} */
+        this.client = client;
+    }
 
+    /**
+     * @method module:Reactator.ClientWrapper#create
+     * @overrides
+     *
+     * @param {Object} item - item to create
+     * @param {Object} settings - settings for the ajax request
+     *
+     * @return {Promise} deferred result of the request
+     */
+    create(item, settings) {
+        return this.client.create(item, settings);
+    }
 
+    /**
+     * @method module:Reactator.ClientWrapper#read
+     * @overrides
+     *
+     * @param {String} id - id of the item to read
+     * @param {Object} settings - settings for the ajax request
+     *
+     * @return {Promise} deferred result of the request
+     */
+    read(id, settings) {
+        return this.client.read(id, settings);
+    }
 
+    /**
+     * @method module:Reactator.ClientWrapper#update
+     * @overrides
+     *
+     * @param {String} id - id of the item to update
+     * @param {Object} item - item to update to
+     * @param {Object} settings - settings for the ajax request
+     *
+     * @return {Promise} deferred result of the request
+     */
+    update(id, item, settings) {
+        return this.client.update(id, item, settings);
+    }
 
+    /**
+     * @method module:Reactator.ClientWrapper#delete
+     * @overrides
+     *
+     * @param {String} id - id of the item to delete
+     * @param {Object} settings - settings for the ajax request
+     *
+     * @return {Promise} deferred result of the request
+     */
+    delete(id, settings) {
+        return this.client.delete(id, settings);
+    }
+}
 
-
-
-
-
-    
-
-
-
-
-
+module.exports = ClientWrapper;
+</code></pre>
+        </article>
+    </section>
 
 
 

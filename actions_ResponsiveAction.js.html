@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: actions/ResponsiveAction.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,41 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: actions/ResponsiveAction.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import ActionConstants from '../constants/ActionConstants.js';
+import {createAction} from 'redux-actions';
 
+/**
+ * @namespace ResponsiveAction
+ * @classdesc ResponsiveAction
+ * @memberOf module:Reactator
+ */
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+/**
+ * @method module:Reactator.ResponsiveAction#setResponsiveViewAction
+ *
+ * @example
+ * dispatch(setResponsiveViewAction({
+ *     visibility: visibility,
+ *     width: window.innerWidth,
+ *     height: window.innerHeight
+ * }));
+ *
+ * @return {Object} action representing ActionConstants.SET_RESPONSIVE_VIEW
+ * @see module:Reactator.ActionConstants
+ */
+export const setResponsiveViewAction = createAction(ActionConstants.SET_RESPONSIVE_VIEW);
+</code></pre>
+        </article>
+    </section>
 
 
 

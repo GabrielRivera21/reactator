@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: ResponsiveComponent</title>
+    <title>JSDoc: Namespace: ReduxComponet</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: ResponsiveComponent</h1>
+    <h1 class="page-title">Namespace: ReduxComponet</h1>
 
     
 
@@ -29,9 +29,9 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>ResponsiveComponent</h2>
+            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>ReduxComponet</h2>
         
-            <div class="class-description">redux component rendering the appropriate element based on window size</div>
+            <div class="class-description">ReduxComponet</div>
         
     
 </header>
@@ -41,11 +41,75 @@
     
         
 
-    
-    <h2>Constructor</h2>
+        
+
+
+<dl class="details">
+
     
 
-    <h4 class="name" id="ResponsiveComponent"><span class="type-signature"></span>new ResponsiveComponent<span class="signature">()</span><span class="type-signature"></span></h4>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="components_ReduxComponent.js.html">components/ReduxComponent.js</a>, <a href="components_ReduxComponent.js.html#line9">line 9</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="ReduxComponet"><span class="type-signature"></span>ReduxComponet<span class="signature">(props, func)</span><span class="type-signature"> &rarr; {function}</span></h4>
 
     
 
@@ -84,13 +148,13 @@
 
         <tr>
             
-                <td class="name"><code>props.visibility</code></td>
+                <td class="name"><code>props</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">ResponsiveConstants</span>
+<span class="param-type">Object</span>
 
 
             
@@ -100,20 +164,20 @@
 
             
 
-            <td class="description last">PropTypes.string.isRequired</td>
+            <td class="description last">props for the component</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>props.XS</code></td>
+                <td class="name"><code>func</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">ReactElement</span>
+<span class="param-type">function</span>
 
 
             
@@ -123,99 +187,7 @@
 
             
 
-            <td class="description last">React.PropTypes.element</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>props.SM</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ReactElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">React.PropTypes.element</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>props.MD</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ReactElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">React.PropTypes.element</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>props.LG</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ReactElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">React.PropTypes.element</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>props.XL</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ReactElement</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">React.PropTypes.element</td>
+            <td class="description last">the render method</td>
         </tr>
 
     
@@ -256,7 +228,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="components_responsive_ResponsiveComponent.js.html">components/responsive/ResponsiveComponent.js</a>, <a href="components_responsive_ResponsiveComponent.js.html#line27">line 27</a>
+        <a href="components_ReduxComponent.js.html">components/ReduxComponent.js</a>, <a href="components_ReduxComponent.js.html#line15">line 15</a>
     </li></ul></dd>
     
 
@@ -279,24 +251,41 @@
 
 
 
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    function with propTypes set properly for react-redux
+</div>
 
 
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
 
     
-    </div>
 
+
+    <h5>Example</h5>
     
+    <pre class="prettyprint"><code>export default ReduxComponent({
+    foo: PropTypes.string.isRequired
+}, (props) => {
+    return &lt;div>{this.props.foo}&lt;/div>;
+});</code></pre>
 
-    
 
-    
 
-     
-
-    
-
-    
-
+        
     
 
     

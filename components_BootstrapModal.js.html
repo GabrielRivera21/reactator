@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: components/BootstrapModal.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,81 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: components/BootstrapModal.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import React from 'react';
+import ReactDOM from 'react-dom';
+import $ from '../lib/jquery.js';
 
+/**
+ * @class
+ * @classdesc React component BootstrapModal
+ * @memberOf module:Reactator
+ *
+ * @example
+ * &lt;BootstrapModal
+ *     handleHideModal={::this.handleHideModal}
+ *     header={headerElement}
+ *     body={bodyElement}
+ *     footer={footerElement} />
+ *
+ * &lt;BootstrapModal handleHideModal={::this.handleHideModal}>
+ *     {headerElement}
+ *     {bodyElement}
+ *     {footerElement}
+ * &lt;/BootstrapModal>
+ */
+export default class BootstrapModal extends React.PureComponent {
+    static propTypes = {
+        handleHideModal: React.PropTypes.func.isRequired,
+        header: React.PropTypes.element,
+        body: React.PropTypes.element,
+        footer: React.PropTypes.element
+    }
 
-    <h3> </h3>
+    componentDidMount() {
+        const domNode = $(ReactDOM.findDOMNode(this));
 
+        domNode.modal('show');
+        domNode.on('hidden.bs.modal', this.props.handleHideModal);
+    }
 
+    componentWillUnmount() {
+        $(ReactDOM.findDOMNode(this)).modal('hide');
+    }
 
+    render() {
+        let i = 0;
 
-
-
-
-
-
-
-    
-
-
-
-
-
+        return (
+            &lt;div className="modal fade">
+                &lt;div className="modal-dialog">
+                    &lt;div className="modal-content">
+                        &lt;div className="modal-header">
+                            {this.props.header || this.props.children[i++]}
+                        &lt;/div>
+                        &lt;div className="modal-body">
+                            {this.props.body || this.props.children[i++]}
+                        &lt;/div>
+                        &lt;div className="modal-footer">
+                            {this.props.footer || this.props.children[i++]}
+                        &lt;/div>
+                    &lt;/div>
+                &lt;/div>
+            &lt;/div>
+        );
+    }
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: routes/CompositeRoutes.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,63 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: routes/CompositeRoutes.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import _ from '../lib/lodash.js';
+import Routes from './Routes.js';
 
+// TEST:
 
-    <h3> </h3>
+/**
+ * @class
+ * @classdesc the composite view of routes
+ * @extends {module:Reactator.Routes}
+ * @memberOf module:Reactator
+ *
+ * @param {Array} routes array of routes
+ */
+class CompositeRoutes extends Routes {
+    constructor(routes) {
+        super();
 
+        /** @member {Array} */
+        this.routes = routes;
+    }
 
+    /**
+     * @method module:Reactator.CompositeRoutes#initialize
+     * @override
+     * @description Initializes all routes
+     *
+     * @return {undefined}
+     */
+    initialize() {
+        _.map(this.routes, (r) => r.initialize());
+    }
 
+    /**
+     * @method module:Reactator.CompositeRoutes#getRoutes
+     * @override
+     * @description Returns array of routes
+     *
+     * @return {Array} array of the routes
+     */
+    getRoutes() {
+        return _.map(this.routes, (r) => r.getRoutes());
+    }
+}
 
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = CompositeRoutes;
+</code></pre>
+        </article>
+    </section>
 
 
 

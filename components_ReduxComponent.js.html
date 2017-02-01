@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: components/ReduxComponent.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,44 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: components/ReduxComponent.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>// TEST:
 
+/**
+ * @namespace ReduxComponet
+ * @classdesc ReduxComponet
+ * @memberOf module:Reactator
+ */
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+/**
+ * @method module:Reactator.ReduxComponet#ReduxComponet
+ *
+ * @example
+ * export default ReduxComponent({
+ *     foo: PropTypes.string.isRequired
+ * }, (props) => {
+ *     return &lt;div>{this.props.foo}&lt;/div>;
+ * });
+ *
+ * @param {Object} props - props for the component
+ * @param {function} func - the render method
+ * @return {function} function with propTypes set properly for react-redux
+ */
+export default function ReduxComponet(props, func) {
+    func.propTypes = props;
+    return func;
+}
+</code></pre>
+        </article>
+    </section>
 
 
 

@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: client/ClientResponse.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,41 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: client/ClientResponse.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @class
+ * @classdesc Class representing the ClientResponse returned by the {@link module:Reactator.Client}
+ * @memberOf module:Reactator
+ *
+ * @param {Object} value - value of the response
+ * @param {Number} status - status of the response
+ * @param {Object} metaData - any meta data associated with the response
+ */
+class ClientResponse {
+    constructor(value, status, metaData) {
+        /** @member {Object} */
+        this.value = value;
 
+        /** @member {Number} */
+        this.status = status;
 
-    <h3> </h3>
+        /** @member {Object} */
+        this.metaData = metaData || {};
+    }
+}
 
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = ClientResponse;
+</code></pre>
+        </article>
+    </section>
 
 
 

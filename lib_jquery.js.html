@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Home</title>
+    <title>JSDoc: Source: lib/jquery.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,32 +17,35 @@
 
 <div id="main">
 
-    <h1 class="page-title">Home</h1>
+    <h1 class="page-title">Source: lib/jquery.js</h1>
 
     
 
 
 
     
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/**
+ * @class jQuery
+ * @classdesc Wrapper for getting jQuery and all its plugins
+ * @memberOf module:Reactator
+ */
+import jQuery from 'jquery';
 
+if(typeof window !== 'undefined')  {
+    window.$ = global.$ = global.jQuery = jQuery;
+    window.Tether = global.Tether = require('tether');
+    require('bootstrap');
+} else {
+    global.$ = global.jQuery = jQuery;
+    global.Tether = require('tether');
+}
 
-    <h3> </h3>
-
-
-
-
-
-
-
-
-
-
-    
-
-
-
-
-
+module.exports = jQuery;
+</code></pre>
+        </article>
+    </section>
 
 
 
