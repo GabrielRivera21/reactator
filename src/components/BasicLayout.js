@@ -10,7 +10,7 @@ import React from 'react';
 export default class BasicLayout extends React.PureComponent {
     render() {
         return (
-          <div className='w-100'>
+          <div  style={{width: '100%'}}>
             {this.props.children}
           </div>
         );

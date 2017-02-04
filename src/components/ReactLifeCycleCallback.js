@@ -78,6 +78,6 @@ export default class ReactLifeCycleCallback extends React.PureComponent {
     }
 
     render() {
-        return <div className='w-100'>{this.props.children}</div>;
+        return <div style={{width: '100%'}}>{this.props.children}</div>;
     }
 }

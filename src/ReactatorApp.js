@@ -18,12 +18,15 @@ import ResponsiveBundle from './bundles/ResponsiveBundle.js';
  * @memberOf module:Reactator
  * @classdesc ReactatorApp helping to configure and start the app
  *
+ * @param {Object} options options for initialization
+ * @param {Boolean} options.responsiveBootstrap if responsive bootstrap should be enabled or not
+ *
  * @see module:Reactator.ReactatorBundle
  * @see module:Reactator.ReactatorModule
  * @see module:Reactator.ReduxStoreBuilder
  */
 class ReactatorApp {
-    constructor() {
+    constructor(options = {responsiveBootstrap: true}) {
         this.routes = undefined;
         this.history = browserHistory;
         this.store = undefined;
@@ -31,7 +34,10 @@ class ReactatorApp {
         this.moduleBuilder = new CompositeModuleBuilder();
         this.storeBuilder = new ReduxStoreBuilder().withReactRouter();
 
-        this.withBundle(new ResponsiveBundle());
+
+        if (options.responsiveBootstrap) {
+            this.withBundle(new ResponsiveBundle());
+        }
     }
 
     /**
