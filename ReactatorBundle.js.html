@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/responsive/ResponsiveComponent.js</title>
+    <title>JSDoc: Source: ReactatorBundle.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/responsive/ResponsiveComponent.js</h1>
+    <h1 class="page-title">Source: ReactatorBundle.js</h1>
 
     
 
@@ -26,45 +26,24 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import _ from '../../lib/lodash.js';
-import React, {PropTypes} from 'react';
-import ResponsiveConstants from '../../constants/ResponsiveConstants.js';
-import ReduxComponent from '../ReduxComponent.js';
-
-// TEST:
-
-/**
- * @class ResponsiveComponent
- * @classdesc redux component rendering the appropriate element based on window size
+            <pre class="prettyprint source linenums"><code>/**
+ * @class
  * @memberOf module:Reactator
+ * @classdesc ReactatorBundle defining all the modules and reducers to be installed as a bundle
  *
- * @param {ResponsiveConstants} props.visibility - PropTypes.string.isRequired
- * @param {ReactElement} props.XS - React.PropTypes.element
- * @param {ReactElement} props.SM - React.PropTypes.element
- * @param {ReactElement} props.MD - React.PropTypes.element
- * @param {ReactElement} props.LG - React.PropTypes.element
- * @param {ReactElement} props.XL - React.PropTypes.element
+ * @param {Array} reducers - list of reducers for the bundle
+ * @param {Array} modules - list of modules for the bundle
+ *
+ *
+ * @see module:Reactator.Reducer
+ * @see module:Reactator.ReactatorModule
  */
-export default ReduxComponent({
-    visibility: PropTypes.string.isRequired,
-    XS: React.PropTypes.element,
-    SM: React.PropTypes.element,
-    MD: React.PropTypes.element,
-    LG: React.PropTypes.element,
-    XL: React.PropTypes.element
-}, (props) => {
-    const visibilityValue = ResponsiveConstants.value(props.visibility);
-
-    for (let value = visibilityValue; value >= ResponsiveConstants.MIN_VALUE; --value) {
-        const name = ResponsiveConstants.name(value);
-
-        if (!_.isNil(props[name])) {
-            return props[name];
-        }
+export default class ReactatorBundle {
+    constructor(reducers, modules) {
+        this.reducers = reducers;
+        this.modules = modules;
     }
-
-    return &lt;div />;
-});
+}
 </code></pre>
         </article>
     </section>
