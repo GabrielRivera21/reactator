@@ -1,6 +1,6 @@
 {
   "name": "reactator",
-  "version": "3.0.2",
+  "version": "3.0.3",
   "description": "Single Page Application based on React, ReactRouter & Redux.",
   "author": "Armin Bahramshahry",
   "repository": {
