@@ -65,7 +65,7 @@ class ReactatorApp {
      */
     withStore(method) {
         method(this.storeBuilder);
-        return this.storeBuilder;
+        return this;
     }
 
     /**
