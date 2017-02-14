@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/responsive/ResponsiveComponent.js</title>
+    <title>JSDoc: Namespace: ReactatorActionFactoryHelpers</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,57 +17,254 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/responsive/ResponsiveComponent.js</h1>
+    <h1 class="page-title">Namespace: ReactatorActionFactoryHelpers</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import _ from '../../lib/lodash.js';
-import React, {PropTypes} from 'react';
-import ResponsiveConstants from '../../constants/ResponsiveConstants.js';
-import ReduxComponent from '../ReduxComponent.js';
+        <h2>
+            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>ReactatorActionFactoryHelpers</h2>
+        
+            <div class="class-description">ReactatorActionFactoryHelpers</div>
+        
+    
+</header>
 
-// TEST:
+<article>
+    <div class="container-overview">
+    
+        
 
-/**
- * @class ResponsiveComponent
- * @classdesc redux component rendering the appropriate element based on window size
- * @memberOf module:Reactator
- *
- * @param {ResponsiveConstants} props.visibility - PropTypes.string.isRequired
- * @param {ReactElement} props.XS - React.PropTypes.element
- * @param {ReactElement} props.SM - React.PropTypes.element
- * @param {ReactElement} props.MD - React.PropTypes.element
- * @param {ReactElement} props.LG - React.PropTypes.element
- * @param {ReactElement} props.XL - React.PropTypes.element
- */
-export default ReduxComponent({
-    visibility: PropTypes.string.isRequired,
-    XS: React.PropTypes.element,
-    SM: React.PropTypes.element,
-    MD: React.PropTypes.element,
-    LG: React.PropTypes.element,
-    XL: React.PropTypes.element
-}, (props) => {
-    const visibilityValue = ResponsiveConstants.value(props.visibility);
+        
 
-    for (let value = visibilityValue; value >= ResponsiveConstants.MIN_VALUE; --value) {
-        const name = ResponsiveConstants.name(value);
 
-        if (!_.isNil(props[name])) {
-            return props[name];
-        }
-    }
+<dl class="details">
 
-    return &lt;div />;
-});
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actions_ActionFactory.js.html">actions/ActionFactory.js</a>, <a href="actions_ActionFactory.js.html#line126">line 126</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="asActionFactory"><span class="type-signature"></span>asActionFactory<span class="signature">(obj)</span><span class="type-signature"> &rarr; {<a href="module-Reactator.ActionFactory.html">module:Reactator.ActionFactory</a>}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>obj</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-Reactator.ActionFactory.html">module:Reactator.ActionFactory</a></span>
+|
+
+<span class="param-type">function</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">actionFactory or function</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actions_ActionFactory.js.html">actions/ActionFactory.js</a>, <a href="actions_ActionFactory.js.html#line132">line 132</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    action factory
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type"><a href="module-Reactator.ActionFactory.html">module:Reactator.ActionFactory</a></span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
@@ -81,7 +278,7 @@ export default ReduxComponent({
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Feb 13 2017 21:59:36 GMT-0800 (PST)
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Feb 13 2017 21:59:37 GMT-0800 (PST)
 </footer>
 
 <script> prettyPrint(); </script>

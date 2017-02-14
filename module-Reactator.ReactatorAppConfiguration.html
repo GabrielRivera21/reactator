@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: CompositeModuleBuilder</title>
+    <title>JSDoc: Class: ReactatorAppConfiguration</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: CompositeModuleBuilder</h1>
+    <h1 class="page-title">Class: ReactatorAppConfiguration</h1>
 
     
 
@@ -29,9 +29,9 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>CompositeModuleBuilder</h2>
+            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>ReactatorAppConfiguration</h2>
         
-            <div class="class-description">composite module builder</div>
+            <div class="class-description">ReactatorAppConfiguration configure for the app</div>
         
     
 </header>
@@ -45,7 +45,7 @@
     <h2>Constructor</h2>
     
 
-    <h4 class="name" id="CompositeModuleBuilder"><span class="type-signature"></span>new CompositeModuleBuilder<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ReactatorAppConfiguration"><span class="type-signature"></span>new ReactatorAppConfiguration<span class="signature">(params)</span><span class="type-signature"></span></h4>
 
     
 
@@ -57,6 +57,196 @@
 
 
 
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">parameters for the app configuration
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>routes</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-Reactator.Routes.html">module:Reactator.Routes</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">routes for the app</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>actionFactories</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">actions by name</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>history</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">history to use for the react router</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>moduleBuilder</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-Reactator.ReactatorModule.html">module:Reactator.ReactatorModule</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">module builder</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>storeBuilder</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><a href="module-Reactator.ReduxStoreBuilder.html">module:Reactator.ReduxStoreBuilder</a></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">store builder</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
 
 
 
@@ -92,12 +282,23 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line331">line 331</a>
+        <a href="ReactatorAppConfiguration.js.html">ReactatorAppConfiguration.js</a>, <a href="ReactatorAppConfiguration.js.html#line50">line 50</a>
     </li></ul></dd>
     
 
     
 
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="module-Reactator.ReactatorBundle.html">module:Reactator.ReactatorBundle</a></li>
+        
+            <li><a href="module-Reactator.ReactatorModule.html">module:Reactator.ReactatorModule</a></li>
+        
+            <li><a href="module-Reactator.ReduxStoreBuilder.html">module:Reactator.ReduxStoreBuilder</a></li>
+        </ul>
+    </dd>
     
 
     
@@ -141,7 +342,7 @@
 
     
 
-    <h4 class="name" id="build"><span class="type-signature"></span>build<span class="signature">()</span><span class="type-signature"> &rarr; {CompositeModule}</span></h4>
+    <h4 class="name" id="newStore"><span class="type-signature"></span>newStore<span class="signature">()</span><span class="type-signature"> &rarr; {Object}</span></h4>
 
     
 
@@ -188,7 +389,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line415">line 415</a>
+        <a href="ReactatorAppConfiguration.js.html">ReactatorAppConfiguration.js</a>, <a href="ReactatorAppConfiguration.js.html#line73">line 73</a>
     </li></ul></dd>
     
 
@@ -215,7 +416,7 @@
 
         
 <div class="param-desc">
-    composite module based on the current state of the builder
+    redux store
 </div>
 
 
@@ -226,603 +427,7 @@
     </dt>
     <dd>
         
-<span class="param-type">CompositeModule</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="withModule"><span class="type-signature"></span>withModule<span class="signature">(module)</span><span class="type-signature"> &rarr; {CompositeModuleBuilder}</span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>module</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">ReactatorModule</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">module to add to the composite module</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line377">line 377</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    this builder
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">CompositeModuleBuilder</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="withModules"><span class="type-signature"></span>withModules<span class="signature">(modules)</span><span class="type-signature"> &rarr; {CompositeModuleBuilder}</span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>modules</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Array</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">array of modules</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line393">line 393</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    this builder
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">CompositeModuleBuilder</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="withSerialModule"><span class="type-signature"></span>withSerialModule<span class="signature">(enabled)</span><span class="type-signature"> &rarr; {CompositeModuleBuilder}</span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>enabled</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">serial or not</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line345">line 345</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    this builder
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">CompositeModuleBuilder</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="withTimeout"><span class="type-signature"></span>withTimeout<span class="signature">(timeout)</span><span class="type-signature"> &rarr; {CompositeModuleBuilder}</span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>timeout</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Number</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">timeout for the composite module</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line361">line 361</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    this builder
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">CompositeModuleBuilder</span>
+<span class="param-type">Object</span>
 
 
     </dd>

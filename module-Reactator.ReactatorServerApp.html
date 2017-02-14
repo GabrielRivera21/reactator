@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: AjaxClient</title>
+    <title>JSDoc: Class: ReactatorServerApp</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: AjaxClient</h1>
+    <h1 class="page-title">Class: ReactatorServerApp</h1>
 
     
 
@@ -29,9 +29,7 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>AjaxClient</h2>
-        
-            <div class="class-description">Class representing the implementation of the Client interface utilizing the jQuery's ajax.</div>
+            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>ReactatorServerApp</h2>
         
     
 </header>
@@ -42,10 +40,8 @@
         
 
     
-    <h2>Constructor</h2>
-    
 
-    <h4 class="name" id="AjaxClient"><span class="type-signature"></span>new AjaxClient<span class="signature">(uri)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="ReactatorServerApp"><span class="type-signature"></span>new ReactatorServerApp<span class="signature">(configuration)</span><span class="type-signature"></span></h4>
 
     
 
@@ -84,13 +80,13 @@
 
         <tr>
             
-                <td class="name"><code>uri</code></td>
+                <td class="name"><code>configuration</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">String</span>
+<span class="param-type"><a href="module-Reactator.ReactatorAppConfiguration.html">module:Reactator.ReactatorAppConfiguration</a></span>
 
 
             
@@ -100,7 +96,7 @@
 
             
 
-            <td class="description last">uri to the resource</td>
+            <td class="description last">app configuration</td>
         </tr>
 
     
@@ -141,12 +137,21 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_AjaxClient.js.html">client/AjaxClient.js</a>, <a href="client_AjaxClient.js.html#line84">line 84</a>
+        <a href="ReactatorServerApp.js.html">ReactatorServerApp.js</a>, <a href="ReactatorServerApp.js.html#line50">line 50</a>
     </li></ul></dd>
     
 
     
 
+    
+    <dt class="tag-see">See:</dt>
+    <dd class="tag-see">
+        <ul>
+            <li><a href="module-Reactator.ReactatorAppConfiguration.html">module:Reactator.ReactatorAppConfiguration</a></li>
+        
+            <li><a href="module-Reactator.ReactatorAppConfigurationBuillder.html">module:Reactator.ReactatorAppConfigurationBuillder</a></li>
+        </ul>
+    </dd>
     
 
     
@@ -171,17 +176,6 @@
     </div>
 
     
-        <h3 class="subsection-title">Extends</h3>
-
-        
-
-
-    <ul>
-        <li><a href="module-Reactator.Client.html">module:Reactator.Client</a></li>
-    </ul>
-
-
-    
 
     
 
@@ -201,15 +195,11 @@
 
     
 
-    <h4 class="name" id="ajax"><span class="type-signature"></span>ajax<span class="signature">(base, settings, request)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="createActions"><span class="type-signature"></span>createActions<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
 
-
-<div class="description">
-    Helper for requesting the ajax and returning the promise
-</div>
 
 
 
@@ -244,7 +234,7 @@
 
         <tr>
             
-                <td class="name"><code>base</code></td>
+                <td class="name"><code>options</code></td>
             
 
             <td class="type">
@@ -260,53 +250,7 @@
 
             
 
-            <td class="description last">base</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">settings for the request</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>request</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">the request</td>
+            <td class="description last">options for creating actions</td>
         </tr>
 
     
@@ -347,7 +291,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_AjaxClient.js.html">client/AjaxClient.js</a>, <a href="client_AjaxClient.js.html#line61">line 61</a>
+        <a href="ReactatorServerApp.js.html">ReactatorServerApp.js</a>, <a href="ReactatorServerApp.js.html#line111">line 111</a>
     </li></ul></dd>
     
 
@@ -374,7 +318,7 @@
 
         
 <div class="param-desc">
-    promise for the request
+    promise for the match
 </div>
 
 
@@ -400,7 +344,7 @@
 
     
 
-    <h4 class="name" id="create"><span class="type-signature"></span>create<span class="signature">(item, settings)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+    <h4 class="name" id="middleware"><span class="type-signature"></span>middleware<span class="signature">(options)</span><span class="type-signature"> &rarr; {function}</span></h4>
 
     
 
@@ -439,7 +383,7 @@
 
         <tr>
             
-                <td class="name"><code>item</code></td>
+                <td class="name"><code>options</code></td>
             
 
             <td class="type">
@@ -455,20 +399,62 @@
 
             
 
-            <td class="description last">item to create</td>
+            <td class="description last">options for the middleware
+                <h6>Properties</h6>
+                
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>template</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">template to use for rendering</td>
         </tr>
 
     
 
         <tr>
             
-                <td class="name"><code>settings</code></td>
+                <td class="name"><code>notFoundComponent</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Object</span>
+<span class="param-type">React.Component</span>
 
 
             
@@ -478,7 +464,37 @@
 
             
 
-            <td class="description last">settings for the ajax request</td>
+            <td class="description last">not found component</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>internalServerErrorComponent</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">React.Component</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">internal server error component</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+            </td>
         </tr>
 
     
@@ -498,11 +514,6 @@
 
     
 
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="module-Reactator.Client.html#create">module:Reactator.Client#create</a>
-    </li></ul></dd>
     
 
     
@@ -524,7 +535,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_AjaxClient.js.html">client/AjaxClient.js</a>, <a href="client_AjaxClient.js.html#line97">line 97</a>
+        <a href="ReactatorServerApp.js.html">ReactatorServerApp.js</a>, <a href="ReactatorServerApp.js.html#line209">line 209</a>
     </li></ul></dd>
     
 
@@ -551,7 +562,156 @@
 
         
 <div class="param-desc">
-    deferred result of the request
+    express middleware for handling the rendering of the page
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">function</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+            
+
+    
+
+    <h4 class="name" id="middleware"><span class="type-signature"></span>middleware<span class="signature">(url)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>url</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">url for matching</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="ReactatorServerApp.js.html">ReactatorServerApp.js</a>, <a href="ReactatorServerApp.js.html#line84">line 84</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    promise for the match
 </div>
 
 
@@ -577,15 +737,11 @@
 
     
 
-    <h4 class="name" id="delete"><span class="type-signature"></span>delete<span class="signature">(id, settings)</span><span class="type-signature"> &rarr; {ClientResponse}</span></h4>
+    <h4 class="name" id="processRequest"><span class="type-signature"></span>processRequest<span class="signature">(options)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
 
-
-<div class="description">
-    Deletes an new item in the resource container.
-</div>
 
 
 
@@ -620,30 +776,7 @@
 
         <tr>
             
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">id of the item</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
+                <td class="name"><code>options</code></td>
             
 
             <td class="type">
@@ -659,7 +792,7 @@
 
             
 
-            <td class="description last">settings for performing the create</td>
+            <td class="description last">options for processing the requests</td>
         </tr>
 
     
@@ -679,11 +812,6 @@
 
     
 
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="module-Reactator.Client.html#delete">module:Reactator.Client#delete</a>
-    </li></ul></dd>
     
 
     
@@ -705,7 +833,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line91">line 91</a>
+        <a href="ReactatorServerApp.js.html">ReactatorServerApp.js</a>, <a href="ReactatorServerApp.js.html#line154">line 154</a>
     </li></ul></dd>
     
 
@@ -726,42 +854,13 @@
 
 
 
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        on failure to perform the delete operation
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">ClientError</span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
 
 
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
-    delete response (Promise)
+    promise for the match
 </div>
 
 
@@ -772,7 +871,7 @@
     </dt>
     <dd>
         
-<span class="param-type">ClientResponse</span>
+<span class="param-type">Promise</span>
 
 
     </dd>
@@ -787,15 +886,11 @@
 
     
 
-    <h4 class="name" id="MethodNotSupported"><span class="type-signature"></span>MethodNotSupported<span class="signature">()</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="start"><span class="type-signature"></span>start<span class="signature">()</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
 
-
-<div class="description">
-    Simple Promise to throw method not implemented error.
-</div>
 
 
 
@@ -815,11 +910,6 @@
 
     
 
-    
-    <dt class="inherited-from">Inherited From:</dt>
-    <dd class="inherited-from"><ul class="dummy"><li>
-        <a href="module-Reactator.Client.html#MethodNotSupported">module:Reactator.Client#MethodNotSupported</a>
-    </li></ul></dd>
     
 
     
@@ -843,7 +933,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line17">line 17</a>
+        <a href="ReactatorServerApp.js.html">ReactatorServerApp.js</a>, <a href="ReactatorServerApp.js.html#line64">line 64</a>
     </li></ul></dd>
     
 
@@ -864,201 +954,13 @@
 
 
 
-
-
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="read"><span class="type-signature"></span>read<span class="signature">(id, settings)</span><span class="type-signature"> &rarr; {ClientResponse}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Reads an item represented by the id.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">id of the item to read</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">settings for performing the read</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="module-Reactator.Client.html#read">module:Reactator.Client#read</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line56">line 56</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        on failure to perform the read
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">ClientError</span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
 
 
 <h5>Returns:</h5>
 
         
 <div class="param-desc">
-    item represented by the id (Promise)
+    promise returning the app after its ready for launch
 </div>
 
 
@@ -1069,240 +971,7 @@
     </dt>
     <dd>
         
-<span class="param-type">ClientResponse</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="update"><span class="type-signature"></span>update<span class="signature">(id, item, settings)</span><span class="type-signature"> &rarr; {ClientResponse}</span></h4>
-
-    
-
-
-
-<div class="description">
-    Updates an existing item in the resource container.
-</div>
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
-    
-
-        <tr>
-            
-                <td class="name"><code>id</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">String</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">id of the item</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>item</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">item to update to</td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>settings</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">Object</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last">settings for performing the update</td>
-        </tr>
-
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-overrides">Overrides:</dt>
-    <dd class="tag-overrides"><ul class="dummy"><li>
-        <a href="module-Reactator.Client.html#update">module:Reactator.Client#update</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="client_Client.js.html">client/Client.js</a>, <a href="client_Client.js.html#line73">line 73</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-<h5>Throws:</h5>
-
-        
-
-<dl>
-    <dt>
-        <div class="param-desc">
-        on failure to perform the update
-        </div>
-    </dt>
-    <dd></dd>
-    <dt>
-        <dl>
-            <dt>
-                Type
-            </dt>
-            <dd>
-                
-<span class="param-type">ClientError</span>
-
-
-            </dd>
-        </dl>
-    </dt>
-    <dd></dd>
-</dl>
-
-
-    
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    update response (Promise)
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">ClientResponse</span>
+<span class="param-type">Promise</span>
 
 
     </dd>

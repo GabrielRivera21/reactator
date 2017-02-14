@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/responsive/ResponsiveComponent.js</title>
+    <title>JSDoc: Source: actions/ActionFactory.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/responsive/ResponsiveComponent.js</h1>
+    <h1 class="page-title">Source: actions/ActionFactory.js</h1>
 
     
 
@@ -26,45 +26,91 @@
     
     <section>
         <article>
-            <pre class="prettyprint source linenums"><code>import _ from '../../lib/lodash.js';
-import React, {PropTypes} from 'react';
-import ResponsiveConstants from '../../constants/ResponsiveConstants.js';
-import ReduxComponent from '../ReduxComponent.js';
-
-// TEST:
+            <pre class="prettyprint source linenums"><code>import _ from '../lib/lodash.js';
 
 /**
- * @class ResponsiveComponent
- * @classdesc redux component rendering the appropriate element based on window size
+ * @class
  * @memberOf module:Reactator
- *
- * @param {ResponsiveConstants} props.visibility - PropTypes.string.isRequired
- * @param {ReactElement} props.XS - React.PropTypes.element
- * @param {ReactElement} props.SM - React.PropTypes.element
- * @param {ReactElement} props.MD - React.PropTypes.element
- * @param {ReactElement} props.LG - React.PropTypes.element
- * @param {ReactElement} props.XL - React.PropTypes.element
  */
-export default ReduxComponent({
-    visibility: PropTypes.string.isRequired,
-    XS: React.PropTypes.element,
-    SM: React.PropTypes.element,
-    MD: React.PropTypes.element,
-    LG: React.PropTypes.element,
-    XL: React.PropTypes.element
-}, (props) => {
-    const visibilityValue = ResponsiveConstants.value(props.visibility);
+export default class ActionFactory {
+    /**
+     * @method create
+     *
+     * @param {String} name - name
+     * @param {Object} params - params
+     *
+     * @return {Array} array of actions
+     */
+    create(name, params) { /* eslint no-unused-vars: 0 */
+        return [];
+    }
+}
 
-    for (let value = visibilityValue; value >= ResponsiveConstants.MIN_VALUE; --value) {
-        const name = ResponsiveConstants.name(value);
-
-        if (!_.isNil(props[name])) {
-            return props[name];
-        }
+/**
+ * @class
+ * @memberOf module:Reactator
+ * @extends {module:Reactator.ActionFactory}
+ *
+ * @param {function} factoryMethod - method to create ActionFactory for
+ *
+ * @see module:Reactator.ActionFactory
+ */
+export class SimpleActionFactory  extends ActionFactory {
+    constructor(factoryMethod) {
+        super();
+        this.factoryMethod = factoryMethod;
     }
 
-    return &lt;div />;
-});
+    create(name, params) {
+        return this.factoryMethod(name, params);
+    }
+}
+
+/**
+ * @class
+ * @memberOf module:Reactator
+ * @extends {module:Reactator.ActionFactory}
+ *
+ * @param {Array} actions - list of actions the factory creates for
+ *
+ * @see module:Reactator.ActionFactory
+ */
+export class FilteredActionFactory extends ActionFactory {
+    constructor(actions, method) {
+        super();
+        this.actions = actions;
+        this.method = method;
+    }
+
+    create(name, params) {
+        if (_.includes(this.actions, name)) {
+            return this.method(name, params);
+        } else {
+            return [];
+        }
+    }
+}
+
+/**
+ * @namespace ReactatorActionFactoryHelpers
+ * @classdesc ReactatorActionFactoryHelpers
+ * @memberOf module:Reactator
+ */
+
+/**
+ * @method module:Reactator.ReactatorActionFactoryHelpers#asActionFactory
+ *
+ * @param {module:Reactator.ActionFactory|function} obj - actionFactory or function
+ * @return {module:Reactator.ActionFactory} action factory
+ */
+export function asActionFactory(obj) {
+    if (obj instanceof ActionFactory) {
+        return obj;
+    }
+
+    _.check(_.isFunction(obj));
+    return new SimpleActionFactory(obj);
+}
 </code></pre>
         </article>
     </section>

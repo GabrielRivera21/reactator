@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Class: CompositeModuleBuilder</title>
+    <title>JSDoc: Namespace: ReactatorModuleHelpers</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Class: CompositeModuleBuilder</h1>
+    <h1 class="page-title">Namespace: ReactatorModuleHelpers</h1>
 
     
 
@@ -29,9 +29,9 @@
 <header>
     
         <h2>
-            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>CompositeModuleBuilder</h2>
+            <span class="ancestors"><a href="module-Reactator.html">Reactator</a>.</span>ReactatorModuleHelpers</h2>
         
-            <div class="class-description">composite module builder</div>
+            <div class="class-description">ReactatorModuleHelpers</div>
         
     
 </header>
@@ -41,26 +41,7 @@
     
         
 
-    
-    <h2>Constructor</h2>
-    
-
-    <h4 class="name" id="CompositeModuleBuilder"><span class="type-signature"></span>new CompositeModuleBuilder<span class="signature">()</span><span class="type-signature"></span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
 
 
 <dl class="details">
@@ -92,7 +73,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line331">line 331</a>
+        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line431">line 431</a>
     </li></ul></dd>
     
 
@@ -104,20 +85,7 @@
 </dl>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        
     
     </div>
 
@@ -141,107 +109,7 @@
 
     
 
-    <h4 class="name" id="build"><span class="type-signature"></span>build<span class="signature">()</span><span class="type-signature"> &rarr; {CompositeModule}</span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line415">line 415</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    composite module based on the current state of the builder
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">CompositeModule</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="withModule"><span class="type-signature"></span>withModule<span class="signature">(module)</span><span class="type-signature"> &rarr; {CompositeModuleBuilder}</span></h4>
+    <h4 class="name" id="getComponents"><span class="type-signature"></span>getComponents<span class="signature">(module)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -286,7 +154,7 @@
             <td class="type">
             
                 
-<span class="param-type">ReactatorModule</span>
+<span class="param-type">CompositeModule</span>
 
 
             
@@ -296,7 +164,7 @@
 
             
 
-            <td class="description last">module to add to the composite module</td>
+            <td class="description last">module to start</td>
         </tr>
 
     
@@ -337,7 +205,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line377">line 377</a>
+        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line437">line 437</a>
     </li></ul></dd>
     
 
@@ -364,7 +232,7 @@
 
         
 <div class="param-desc">
-    this builder
+    promise returning array of components order by name of the module
 </div>
 
 
@@ -375,7 +243,7 @@
     </dt>
     <dd>
         
-<span class="param-type">CompositeModuleBuilder</span>
+<span class="param-type">Promise</span>
 
 
     </dd>
@@ -390,7 +258,7 @@
 
     
 
-    <h4 class="name" id="withModules"><span class="type-signature"></span>withModules<span class="signature">(modules)</span><span class="type-signature"> &rarr; {CompositeModuleBuilder}</span></h4>
+    <h4 class="name" id="getComponents"><span class="type-signature"></span>getComponents<span class="signature">(module, context, startCallback)</span><span class="type-signature"> &rarr; {Promise}</span></h4>
 
     
 
@@ -429,13 +297,13 @@
 
         <tr>
             
-                <td class="name"><code>modules</code></td>
+                <td class="name"><code>module</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Array</span>
+<span class="param-type">CompositeModule</span>
 
 
             
@@ -445,146 +313,20 @@
 
             
 
-            <td class="description last">array of modules</td>
+            <td class="description last">module to start</td>
         </tr>
 
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line393">line 393</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    this builder
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">CompositeModuleBuilder</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="withSerialModule"><span class="type-signature"></span>withSerialModule<span class="signature">(enabled)</span><span class="type-signature"> &rarr; {CompositeModuleBuilder}</span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>enabled</code></td>
+                <td class="name"><code>context</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Boolean</span>
+<span class="param-type"><a href="module-Reactator.Context.html">module:Reactator.Context</a></span>
 
 
             
@@ -594,146 +336,20 @@
 
             
 
-            <td class="description last">serial or not</td>
+            <td class="description last">context for the modules</td>
         </tr>
 
-    
-    </tbody>
-</table>
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line345">line 345</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-
-
-
-
-
-
-
-<h5>Returns:</h5>
-
-        
-<div class="param-desc">
-    this builder
-</div>
-
-
-
-<dl>
-    <dt>
-        Type
-    </dt>
-    <dd>
-        
-<span class="param-type">CompositeModuleBuilder</span>
-
-
-    </dd>
-</dl>
-
-    
-
-
-
-        
-            
-
-    
-
-    <h4 class="name" id="withTimeout"><span class="type-signature"></span>withTimeout<span class="signature">(timeout)</span><span class="type-signature"> &rarr; {CompositeModuleBuilder}</span></h4>
-
-    
-
-
-
-
-
-
-
-
-
-
-
-    <h5>Parameters:</h5>
-    
-
-<table class="params">
-    <thead>
-    <tr>
-        
-        <th>Name</th>
-        
-
-        <th>Type</th>
-
-        
-
-        
-
-        <th class="last">Description</th>
-    </tr>
-    </thead>
-
-    <tbody>
     
 
         <tr>
             
-                <td class="name"><code>timeout</code></td>
+                <td class="name"><code>startCallback</code></td>
             
 
             <td class="type">
             
                 
-<span class="param-type">Number</span>
+<span class="param-type">function</span>
 
 
             
@@ -743,7 +359,7 @@
 
             
 
-            <td class="description last">timeout for the composite module</td>
+            <td class="description last">startCallback method to be called for the start</td>
         </tr>
 
     
@@ -784,7 +400,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line361">line 361</a>
+        <a href="modules_ReactatorModule.js.html">modules/ReactatorModule.js</a>, <a href="modules_ReactatorModule.js.html#line457">line 457</a>
     </li></ul></dd>
     
 
@@ -811,7 +427,7 @@
 
         
 <div class="param-desc">
-    this builder
+    promise returning the exit status code
 </div>
 
 
@@ -822,7 +438,7 @@
     </dt>
     <dd>
         
-<span class="param-type">CompositeModuleBuilder</span>
+<span class="param-type">Promise</span>
 
 
     </dd>

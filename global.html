@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: components/responsive/ResponsiveComponent.js</title>
+    <title>JSDoc: Global</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,57 +17,266 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: components/responsive/ResponsiveComponent.js</h1>
+    <h1 class="page-title">Global</h1>
 
     
 
 
 
+
+<section>
+
+<header>
     
-    <section>
-        <article>
-            <pre class="prettyprint source linenums"><code>import _ from '../../lib/lodash.js';
-import React, {PropTypes} from 'react';
-import ResponsiveConstants from '../../constants/ResponsiveConstants.js';
-import ReduxComponent from '../ReduxComponent.js';
+        <h2></h2>
+        
+    
+</header>
 
-// TEST:
+<article>
+    <div class="container-overview">
+    
+        
 
-/**
- * @class ResponsiveComponent
- * @classdesc redux component rendering the appropriate element based on window size
- * @memberOf module:Reactator
- *
- * @param {ResponsiveConstants} props.visibility - PropTypes.string.isRequired
- * @param {ReactElement} props.XS - React.PropTypes.element
- * @param {ReactElement} props.SM - React.PropTypes.element
- * @param {ReactElement} props.MD - React.PropTypes.element
- * @param {ReactElement} props.LG - React.PropTypes.element
- * @param {ReactElement} props.XL - React.PropTypes.element
- */
-export default ReduxComponent({
-    visibility: PropTypes.string.isRequired,
-    XS: React.PropTypes.element,
-    SM: React.PropTypes.element,
-    MD: React.PropTypes.element,
-    LG: React.PropTypes.element,
-    XL: React.PropTypes.element
-}, (props) => {
-    const visibilityValue = ResponsiveConstants.value(props.visibility);
+        
 
-    for (let value = visibilityValue; value >= ResponsiveConstants.MIN_VALUE; --value) {
-        const name = ResponsiveConstants.name(value);
 
-        if (!_.isNil(props[name])) {
-            return props[name];
-        }
-    }
+<dl class="details">
 
-    return &lt;div />;
-});
-</code></pre>
-        </article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+        
+    
+    </div>
+
+    
+
+    
+
+    
+
+     
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+
+    
+
+    <h4 class="name" id="create"><span class="type-signature"></span>create<span class="signature">(name, params)</span><span class="type-signature"> &rarr; {Array}</span></h4>
+
+    
+
+
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>name</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">String</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">name</td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>params</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">Object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">params</td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="actions_ActionFactory.js.html">actions/ActionFactory.js</a>, <a href="actions_ActionFactory.js.html#line36">line 36</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<h5>Returns:</h5>
+
+        
+<div class="param-desc">
+    array of actions
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">Array</span>
+
+
+    </dd>
+</dl>
+
+    
+
+
+
+        
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 

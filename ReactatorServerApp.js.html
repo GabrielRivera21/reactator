@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: ReactatorServerApp.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: ReactatorServerApp.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>import _ from 'reactator/lib/lodash';
+import Mustache from 'mustache';
+import Promise from 'bluebird';
+import LOGGER from 'loglevel';
+import React from 'react';
+import {getComponents} from './modules/ReactatorModule.js';
+import {match, RouterContext} from 'react-router';
+import {Provider} from 'react-redux';
+import {renderToString} from 'react-dom/server';
+
+/**
+ * @class
+ * @memberOf module:Reactator
+ *
+ * @param {module:Reactator.ReactatorAppConfiguration} configuration - app configuration
+ *
+ * @see module:Reactator.ReactatorAppConfiguration
+ * @see module:Reactator.ReactatorAppConfigurationBuillder
+ */
+export default class ReactatorServerApp {
+    constructor(configuration) {
+        /** @member {Object} */
+        this.configuration = configuration;
+
+        /** @member {Object} */
+        this.routes = undefined;
+
+        /** @member {Object} */
+        this.components = undefined;
+    }
+
+    /**
+     * @method module:Reactator.ReactatorServerApp#start
+     * @return {Promise} promise returning the app after its ready for launch
+     */
+    start() {
+        return Promise.try(() => {
+            this.routes = this.configuration.routes.getRoutes();
+            return getComponents(this.configuration.module);
+        }).then((components) => {
+            this.components = components;
+            return this;
+        });
+    }
+
+    /**
+     * @method module:Reactator.ReactatorServerApp#middleware
+     *
+     * @param {String} url - url for matching
+     * @return {Promise} promise for the match
+     */
+    match(url) {
+        return Promise.fromCallback((callback) => {
+            Promise.try(() => {
+                match({routes: this.routes, location: url}, (error, redirectLocation, renderProps) => {
+                    callback(undefined, {
+                        error,
+                        redirectLocation,
+                        renderProps
+                    });
+                });
+            }).catch((error) => {
+                callback(undefined, {error});
+            });
+        });
+    }
+
+    /**
+     * @method module:Reactator.ReactatorServerApp#createActions
+     *
+     * @param {Object} options - options for creating actions
+     * @return {Promise} promise for the match
+     */
+    createActions({renderProps, req}) {
+        const promises = [];
+
+        _.map(renderProps.components, (component) => {
+            if (component.ACTIONS) {
+                const params = {
+                    req: req,
+                    props: renderProps,
+                    context: {
+                        component: component,
+                        params: component.ACTION_PARAMS
+                    }
+                };
+
+                _.map(component.ACTIONS, (name) => {
+                    _.map(this.configuration.actionFactories, (factory) => {
+                        promises.push(Promise.try(() => {
+                            return factory.create(name, params);
+                        }));
+                    });
+                });
+            }
+        });
+
+        return promises;
+    }
+
+    /**
+     * @method module:Reactator.ReactatorServerApp#processRequest
+     *
+     * @param {Object} options - options for processing the requests
+     * @return {Promise} promise for the match
+     */
+    processRequest({notFoundComponent, internalServerErrorComponent, error, req, renderProps}) {
+        if (error) {
+            return {
+                status: 500,
+                store: this.configuration.newStore(),
+                component: internalServerErrorComponent
+            };
+        } else if (renderProps) {
+            return Promise.all(this.createActions({renderProps, req}))
+                .then((createdActions) => {
+                    const store = this.configuration.newStore();
+
+                    _.map(_.flattenDepth(createdActions, 1), (action) => {
+                        store.dispatch(action);
+                    });
+
+                    return {
+                        status: 200,
+                        store,
+                        component: &lt;RouterContext {...renderProps} />
+                    };
+                }).catch((e) => {
+                    LOGGER.error(e.message, e);
+
+                    return {
+                        status: 500,
+                        store: this.configuration.newStore(),
+                        component: internalServerErrorComponent
+                    };
+                });
+        } else {
+            return {
+                status: 404,
+                store: this.configuration.newStore(),
+                component: notFoundComponent
+            };
+        }
+    }
+
+    /**
+     * @method module:Reactator.ReactatorServerApp#middleware
+     *
+     * @param {Object} options - options for the middleware
+     * @param {String} options.template - template to use for rendering
+     * @param {React.Component} options.notFoundComponent - not found component
+     * @param {React.Component} options.internalServerErrorComponent - internal server error component
+     *
+     * @return {function} express middleware for handling the rendering of the page
+     */
+    middleware(options) {
+        const {template, notFoundComponent, internalServerErrorComponent} = options;
+
+        return (req, res) => {
+            this.match(req.originalUrl)
+                .then(({error, redirectLocation, renderProps}) => {
+                    if (redirectLocation) {
+                        return {
+                            status: 302,
+                            redirectUrl: redirectLocation.pathname + redirectLocation.search
+                        };
+                    } else {
+                        return this.processRequest({
+                            notFoundComponent,
+                            internalServerErrorComponent,
+                            error,
+                            req,
+                            renderProps
+                        });
+                    }
+                }).then(({status, redirectUrl, store, component}) => {
+                    if (redirectUrl) {
+                        res.redirect(status, redirectUrl);
+                    } else {
+                        res.status(status)
+                            .send(
+                                Mustache.render(
+                                    template, {
+                                        html: renderToString(
+                                            &lt;Provider store={store}>
+                                                &lt;div>
+                                                    {component}
+                                                    {this.components}
+                                                &lt;/div>
+                                            &lt;/Provider>
+                                        ),
+                                        state: JSON.stringify(store.getState())
+                                    }
+                                )
+                            );
+                    }
+                }).catch(() => {
+                    res.status(500).send('Internal Server Error');
+                });
+        };
+    }
+}
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-Reactator.html">Reactator</a></li></ul><h3>Classes</h3><ul><li><a href="module-Reactator.ActionFactory.html">ActionFactory</a></li><li><a href="module-Reactator.AjaxClient.html">AjaxClient</a></li><li><a href="module-Reactator.BasicLayout.html">BasicLayout</a></li><li><a href="module-Reactator.BootstrapModal.html">BootstrapModal</a></li><li><a href="module-Reactator.Client.html">Client</a></li><li><a href="module-Reactator.ClientError.html">ClientError</a></li><li><a href="module-Reactator.ClientResponse.html">ClientResponse</a></li><li><a href="module-Reactator.ClientWrapper.html">ClientWrapper</a></li><li><a href="module-Reactator.CompositeModule.html">CompositeModule</a></li><li><a href="module-Reactator.CompositeModuleBuilder.html">CompositeModuleBuilder</a></li><li><a href="module-Reactator.CompositeRoutes.html">CompositeRoutes</a></li><li><a href="module-Reactator.Context.html">Context</a></li><li><a href="module-Reactator.exports.default.html">exports.default</a></li><li><a href="module-Reactator.FilteredActionFactory.html">FilteredActionFactory</a></li><li><a href="module-Reactator.jQuery.html">jQuery</a></li><li><a href="module-Reactator.ReactatorAppConfiguration.html">ReactatorAppConfiguration</a></li><li><a href="module-Reactator.ReactatorAppConfigurationBuillder.html">ReactatorAppConfigurationBuillder</a></li><li><a href="module-Reactator.ReactatorBundle.html">ReactatorBundle</a></li><li><a href="module-Reactator.ReactatorClientApp.html">ReactatorClientApp</a></li><li><a href="module-Reactator.ReactatorModule.html">ReactatorModule</a></li><li><a href="module-Reactator.ReactatorServerApp.html">ReactatorServerApp</a></li><li><a href="module-Reactator.ReactatorServerBundle.html">ReactatorServerBundle</a></li><li><a href="module-Reactator.ReactLifeCycleCallback.html">ReactLifeCycleCallback</a></li><li><a href="module-Reactator.Reducer.html">Reducer</a></li><li><a href="module-Reactator.ReducerWrapper.html">ReducerWrapper</a></li><li><a href="module-Reactator.ReduxContainerBuilder.html">ReduxContainerBuilder</a></li><li><a href="module-Reactator.ReduxStoreBuilder.html">ReduxStoreBuilder</a></li><li><a href="module-Reactator.ResopnsiveConstants.html">ResopnsiveConstants</a></li><li><a href="module-Reactator.ResponsiveBundle.html">ResponsiveBundle</a></li><li><a href="module-Reactator.ResponsiveComponent.html">ResponsiveComponent</a></li><li><a href="module-Reactator.ResponsiveModule.html">ResponsiveModule</a></li><li><a href="module-Reactator.ResponsiveModuleComponent.html">ResponsiveModuleComponent</a></li><li><a href="module-Reactator.ResponsiveReducer.html">ResponsiveReducer</a></li><li><a href="module-Reactator.Routes.html">Routes</a></li><li><a href="module-Reactator.SerialCompositeModule.html">SerialCompositeModule</a></li><li><a href="module-Reactator.SimpleReducer.html">SimpleReducer</a></li><li><a href="ResponsiveContainer.html">ResponsiveContainer</a></li></ul><h3>Namespaces</h3><ul><li><a href="ActionConstants.html">ActionConstants</a></li><li><a href="module-Reactator.lodash.html">lodash</a></li><li><a href="module-Reactator.ReactatorActionFactoryHelpers.html">ReactatorActionFactoryHelpers</a></li><li><a href="module-Reactator.ReactatorModuleHelpers.html">ReactatorModuleHelpers</a></li><li><a href="module-Reactator.ReduxComponet.html">ReduxComponet</a></li><li><a href="module-Reactator.ResponsiveAction.html">ResponsiveAction</a></li></ul><h3>Global</h3><ul><li><a href="global.html#create">create</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.4.3</a> on Mon Feb 13 2017 21:59:36 GMT-0800 (PST)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>
