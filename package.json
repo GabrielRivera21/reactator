@@ -1,6 +1,6 @@
 {
   "name": "reactator",
-  "version": "3.0.3",
+  "version": "3.1.0",
   "description": "Single Page Application based on React, ReactRouter & Redux.",
   "author": "Armin Bahramshahry",
   "repository": {
@@ -38,12 +38,13 @@
     "dot-prop-immutable": "^1.2.0",
     "font-awesome": "^4.6.3",
     "http-status-codes": "^1.0.6",
-    "jquery": "^3.1.0",
+    "jquery": "^3.1.1",
     "keymirror": "^0.1.1",
     "l20n": "^4.0.0-alpha.3",
     "lodash": "^4.15.0",
     "loglevel": "^1.4.1",
     "moment": "^2.14.1",
+    "mustache": "^2.3.0",
     "object-path-immutable": "^0.5.1",
     "react": "^15.3.1",
     "react-addons-test-utils": "^15.3.1",
@@ -73,7 +74,7 @@
     "jest-cli": "^14.1.0",
     "jsdoc": "^3.4.0",
     "jsdoc-babel": "^0.3.0",
-    "reactator-build": "0.0.5"
+    "reactator-build": "0.0.8"
   },
   "engines": {
     "node": "^6.3.1"

@@ -12,7 +12,10 @@
  */
 export default class ReactatorBundle {
     constructor(reducers, modules) {
+        /** @member {Array} */
         this.reducers = reducers;
+
+        /** @member {Array} */
         this.modules = modules;
     }
 }

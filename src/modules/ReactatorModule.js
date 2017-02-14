@@ -306,3 +306,65 @@ export class CompositeModuleBuilder {
         return new this.CompositeClass(this.modules, this.timeout);
     }
 }
+
+/**
+ * @namespace ReactatorModuleHelpers
+ * @classdesc ReactatorModuleHelpers
+ * @memberOf module:Reactator
+ */
+
+/**
+ * @method module:Reactator.ReactatorModuleHelpers#getComponents
+ *
+ * @param {CompositeModule} module - module to start
+ * @return {Promise} promise returning array of components order by name of the module
+ */
+export function getComponents(module) {
+    return Promise.try(() => {
+        return module.initialize();
+    }).then(() => {
+        return module.getComponents();
+    }).then((components) => {
+        return _.flattenDeep(_.map(_.orderBy(_.keys(components)), (k) => components[k]));
+    });
+}
+
+/**
+ * @method module:Reactator.ReactatorModuleHelpers#getComponents
+ *
+ * @param {CompositeModule} module - module to start
+ * @param {module:Reactator.Context} context - context for the modules
+ * @param {function} startCallback - startCallback method to be called for the start
+ * @return {Promise} promise returning the exit status code
+ */
+export function start(module, context, startCallback) {
+    let exitCode = 0;
+
+    return getComponents(module)
+        .then((components) => {
+            return components;
+        }).then((components) => {
+            module.setContext(context);
+            return components;
+        }).then((components) => {
+            return module.willStart()
+                .return(components);
+        }).catch((err) => {
+            LOGGER.error('Module initialization failed!', err);
+            LOGGER.info('Failed to initialize the modules, proceeding with empty components!');
+            exitCode = 1;
+
+            return [];
+        }).then((components) => {
+            return Promise.fromCallback((callback) => {
+                startCallback(components, callback);
+            });
+        }).then(() => {
+            return module.didStart();
+        }).catch((err) => {
+            LOGGER.error('Module start failed!', err);
+            exitCode = 2;
+
+            return {};
+        }).return(exitCode);
+}

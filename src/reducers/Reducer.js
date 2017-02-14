@@ -131,6 +131,7 @@ export class ReduxStoreBuilder {
         this._enhancers = [];
         this._initialState = undefined;
         this._loggerOptions = {
+            enabled: true,
             level: 'log',
             collapsed: true,
             duration: true
@@ -303,12 +304,17 @@ export class ReduxStoreBuilder {
      * @see [redux-logger]{@link https://www.npmjs.com/package/redux-logger}
      */
     middlewares() {
-        return [
+        const entries = [
             ...this._middlewares,
             thunk,
             promise,
-            createLogger(this._loggerOptions)
         ];
+
+        if (this._loggerOptions.enabled) {
+            entries.push(createLogger(this._loggerOptions));
+        }
+
+        return entries;
     }
 
     /**

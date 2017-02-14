@@ -1,7 +1,9 @@
 module.exports = {
-    ReactatorApp: require('./ReactatorApp.js'),
+    ReactatorAppConfiguration: require('./ReactatorAppConfiguration.js'),
     ReactatorBundle: require('./ReactatorBundle.js'),
+    ReactatorClientApp: require('./ReactatorClientApp.js'),
     actions: {
+        ActionFactory: require('./actions/ActionFactory.js'),
         ResponsiveAction: require('./actions/ResponsiveAction.js')
     },
     bundles: {

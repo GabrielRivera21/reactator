@@ -1,3 +1,7 @@
+## [v3.1.0](https://github.com/arminbhy/reactator/compare/v3.0.0...v3.1.0)
+> Feb 11, 2017
+- **Breaking** Removed ReactatorApp in favor of ReactatorAppConfiguration, ReactatorServerApp, and ReactatorClientApp.
+
 ## [v3.0.0](https://github.com/arminbhy/reactator/compare/v2.0.0...v3.0.0)
 > Jan 4, 2017
 - **Breaking** Redux
