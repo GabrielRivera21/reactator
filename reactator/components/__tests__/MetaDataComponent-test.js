@@ -7,7 +7,7 @@
 
 jest.autoMockOff();
 
-describe('MetaDataComponent', function() {
+describe('MetaDataComponent', function () {
     var $;
     var React;
     var TestUtils;
@@ -15,22 +15,22 @@ describe('MetaDataComponent', function() {
     var AppStore;
     var AppConstants;
 
-    beforeEach(function() {
+    beforeEach(function () {
         $ = require('../../lib/jquery.js');
-        React = require('react/addons');
+        React = require('react');
         TestUtils = React.addons.TestUtils;
         MetaDataComponent = require('../MetaDataComponent.js');
         AppStore = require('../../stores/AppStore.js');
         AppConstants = require('../../constants/AppConstants.js');
     });
 
-    it('renders to dom without errors', function() {
+    it('renders to dom without errors', function () {
         TestUtils.renderIntoDocument(<MetaDataComponent />);
     });
 
-    it('sets to SM if LG and MD are not visible', function() {
-        $.fn.is = function(name) {
-            switch(this[0].className) {
+    it('sets to SM if LG and MD are not visible', function () {
+        $.fn.is = function (name) {
+            switch (this[0].className) {
                 case 'visible-lg-block':
                     return false;
                 case 'visible-md-block':
@@ -49,9 +49,9 @@ describe('MetaDataComponent', function() {
         expect(state.size.visibility).toBe(AppConstants.SM);
     });
 
-    it('sets to MD if LG is not visible', function() {
-        $.fn.is = function(name) {
-            switch(this[0].className) {
+    it('sets to MD if LG is not visible', function () {
+        $.fn.is = function (name) {
+            switch (this[0].className) {
                 case 'visible-lg-block':
                     return false;
                 case 'visible-md-block':
@@ -70,8 +70,8 @@ describe('MetaDataComponent', function() {
         expect(state.size.visibility).toBe(AppConstants.MD);
     });
 
-    it('sets to XS if every div is not visible', function() {
-        $.fn.is = function() { return false; };
+    it('sets to XS if every div is not visible', function () {
+        $.fn.is = function () { return false; };
 
         TestUtils.renderIntoDocument(<MetaDataComponent />);
 
@@ -82,7 +82,7 @@ describe('MetaDataComponent', function() {
         expect(state.size.visibility).toBe(AppConstants.XS);
     });
 
-    it('populates the AppStore\'s size data', function() {
+    it('populates the AppStore\'s size data', function () {
         TestUtils.renderIntoDocument(<MetaDataComponent />);
 
         var state = AppStore.getState().toJS();
