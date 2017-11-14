@@ -44,6 +44,7 @@ var AppStarter = (function () {
          * @param {Boolean} useHash to use or not to use
          * @return {AppStarter} the app starter
          * @method withHash
+         * @deprecated
          */
         value: function withHash(useHash) {
             this.hash = useHash;
@@ -58,6 +59,7 @@ var AppStarter = (function () {
          * @param {Router} routes routes to start the app with
          * @return {AppStarter} the app starter
          * @method withRoutes
+         * @deprecated
          */
         value: function withRoutes(routes) {
             this.routes = routes;
@@ -75,18 +77,8 @@ var AppStarter = (function () {
             // The MetaData Component providing common functionality / support.
             ReactDOM.render(React.createElement(MetaDataComponent, null), document.getElementById('_md'));
 
-            var handler = function handler(Handler, state) {
-                AppDispatcher.handleRouteAction(state);
-
-                React.render(React.createElement(Handler, null), document.getElementById('main'));
-            };
-
             this.routes.initialize();
-            if (this.hash === true) {
-                Router.run(this.routes.getRoutes(), handler);
-            } else {
-                Router.run(this.routes.getRoutes(), Router.HistoryLocation, handler);
-            }
+            ReactDOM.render(<Router routes={this.routes.getRoutes()} />, document.getElementById('main'));
         }
     }]);
 
