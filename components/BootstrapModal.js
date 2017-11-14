@@ -2,14 +2,15 @@
 
 "use strict";
 
-var React = require("react");
+var React = require("react"),
+    CreateReactClass = require('create-react-class');
 
 /**
  * React component BootstrapModal
  *
  * @class BootstrapModal
  */
-var BootstrapModal = React.createClass({
+var BootstrapModal = CreateReactClass({
     displayName: "BootstrapModal",
 
     propTypes: {

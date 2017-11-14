@@ -4,6 +4,7 @@
 
 var _ = require('lodash'),
     React = require('react'),
+    CreateReactClass = require('create-react-class'),
     AppStore = require('../stores/AppStore.js'),
     AppConstants = require('../constants/AppConstants.js');
 
@@ -29,7 +30,7 @@ var getPropVisibility = function getPropVisibility(props, visibility) {
  *
  * @class ResponsiveComponent
  */
-var ResponsiveComponent = React.createClass({
+var ResponsiveComponent = CreateReactClass({
     displayName: 'ResponsiveComponent',
 
     getInitialState: function getInitialState() {

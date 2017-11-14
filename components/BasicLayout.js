@@ -3,6 +3,7 @@
 'use strict';
 
 var React = require('react'),
+    CreateReactClass = require('create-react-class'),
     Router = require('react-router'),
     RouteHandler = Router.RouteHandler;
 
@@ -11,7 +12,7 @@ var React = require('react'),
  *
  * @class BasicLayout
  */
-var BasicLayout = React.createClass({
+var BasicLayout = CreateReactClass({
     displayName: 'BasicLayout',
 
     render: function render() {

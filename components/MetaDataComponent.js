@@ -3,6 +3,7 @@
 'use strict';
 
 var React = require('react'),
+    CreateReactClass = require('create-react-class'),
     $ = require('../lib/jquery.js'),
     _ = require('lodash'),
     AppConstants = require('../constants/AppConstants.js'),
@@ -14,7 +15,7 @@ var React = require('react'),
  *
  * @class MetaDataComponent
  */
-var MetaDataComponent = React.createClass({
+var MetaDataComponent = CreateReactClass({
     displayName: 'MetaDataComponent',
 
     handleWindowResize: function handleWindowResize() {
