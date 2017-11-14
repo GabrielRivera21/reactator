@@ -3,7 +3,8 @@
 "use strict";
 
 var React = require("react"),
-    CreateReactClass = require('create-react-class');
+    CreateReactClass = require('create-react-class'),
+    PropTypes = require('prop-types');
 
 /**
  * React component BootstrapModal
@@ -14,7 +15,7 @@ var BootstrapModal = CreateReactClass({
     displayName: "BootstrapModal",
 
     propTypes: {
-        classes: React.PropTypes.arrayOf(React.PropTypes.string)
+        classes: PropTypes.arrayOf(PropTypes.string)
     },
 
     getDefaultProps: function getDefaultProps() {

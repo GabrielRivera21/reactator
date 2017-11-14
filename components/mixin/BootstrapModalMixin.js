@@ -8,7 +8,8 @@
 'use strict';
 
 var React = require('react'),
-    $ = require('../../lib/jquery.js');
+    $ = require('../../lib/jquery.js'),
+    PropTypes = require('prop-types');
 
 var bootstrapModalEvents = {
     handleShow: 'show.bs.modal',
@@ -45,10 +46,10 @@ var handlerProps = [
 
 var BootstrapModalMixin = {
     propTypes: {
-        handleShow: React.PropTypes.func,
-        handleShown: React.PropTypes.func,
-        handleHide: React.PropTypes.func,
-        handleHidden: React.PropTypes.func,
+        handleShow: PropTypes.func,
+        handleShown: PropTypes.func,
+        handleHide: PropTypes.func,
+        handleHidden: PropTypes.func,
 
         /**
          * Bootstrap modal property 'backdrop'
@@ -56,7 +57,7 @@ var BootstrapModalMixin = {
          * @property backdrop
          * @type {Boolean}
          */
-        backdrop: React.PropTypes.bool,
+        backdrop: PropTypes.bool,
 
         /**
          * Bootstrap modal property 'keyboard'
@@ -64,7 +65,7 @@ var BootstrapModalMixin = {
          * @property keyboard
          * @type {Boolean}
          */
-        keyboard: React.PropTypes.bool,
+        keyboard: PropTypes.bool,
 
         /**
          * Bootstrap modal property 'show'
@@ -72,7 +73,7 @@ var BootstrapModalMixin = {
          * @property show
          * @type {Boolean}
          */
-        show: React.PropTypes.bool,
+        show: PropTypes.bool,
 
         /**
          * Bootstrap modal property 'remote'
@@ -80,7 +81,7 @@ var BootstrapModalMixin = {
          * @property remote
          * @type {String}
          */
-        remote: React.PropTypes.string
+        remote: PropTypes.string
     },
 
     /**
