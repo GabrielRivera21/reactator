@@ -78,7 +78,7 @@ var AppStarter = (function () {
             ReactDOM.render(React.createElement(MetaDataComponent, null), document.getElementById('_md'));
 
             this.routes.initialize();
-            ReactDOM.render(React.createElement(Router, { routes: this.routes.getRoutes() }, document.getElementById('main'));
+            ReactDOM.render(React.createElement(Router, { routes: this.routes.getRoutes() }), document.getElementById('main'));
         }
     }]);
 
