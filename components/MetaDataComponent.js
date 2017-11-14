@@ -3,6 +3,7 @@
 'use strict';
 
 var React = require('react'),
+    ReactDOM = require('react-dom'),
     CreateReactClass = require('create-react-class'),
     $ = require('../lib/jquery.js'),
     _ = require('lodash'),
@@ -19,7 +20,7 @@ var MetaDataComponent = CreateReactClass({
     displayName: 'MetaDataComponent',
 
     handleWindowResize: function handleWindowResize() {
-        var $responsive = $(this.getDOMNode()).find('.responsive');
+        var $responsive = $(ReactDOM.findDOMNode(this)).find('.responsive');
         var isVisible = function isVisible(className) {
             return $responsive.find(className).is(':visible');
         };
