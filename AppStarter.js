@@ -7,6 +7,7 @@ var _createClass = (function () { function defineProperties(target, props) { for
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 var React = require('react'),
+    ReactDOM = require('react-dom'),
     Router = require('react-router'),
     AppDispatcher = require('./dispatcher/AppDispatcher.js'),
     MetaDataComponent = require('./components/MetaDataComponent.js');
@@ -72,7 +73,7 @@ var AppStarter = (function () {
          */
         value: function start() {
             // The MetaData Component providing common functionality / support.
-            React.render(React.createElement(MetaDataComponent, null), document.getElementById('_md'));
+            ReactDOM.render(React.createElement(MetaDataComponent, null), document.getElementById('_md'));
 
             var handler = function handler(Handler, state) {
                 AppDispatcher.handleRouteAction(state);
