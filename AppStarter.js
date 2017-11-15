@@ -8,7 +8,8 @@ function _classCallCheck(instance, Constructor) { if (!(instance instanceof Cons
 
 var React = require('react'),
     ReactDOM = require('react-dom'),
-    Router = require('react-router'),
+    BrowserRouter = require('react-router-dom').BrowserRouter,
+    HashRouter = require('react-router-dom').HashRouter,
     AppDispatcher = require('./dispatcher/AppDispatcher.js'),
     MetaDataComponent = require('./components/MetaDataComponent.js');
 
@@ -78,7 +79,21 @@ var AppStarter = (function () {
             ReactDOM.render(React.createElement(MetaDataComponent, null), document.getElementById('_md'));
 
             this.routes.initialize();
-            ReactDOM.render(React.createElement(Router, { routes: this.routes.getRoutes() }), document.getElementById('main'));
+            if(this.hash === true) {
+                ReactDOM.render(
+                    React.createElement(HashRouter, null,
+                        React.createElement(this.routes.getRoutes(), null)
+                    ), 
+                    document.getElementById('main')
+                );
+            } else {
+                ReactDOM.render(
+                    React.createElement(BrowserRouter, null,
+                        React.createElement(this.routes.getRoutes(), null)
+                    ), 
+                    document.getElementById('main')
+                );
+        }
         }
     }]);
 
