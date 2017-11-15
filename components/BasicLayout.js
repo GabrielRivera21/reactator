@@ -13,8 +13,8 @@ var React = require('react'),
 var BasicLayout = CreateReactClass({
     displayName: 'BasicLayout',
 
-    render: function render() {
-        return React.createElement(this.props.children, null);
+    render: function() {
+        return React.createElement("div", null, this.props.children);
     }
 });
 

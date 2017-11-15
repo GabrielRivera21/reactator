@@ -81,19 +81,15 @@ var AppStarter = (function () {
             this.routes.initialize();
             if(this.hash === true) {
                 ReactDOM.render(
-                    React.createElement(HashRouter, null,
-                        React.createElement(this.routes.getRoutes(), null)
-                    ), 
+                    React.createElement(HashRouter, null, this.routes.getRoutes()), 
                     document.getElementById('main')
                 );
             } else {
                 ReactDOM.render(
-                    React.createElement(BrowserRouter, null,
-                        React.createElement(this.routes.getRoutes(), null)
-                    ), 
+                    React.createElement(BrowserRouter, null, this.routes.getRoutes()), 
                     document.getElementById('main')
                 );
-        }
+            }
         }
     }]);
 
