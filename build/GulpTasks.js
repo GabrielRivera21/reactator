@@ -50,7 +50,7 @@ var GulpTasks = {
                     bundler = bundler.require(file, { expose: file });
                 });
 
-                bundler.transform(babelify).on('update', function () {
+                bundler.transform(babelify, { presets: ["env", "react"] }).on('update', function () {
                     console.log('Updating ' + root + entry.dest + '/' + entry.name);
                     rebundle();
                 });
@@ -72,7 +72,7 @@ var GulpTasks = {
                     bundler = bundler.require(file, { expose: file });
                 });
 
-                return bundler.transform(babelify).bundle().pipe(source(entry.name)).pipe(buffer()).pipe(sourcemaps.init({ loadMaps: true })).pipe(uglify()).pipe(sourcemaps.write('./')).pipe(gulp.dest(root + '/' + entry.dest));
+                return bundler.transform(babelify, { presets: ["env", "react"] }).bundle().pipe(source(entry.name)).pipe(buffer()).pipe(sourcemaps.init({ loadMaps: true })).pipe(uglify()).pipe(sourcemaps.write('./')).pipe(gulp.dest(root + '/' + entry.dest));
             }));
         };
     },
